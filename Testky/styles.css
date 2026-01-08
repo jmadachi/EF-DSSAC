@@ -1,0 +1,137 @@
+/* Fondo general: degradado azul-rojo oscuro */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    color: #f5f5f5;
+    background: linear-gradient(135deg, #050027 0%, #130038 40%, #4b002b 80%, #8b0015 100%);
+}
+
+/* Título con efecto leve de brillo */
+h1 {
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 6px #bc13fe;
+    margin-bottom: 20px;
+}
+
+/* Contenedores de pregunta y resultados con borde fucsia “neón” */
+.question,
+.results {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(10, 10, 30, 0.9);
+    border: 2px solid #ff00ff;
+    box-shadow:
+        0 0 6px #ff00ff,
+        0 0 12px rgba(255, 0, 255, 0.8),
+        0 0 20px rgba(255, 0, 255, 0.6);
+}
+
+/* Texto de la pregunta */
+.question p {
+    margin-top: 10px;
+}
+
+/* Área de opciones */
+.options {
+    margin: 15px 0;
+}
+
+/* Cada opción con fondo oscuro y borde suave */
+.option {
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 15, 40, 0.9);
+}
+
+/* Hover ligero */
+.option:hover {
+    background: rgba(35, 35, 80, 0.95);
+    transform: translateY(-1px);
+}
+
+/* Opción seleccionada: borde y brillo fucsia */
+.option.selected {
+    background: rgba(50, 10, 60, 0.95);
+    border-color: #ff00ff;
+    box-shadow: 0 0 6px #ff00ff;
+}
+
+/* Correcta/incorrecta (por si se usan visualmente más adelante) */
+.option.correct {
+    background-color: rgba(46, 125, 50, 0.9) !important;
+    border-color: #4caf50;
+}
+
+.option.incorrect {
+    background-color: rgba(211, 47, 47, 0.9) !important;
+    border-color: #f44336;
+}
+
+/* Botones generales */
+button {
+    padding: 10px 18px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.03em;
+}
+
+/* Botón principal: azul con glow fucsia al pasar el mouse */
+.btn-primary {
+    background: linear-gradient(90deg, #00bcd4, #3f51b5);
+    color: #ffffff;
+    box-shadow: 0 0 6px rgba(0, 188, 212, 0.8);
+}
+
+.btn-primary:hover {
+    box-shadow:
+        0 0 6px #ff00ff,
+        0 0 12px rgba(255, 0, 255, 0.8);
+}
+
+/* Botón secundario: gris oscuro */
+.btn-secondary {
+    background: #424242;
+    color: #f5f5f5;
+}
+
+.btn-secondary:hover {
+    background: #616161;
+}
+
+/* Contenedor de resultados (oculto al inicio) */
+.results {
+    display: none;
+}
+
+/* Puntuación */
+.score {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Bloques de explicación con un borde lateral de color distinto */
+.explanation {
+    background: rgba(15, 15, 40, 0.95);
+    padding: 15px;
+    border-left: 4px solid #00e5ff;
+    margin: 15px 0;
+}
+
+/* Navegación centrada */
+.navigation {
+    text-align: center;
+    margin-top: 30px;
+}

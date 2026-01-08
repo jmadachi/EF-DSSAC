@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen Interactivo</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <h1>Examen Interactivo - <span id="nombre-asignatura"></span></h1>
+
+    <div id="quiz-container">
+        <div id="questions"></div>
+        <div class="navigation">
+            <button id="prev-btn" class="btn btn-secondary">Anterior</button>
+            <button id="next-btn" class="btn btn-secondary">Siguiente</button>
+            <button id="submit-btn" class="btn btn-primary">Finalizar Examen</button>
+        </div>
+    </div>
+
+    <div id="results" class="results">
+        <h2>Resultados del Examen</h2>
+        <div id="score" class="score"></div>
+        <div id="results-detail"></div>
+        <button id="reset-btn" class="btn btn-primary">Reiniciar Examen</button>
+    </div>
+
+    <!-- Orden: primero configuración, luego preguntas, luego lógica -->
+    <script src="config.js"></script>
+    <script src="preguntas.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

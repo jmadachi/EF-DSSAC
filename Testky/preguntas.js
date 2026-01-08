@@ -1,0 +1,2741 @@
+const PREGUNTAS_JSON = [
+  {
+    "examen": "Examen 1",
+    "id": "E1-P01",
+    "pregunta": "Señalar la respuesta correcta. Las excepciones tienen dos versiones, la diferencia tiene que ver con si el compilador usará análisis estático para asegurar que la excepción es manejada:",
+    "opciones": [
+      { "id": "A", "texto": "Comprobadas y no comprobadas. Controladas y no controladas." },
+      { "id": "B", "texto": "Controladas y no controladas." },
+      { "id": "C", "texto": "Valores de retorno." },
+      { "id": "D", "texto": "Ningunas de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "En el contexto de lenguajes como Java, las excepciones se dividen en comprobadas (checked) y no comprobadas (unchecked), también llamadas controladas y no controladas según si el compilador exige que sean declaradas o capturadas estáticamente.",
+    "porqueNo": "La opción A mezcla dos formas de nombrar el mismo concepto en una sola respuesta, pero en realidad la clasificación estándar se reduce a controladas y no controladas; la opción C habla de valores de retorno, que no son tipos de excepciones; la opción D es falsa porque sí existe la distinción indicada."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P02",
+    "pregunta": "Señalar la respuesta correcta. Según el comportamiento de los controles, los podemos clasificar en:",
+    "opciones": [
+      { "id": "A", "texto": "Voluntarios" },
+      { "id": "B", "texto": "Manuales" },
+      { "id": "C", "texto": "Generales" },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "En auditoría y control interno, la clasificación típica de controles por comportamiento es preventiva, detectiva y correctiva, por lo que ninguna de las respuestas A, B o C refleja esa taxonomía.",
+    "porqueNo": "Voluntarios no es una categoría estándar de controles; manuales se refiere a la forma de ejecución, no al comportamiento; generales suele usarse para distinguir controles generales de TI frente a controles de aplicación, pero no es una categoría de comportamiento."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P03",
+    "pregunta": "Señalar la respuesta correcta. La ISO27001 define a la seguridad informática como:",
+    "opciones": [
+      { "id": "A", "texto": "Característica de un sistema informático que indica si está libre de riesgo, peligro o daño el cual comprende bases de datos, hardware, archivos y todo lo que la organización tenga como un activo y signifique un riesgo si ésta llega a caer a manos de personas que pueden hacer mal uso de los recursos." },
+      { "id": "B", "texto": "Característica de un sistema informático que indica si está libre de riesgo, peligro o daño el cual comprende bases de datos, hardware, software, archivos y todo lo que la organización valore como un activo y signifique un riesgo si ésta llega a caer a manos de personas que pueden hacer mal uso de los recursos." },
+      { "id": "C", "texto": "Un sistema informático que está libre de riesgo, y comprende bases de datos, software, archivos y todo lo que la organización valore como un activo." },
+      { "id": "D", "texto": "Un sistema informático que está libre de riesgo, peligro o daño tanto hardware como software y todo lo que la organización valore y signifique un riesgo si ésta llega a caer a manos de personas que pueden hacer mal uso de los recursos." }
+    ],
+    "correcta": "B",
+    "justificacion": "La definición más alineada con ISO 27001 es la que considera información y sistemas como activos de la organización, incluyendo hardware, software, bases de datos y archivos, cuyo riesgo debe gestionarse frente a usos indebidos.",
+    "porqueNo": "La opción A omite el software, que es un activo clave; la C y la D restringen o reformulan de forma imprecisa la definición y no mencionan de forma completa el conjunto de activos relevantes y la valoración que hace la organización."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P04",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las siguientes afirmaciones es cierta?",
+    "opciones": [
+      { "id": "A", "texto": "El plan estratégico de la empresa se tiene que corresponder con el plan informático de TI. El primero se diseña en función del segundo." },
+      { "id": "B", "texto": "Las organizaciones con consideración a las TI, tienen mayor retorno de inversión que aquellas que no lo consideran ante los mismos objetivos estratégicos, de tal forma que con la madurez tecnológica se llegue a un estado de mayor retorno." },
+      { "id": "C", "texto": "El plan informático de TI no se tiene que corresponder con el plan estratégico de la empresa." },
+      { "id": "D", "texto": "Ninguna afirmación es cierta." }
+    ],
+    "correcta": "B",
+    "justificacion": "La literatura de gobierno de TI indica que un adecuado alineamiento y aprovechamiento estratégico de las TI suele asociarse a un mayor retorno de la inversión y mejor cumplimiento de objetivos de negocio.",
+    "porqueNo": "La opción A invierte la relación correcta, ya que el plan de TI debe alinearse con el plan estratégico y no al revés; la C niega el alineamiento necesario entre TI y estrategia de negocio; la D es falsa porque sí hay una afirmación correcta."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P05",
+    "pregunta": "Señalar la respuesta correcta. Cuando se revisa la seguridad de acceso lógico de una organización, ¿cuál de los siguientes sería de más preocupación para el auditor de seguridad?",
+    "opciones": [
+      { "id": "A", "texto": "Las contraseñas no son compartidas." },
+      { "id": "B", "texto": "Los archivos de contraseña están encriptados." },
+      { "id": "C", "texto": "Los logon IDs redundantes son eliminados." },
+      { "id": "D", "texto": "La asignación de logon IDs está controlada." }
+    ],
+    "correcta": "D",
+    "justificacion": "Para un auditor de seguridad, que la asignación de IDs de usuario esté estrictamente controlada es clave, porque condiciona la trazabilidad, la segregación de funciones y la prevención de cuentas no autorizadas.",
+    "porqueNo": "Que las contraseñas no se compartan y que los archivos de contraseñas estén cifrados son controles positivos, no preocupaciones; eliminar IDs redundantes también es una buena práctica, por lo que ninguna de esas situaciones sería el foco de preocupación principal."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P06",
+    "pregunta": "Señalar la respuesta incorrecta. El alcance de la metodología “Open Wireless Security Assessment Methodology (OWISAM)” incluye:",
+    "opciones": [
+      { "id": "A", "texto": "Fingerpinting." },
+      { "id": "B", "texto": "Pruebas de infraestructura." },
+      { "id": "C", "texto": "Pruebas de directivas y normativa." },
+      { "id": "D", "texto": "Servicios Web." }
+    ],
+    "correcta": "D",
+    "justificacion": "OWISAM está orientada a la evaluación de seguridad de redes inalámbricas, incluyendo fingerprinting, pruebas de infraestructura y revisión de políticas y normativas relacionadas, pero no se centra en servicios web como tal.",
+    "porqueNo": "Fingerprinting, pruebas de infraestructura y revisión de directivas y normativa forman parte del alcance típico de una metodología de evaluación de redes inalámbricas, por lo que A, B y C son coherentes con OWISAM y no son incorrectas."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P07",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las siguientes no es una evidencia de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Entrevistas a los empleados." },
+      { "id": "B", "texto": "Documentación interna." },
+      { "id": "C", "texto": "Resultados de los procedimientos de pruebas." },
+      { "id": "D", "texto": "Resultados de una prueba técnica de seguridad." }
+    ],
+    "correcta": "D",
+    "justificacion": "En el contexto de auditoría de seguridad, lo habitual es considerar entrevistas, documentación y resultados de pruebas de auditoría como evidencia; en esta formulación, se asume que la prueba técnica de seguridad mencionada no forma parte del trabajo de auditoría revisado, por lo que no se acepta como evidencia directa.",
+    "porqueNo": "Las entrevistas a empleados, la documentación interna y los resultados de procedimientos de prueba formales del auditor son reconocidos como fuentes típicas de evidencia de auditoría, por lo que A, B y C sí encajan en la definición."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P08",
+    "pregunta": "Señalar la respuesta incorrecta. En términos de activos de sistemas de información, podemos distinguir los siguientes elementos:",
+    "opciones": [
+      { "id": "A", "texto": "Humanware." },
+      { "id": "B", "texto": "Software." },
+      { "id": "C", "texto": "Hardware." },
+      { "id": "D", "texto": "Activos." }
+    ],
+    "correcta": "D",
+    "justificacion": "En la clasificación de activos de sistemas de información se suelen distinguir personas (a veces llamadas humanware), software y hardware como categorías; \"activos\" es un término genérico que no describe un tipo concreto, por lo que no encaja como elemento diferenciado dentro de la lista.",
+    "porqueNo": "Humanware se usa para referirse al factor humano como activo; software y hardware son categorías claras de activos tecnológicos, por lo que A, B y C son coherentes como elementos distintos."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P09",
+    "pregunta": "Señalar la respuesta correcta. El Gobierno de TI se puede definir como:",
+    "opciones": [
+      { "id": "A", "texto": "El alineamiento estratégico de las TI con la organización de tal forma que se consigue el máximo valor de negocio por medio del desarrollo y mantenimiento de un control y responsabilidad efectivas, gestión de la eficiencia y la eficacia." },
+      { "id": "B", "texto": "El alineamiento estratégico de las TI con la organización de tal forma que se consigue el máximo valor de negocio por medio del desarrollo y mantenimiento de un control y responsabilidad efectivas, gestión de la eficiencia y la eficacia, así como la gestión de riesgos de TI." },
+      { "id": "C", "texto": "Consiste en liderar y definir las estructuras y procesos organizativos que aseguran que las Tecnologías de la Información y Comunicaciones (TIC) de la empresa soportan y difunden la estrategia y los objetivos de la organización, manteniéndose de forma autónoma al comité de dirección y gerencia." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "Definiciones ampliamente aceptadas de gobierno de TI, como las de COBIT e ISO/IEC 38500, incluyen el alineamiento estratégico, la generación de valor, el control y la gestión de riesgos de TI como elementos centrales.",
+    "porqueNo": "La opción A omite explícitamente la gestión de riesgos de TI, que es componente esencial; la C enfatiza estructuras autónomas respecto a la dirección, lo que no refleja bien el papel del consejo y la alta dirección en el gobierno de TI; la D es falsa porque sí hay una definición adecuada."
+  },
+  {
+    "examen": "Examen 1",
+    "id": "E1-P10",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué auditorías tienen más posibilidad de causar conflicto con personal que sea afectado por la actuación de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Interna." },
+      { "id": "B", "texto": "Externas." },
+      { "id": "C", "texto": "En ninguna." },
+      { "id": "D", "texto": "En todas." }
+    ],
+    "correcta": "D",
+    "justificacion": "Cualquier auditoría, ya sea interna o externa, puede generar conflicto o resistencia en el personal afectado, porque revisa procedimientos, controles y desempeño, pudiendo derivar en hallazgos o recomendaciones incómodas.",
+    "porqueNo": "Limitar el posible conflicto solo a auditorías internas o solo a externas no es correcto porque ambas pueden impactar al personal; afirmar que en ninguna auditoría hay posibilidad de conflicto desconoce la realidad organizativa."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P01",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuáles son las normas profesionales del equipo auditor?",
+    "opciones": [
+      { "id": "A", "texto": "Objetividad, Responsabilidad," },
+      { "id": "B", "texto": "Compromiso Responsabilidad, Equilibrio, Honestidad" },
+      { "id": "C", "texto": "Integridad Objetividad, Confidencialidad," },
+      { "id": "D", "texto": "Todas las anteriores se incluyen dentro de las normas profesionales del equipo auditor." }
+    ],
+    "correcta": "D",
+    "justificacion": "Los códigos de ética y normas profesionales de auditoría incluyen típicamente principios como integridad, objetividad, responsabilidad, equilibrio, honestidad y confidencialidad, por lo que las listas parciales de A, B y C forman parte del conjunto global.",
+    "porqueNo": "Las opciones A, B y C sólo contienen subconjuntos de principios profesionales; ninguna por sí sola recoge todas las normas relevantes para un equipo auditor, por eso quedan incompletas frente a la opción D que las engloba."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P02",
+    "pregunta": "Señalar la respuesta correcta. Un departamento de auditoría interna, ¿de dónde tendría que colgar en el organigrama?",
+    "opciones": [
+      { "id": "A", "texto": "De presidencia." },
+      { "id": "B", "texto": "De seguridad." },
+      { "id": "C", "texto": "De Informática." },
+      { "id": "D", "texto": "De cualquier rama con tal de que se pueda demostrar su independencia en su trabajo y resultados." }
+    ],
+    "correcta": "D",
+    "justificacion": "El principio clave de la auditoría interna es la independencia funcional; lo importante es que el área pueda trabajar y reportar sin presiones, más que depender de una unidad concreta del organigrama.",
+    "porqueNo": "Colgar necesariamente de presidencia, seguridad o informática limitaría el criterio organizativo y no garantiza por sí mismo la independencia; por eso A, B y C son demasiado rígidas y no capturan el requisito de independencia verificable."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P03",
+    "pregunta": "Se encargan de hacer de interfaz entre los usuarios y los informáticos. Está compuesto por expertos en una materia, y conocen muy bien el negocio/modelo de datos que manejan.",
+    "opciones": [
+      { "id": "A", "texto": "Se encargan de hacer de interfaz entre los usuarios y los informáticos. Está compuesto por expertos en una materia, y conocen muy bien el negocio/modelo de datos que manejan." },
+      { "id": "B", "texto": "Diseña el plan estratégico de la compañía." },
+      { "id": "C", "texto": "Elabora el Plan Director de Informática, que se corresponde con el Plan Estratégico. Puede ser a un año o a dos." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "La opción A es precisamente la definición del grupo descrito en la pregunta, típicamente un grupo puente o comité funcional que actúa de interfaz entre usuarios de negocio y personal técnico de TI.",
+    "porqueNo": "La opción B describe funciones propias de la alta dirección o del comité estratégico, C se refiere al área de planificación de TI, y D no es válida porque sí existe una opción que coincide con la descripción dada."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P04",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en este código?\n\nint main(int argc, char* argv[]) {\nchar source[10];\nstrcpy(source, \"0123456789\");\nchar *dest = (char *)malloc(strlen(source));\nfor (int i=1; i <= 11; i++) {\n  dest[i] = source[i];\n}\ndest[i] = '\\0';\nprintf(\"dest = %s\", dest);\n};",
+    "opciones": [
+      { "id": "A", "texto": "Off by one." },
+      { "id": "B", "texto": "No finalizar el buffer con el terminador nulo." },
+      { "id": "C", "texto": "Integer Overflow." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "A",
+    "justificacion": "El bucle copia índices desde 1 hasta 11 en un buffer cuya reserva no contempla ese rango, generando un desbordamiento por un error en el límite de iteración típico de la vulnerabilidad denominada off-by-one.",
+    "porqueNo": "La opción B se centra en el terminador nulo, pero el problema principal es el acceso fuera de límites; C describe un desbordamiento de enteros y no aparece ningún cálculo sospechoso; D implicaría usar memoria tras liberarla, algo que no ocurre en el fragmento mostrado."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P05",
+    "pregunta": "Señala la respuesta correcta. La siguiente función acepta como parámetro una cadena «EmployeeNumber» y dinámicamente crea una petición SQL utilizando los datos no confiables. ¿Contiene la siguiente función una vulnerabilidad de Inyección SQL?
+		public void InsertAccountNumber(String EmployeeNumber)
+		{
+			// Create a dynamic SQL statement
+			String sqlQuery = \"SELECT * FROM HrTable WHERE Num = @pENum\";
+			SqlParameter pENum = new SqlParamater(\"@pENum\",SqlDbType.NVarChar,150);
+			pENum.Value = EmployeeNumber;
+			SqlComand sqlCmd = new SqlCommand(sqlQuery, new SqlConnection(connectionString));
+			sqlCmd.Parameters.Add(pENum);
+			// Execute the sql command
+			…
+		},"
+    "opciones": [
+      { "id": "A", "texto": "La función no contiene una vulnerabilidad de inyección SQL." },
+      { "id": "B", "texto": "La función contiene una vulnerabilidad de inyección SQL porqué la longitud del parámetro “EmployeeNumber” puede exceder el tamaño de 150 caracteres." },
+      { "id": "C", "texto": "La función contiene una vulnerabilidad de inyección SQL porqué el parámetro “EmployeeNumber” es insertado directamente en la petición SQL." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "La consulta utiliza un parámetro SQL (@pENum) y se asigna el valor de EmployeeNumber mediante un SqlParameter, lo que evita que el valor se concatene directamente en el SQL y mitiga la inyección SQL.",
+    "porqueNo": "La opción B confunde validación de longitud con inyección; un límite de 150 caracteres no introduce la vulnerabilidad. La C es falsa porque el valor no se inserta por concatenación directa sino como parámetro. La D no aplica porque la opción A describe correctamente la situación."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P06",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál fue el primer ataque de desbordamiento de búfer (buffer overflow)?",
+    "opciones": [
+      { "id": "A", "texto": "Gusano Morris." },
+      { "id": "B", "texto": "Code Red." },
+      { "id": "C", "texto": "Love Bug." },
+      { "id": "D", "texto": "SQL Slammer." }
+    ],
+    "correcta": "A",
+    "justificacion": "El gusano Morris, de 1988, es uno de los primeros incidentes ampliamente conocidos que explotó vulnerabilidades de desbordamiento de búfer en servicios Unix para propagarse por la red. [web:182][web:184]",
+    "porqueNo": "Code Red y SQL Slammer son gusanos posteriores que también explotaron vulnerabilidades, y Love Bug es un gusano de correo; ninguno de ellos fue el primer ataque de buffer overflow conocido en la historia de Internet."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P07",
+    "pregunta": "Señalar la respuesta correcta. Implementar un mecanismo de protección del tipo CAPTCHA es un medio de defensa contra:",
+    "opciones": [
+      { "id": "A", "texto": "Inyección SQL." },
+      { "id": "B", "texto": "XSS." },
+      { "id": "C", "texto": "CSRF." },
+      { "id": "D", "texto": "Almacenamiento criptográfico inseguro." }
+    ],
+    "correcta": "C",
+    "justificacion": "El uso de CAPTCHA se emplea como una capa adicional para dificultar ataques automatizados que explotan peticiones forjadas desde otros sitios, por lo que puede ayudar a mitigar ciertos escenarios de CSRF en acciones sensibles.",
+    "porqueNo": "La inyección SQL y XSS se mitigan principalmente con validación, parametrización y codificación adecuada; el almacenamiento criptográfico inseguro se aborda con buenas prácticas criptográficas. CAPTCHA no es contramedida principal frente a esos problemas."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P08",
+    "pregunta": "Señala la respuesta correctacorrecta. Margarita es parte del rol de \"autora\" así como está incluida en el rol de \"aprobador\", permitiéndole aprobar sus propios artículos antes de que sea publicado en el blog de la compañía. Esto viola el principio de:",
+    "opciones": [
+      { "id": "A", "texto": "Mínimo privilegio." },
+      { "id": "B", "texto": "Seguridad por oscuridad." },
+      { "id": "C", "texto": "Economía de mecanismos." },
+      { "id": "D", "texto": "Separación de privilegios." }
+    ],
+    "correcta": "D",
+    "justificacion": "Permitir que la misma persona cree y apruebe sus propios contenidos elimina la separación de funciones y privilegios, violando el principio de separación de deberes o separación de privilegios, clave para reducir fraude y errores.",
+    "porqueNo": "El mínimo privilegio se refiere a conceder solo los permisos estrictamente necesarios, pero aquí el problema es que dos roles críticos están en la misma persona; seguridad por oscuridad y economía de mecanismos no tienen relación directa con la situación descrita."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P09",
+    "pregunta": "Señalar la respuesta correcta. Indicar la fase del ciclo de vida la siguiente vulnerabilidad: “Los agentes maliciosos desarrollan el exploit adecuado para poder lanzar ataques”.",
+    "opciones": [
+      { "id": "A", "texto": "Descubrimiento." },
+      { "id": "B", "texto": "Búsqueda." },
+      { "id": "C", "texto": "Utilización." },
+      { "id": "D", "texto": "Actualización." }
+    ],
+    "correcta": "C",
+    "justificacion": "Cuando los atacantes ya han desarrollado un exploit para una vulnerabilidad y están preparados para lanzar ataques, se corresponde con la fase de utilización o explotación dentro del ciclo de vida de la vulnerabilidad. ",
+    "porqueNo": "Descubrimiento y búsqueda se refieren a la identificación inicial de la vulnerabilidad, mientras que actualización implica la fase posterior de parcheo o mejora; ninguna de estas describe el momento en que el exploit ya está listo para ser usado activamente."
+  },
+  {
+    "examen": "Examen 2",
+    "id": "E2-P10",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las siguientes afirmaciones indica un beneficio del modelado de amenazas?",
+    "opciones": [
+      { "id": "A", "texto": "Ayuda a evitar defensa no consistentes y actuales." },
+      { "id": "B", "texto": "Ayuda a diseñar las defensas del software frente a los ataques más importantes, comunes y costosos." }
+    ],
+    "correcta": "B",
+    "justificacion": "Un beneficio central del modelado de amenazas es identificar los ataques más relevantes y costosos para poder priorizar y diseñar defensas específicas frente a ellos, mejorando el uso de recursos de seguridad. ",
+    "porqueNo": "La opción A está mal formulada y no expresa claramente un beneficio; el modelado de amenazas no se centra en evitar defensas “no consistentes”, sino en estructurar y priorizar controles ante amenazas concretas."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P01",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué es un caso de abuso?",
+    "opciones": [
+      { "id": "A", "texto": "Un escenario que ilustra de manera gráfica y textual potenciales fallos de seguridad ante específicas circunstancias." },
+      { "id": "B", "texto": "Una base de datos del MITRE." },
+      { "id": "C", "texto": "Un escenario que ilustra de manera gráfica y textual funcionalidades de seguridad del software ante específicas circunstancias." },
+      { "id": "D", "texto": "Un patrón de diseño para un desarrollador." }
+    ],
+    "correcta": "A",
+    "justificacion": "Un caso de abuso describe cómo un sistema puede ser atacado o mal utilizado, modelando escenarios de fallo de seguridad desde el punto de vista del atacante para apoyar el análisis de riesgos.",
+    "porqueNo": "MITRE mantiene bases de vulnerabilidades pero no se llaman casos de abuso; la opción C describe más bien casos de uso de seguridad positivos; un patrón de diseño es distinto de un escenario de abuso."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P02",
+    "pregunta": "Señalar la respuesta correcta. Un auditor de seguridad que revisa el plan de recuperación ante desastres de una organización debería verificar que sea:",
+    "opciones": [
+      { "id": "A", "texto": "Probado cada 6 meses." },
+      { "id": "B", "texto": "Revisado y actualizado periódicamente." },
+      { "id": "C", "texto": "Aprobado por el CEO." },
+      { "id": "D", "texto": "Comunicado a todas las direcciones de departamento de la organización." }
+    ],
+    "correcta": "B",
+    "justificacion": "La buena práctica fundamental en planes de recuperación ante desastres es que se revisen y actualicen de forma periódica para reflejar cambios en sistemas, procesos y riesgos, asegurando su vigencia.",
+    "porqueNo": "Exigir exactamente una prueba cada 6 meses es demasiado rígido; la aprobación y la comunicación son importantes, pero sin revisión y actualización periódica el plan puede quedar obsoleto."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P03",
+    "pregunta": "Señalar la respuesta incorrecta. Controles de la metodología “Open Web Application Security Project (OWASP)”:",
+    "opciones": [
+      { "id": "A", "texto": "Lógica del negocio." },
+      { "id": "B", "texto": "Lado del cliente." },
+      { "id": "C", "texto": "Denegación de servicio." },
+      { "id": "D", "texto": "Lógica del negocio." }
+    ],
+    "correcta": "C",
+    "justificacion": "OWASP se centra principalmente en vulnerabilidades típicas de aplicaciones web y controles asociados a entrada, lógica de negocio, lado cliente, autenticación, etc.; la denegación de servicio se trata más como riesgo de disponibilidad general.",
+    "porqueNo": "La lógica de negocio y los controles del lado del cliente son ámbitos habituales en las guías y proyectos OWASP; que aparezca dos veces lógica de negocio no la hace incorrecta como categoría."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P04",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las pruebas siguientes está un Auditor de SI realizando cuando una muestra de programas es seleccionada para determinar si las versiones fuente y las versiones objeto son las mismas?",
+    "opciones": [
+      { "id": "A", "texto": "Una prueba sustantiva de controles de biblioteca de programas." },
+      { "id": "B", "texto": "Una prueba de cumplimiento de controles de biblioteca de programas." },
+      { "id": "C", "texto": "Una prueba de cumplimiento de los controles de compilador de programas." },
+      { "id": "D", "texto": "Una prueba sustantiva de los controles de compilador de programas." }
+    ],
+    "correcta": "B",
+    "justificacion": "Comparar versiones fuente y objeto de programas para asegurarse de que coinciden es verificar que se cumplen los controles establecidos en la biblioteca de programas, por lo que se trata de una prueba de cumplimiento de esos controles.",
+    "porqueNo": "Las pruebas sustantivas buscan evidencia directa sobre datos o saldos, no sobre cumplimiento de procesos; los controles de compilador se relacionan con cómo se compilan los programas, no con la gestión de versiones en la biblioteca."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P05",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué áreas suelen encontrarse con frecuencia en el departamento de CITI (Control Interno de Tecnologías de Información)?",
+    "opciones": [
+      { "id": "A", "texto": "Administración de Seguridad Lógica y Física, Control de Sistema, Garantía de Calidad y Control de Calidad de Datos." },
+      { "id": "B", "texto": "Administración de Auditoría, Control de Sistema, Garantía de Calidad y Control de Calidad de Datos." },
+      { "id": "C", "texto": "Administración de Seguridad Lógica y Física, Control de Sistema, Garantía de Calidad y Comité de Informática." },
+      { "id": "D", "texto": "Exclusivamente Calidad de la Información que tengan seguridad lógica." }
+    ],
+    "correcta": "A",
+    "justificacion": "Un departamento de control interno de TI suele agrupar funciones de seguridad lógica y física, control de sistemas, garantía de calidad y control de la calidad de los datos como principales áreas de responsabilidad.",
+    "porqueNo": "La opción B sustituye seguridad por auditoría, que suele ser un área independiente; la C incluye un comité de informática que es órgano de gobierno más que parte operativa; la D es demasiado reducida al limitarse a calidad de la información con seguridad lógica."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P06",
+    "pregunta": "Señalar la respuesta correcta. Revisando el programa ¿Cuál de las siguientes respuestas describe mejor lo que está haciendo la función?\n\nvoid aFunction(char *buf) {\n  static char BANNED_CHARACTERS[] = {'>', '<', '!', '*'};\n  int l = strlen(buf);\n  int i;\n\n  for(i = 0; i < l; i++) {\n    int j;\n    int k = sizeof(BANNED_CHARACTERS) / sizeof(char);\n    for(j = 0; j < k; j++) {\n      if(buf[i] == BANNED_CHARACTERS[j])\n        buf[i] = ' ';\n    }\n  }\n}",
+    "opciones": [
+      { "id": "A", "texto": "Asegurar la no violabilidad espacial de la memoria." },
+      { "id": "B", "texto": "Validar la entrada mediante lista blanca." },
+      { "id": "C", "texto": "Asegurar la no violabilidad temporal de la memoria." },
+      { "id": "D", "texto": "Validar la entrada mediante lista negra." }
+    ],
+    "correcta": "D",
+    "justificacion": "La función recorre la cadena de entrada y reemplaza caracteres que están en una lista de caracteres prohibidos, lo que corresponde a una validación por lista negra (denylist) de ciertos símbolos. [web:202][web:203][web:217]",
+    "porqueNo": "No se usan listas blancas de valores permitidos, por lo que la opción B es incorrecta; las opciones A y C aluden a propiedades de memoria (espacial o temporal) que no son el foco del código mostrado."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P07",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál es la mejor forma de prevenir ataques de desbordamiento de búfer?",
+    "opciones": [
+      { "id": "A", "texto": "Tener precauciones al realizar conversiones de tipo." },
+      { "id": "B", "texto": "Utilizar un lenguaje de programación que fuerce la comprobación de tipos y de memoria." },
+      { "id": "C", "texto": "Comprobar los límites de memoria." },
+      { "id": "D", "texto": "Comprobar las longitudes de los búferes." }
+    ],
+    "correcta": "B",
+    "justificacion": "La forma más robusta de evitar desbordamientos de búfer es utilizar lenguajes o plataformas que gestionan automáticamente la memoria y realizan comprobaciones de límites, impidiendo este tipo de errores en tiempo de ejecución. [web:191][web:207][web:218]",
+    "porqueNo": "Comprobar límites o longitudes ayuda pero depende de la disciplina del programador y puede omitirse; tener cuidado en conversiones de tipo es buena práctica general, pero no aborda directamente la raíz de los desbordamientos como lo hace un lenguaje seguro en memoria."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P08",
+    "pregunta": "Señalar la respuesta correcta. Para cumplir con los objetivos de seguridad de software, al aceptar el software, la fase de adquisición debe incluir procesos para:",
+    "opciones": [
+      { "id": "A", "texto": "Verificar que se proporcionen guías de instalación y manuales de entrenamiento." },
+      { "id": "B", "texto": "Evaluar la presencia y la eficacia de los mecanismos de protección." },
+      { "id": "C", "texto": "Validar los productos de software del proveedor." },
+      { "id": "D", "texto": "Ayudar al vendedor a responder a la solicitud de propuestas." }
+    ],
+    "correcta": "B",
+    "justificacion": "En la fase de aceptación dentro del proceso de adquisición segura de software es esencial evaluar que los mecanismos de protección existen y funcionan eficazmente, para garantizar que se cumplen los requisitos de seguridad. [web:208][web:215][web:219]",
+    "porqueNo": "Tener guías y manuales es importante pero no prueba la seguridad; validar productos del proveedor y ayudar en propuestas pertenecen a otras etapas del ciclo de adquisición, no al foco principal de aceptación desde el punto de vista de seguridad."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P09",
+    "pregunta": "Indicar la respuesta incorrecta. Los factores principales prácticos que determinan la utilidad de una herramienta de análisis estático son:",
+    "opciones": [
+      { "id": "A", "texto": "El equilibrio que la herramienta hace entre la precisión, la profundidad y la escalabilidad." },
+      { "id": "B", "texto": "Porcentaje de falsos positivos (no de negativos) de la herramienta." },
+      { "id": "C", "texto": "Las características de la herramienta para hacerla fácil de usar." },
+      { "id": "D", "texto": "La capacidad de la herramienta para comprender el programa que se analiza." }
+    ],
+    "correcta": "B",
+    "justificacion": "Aunque el porcentaje de falsos positivos es relevante, centrarlo expresamente en “no de negativos” lo hace incompleto e incorrecto como factor principal; la utilidad depende también de falsos negativos, equilibrio entre precisión y cobertura y otros aspectos. [web:213][web:209][web:220]",
+    "porqueNo": "El equilibrio entre precisión, profundidad y escalabilidad, la facilidad de uso y la capacidad de entender el programa analizado son factores prácticos ampliamente reconocidos para valorar la utilidad de herramientas de análisis estático."
+  },
+  {
+    "examen": "Examen 3",
+    "id": "E3-P10",
+    "pregunta": "Indicar la respuesta incorrecta. Normalmente se suele asignar un usuario general con conjunto de privilegios que le permitirá realizar todas las tareas, incluidas las no necesarias. Ejemplos de errores comunes son:",
+    "opciones": [
+      { "id": "A", "texto": "Instalación de aplicaciones y servicios con el usuario de administrador." },
+      { "id": "B", "texto": "Aplicación de derechos normales." },
+      { "id": "C", "texto": "Usuarios con derechos normales." },
+      { "id": "D", "texto": "Servicios y procesos con privilegios por tiempo definido." }
+    ],
+    "correcta": "A",
+    "justificacion": "Instalar apps y servicios como administrador es un error común que otorga privilegios excesivos, facilitando escaladas si se explota una vulnerabilidad durante instalación.",
+    "porqueNo": "B y C aplican principio de privilegios mínimos al usar derechos normales; D limita exposición temporalmente, alineado con buenas prácticas de seguridad."  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P01",
+    "pregunta": "Indica cuál de las siguientes respuestas no es una causa de aparición de vulnerabilidades en el software:",
+    "opciones": [
+      { "id": "A", "texto": "No realización de pruebas de seguridad basadas en riesgo." },
+      { "id": "B", "texto": "Cambios de requisitos del proyecto durante la etapa de especificación." },
+      { "id": "C", "texto": "Mezcla de código proveniente de varios orígenes." },
+      { "id": "D", "texto": "Tamaño excesivo y complejidad de las aplicaciones." }
+    ],
+    "correcta": "B",
+    "justificacion": "Cambiar los requisitos del proyecto durante la etapa de especificación es normal; el problema de seguridad aparece cuando se siguen cambiando después de cerrada esa etapa, lo que introduce inconsistencias y posibles vulnerabilidades.",
+    "porqueNo": "No realizar pruebas de seguridad basadas en riesgo, mezclar código de varios orígenes y tener aplicaciones demasiado grandes y complejas son causas directas típicas de aparición de vulnerabilidades."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P02",
+    "pregunta": "Indica la respuesta incorrecta respecto al ataque a las aplicaciones durante las diferentes fases de su ciclo de vida:",
+    "opciones": [
+      { "id": "A", "texto": "Distribución e instalación. Ocurre cuando el instalador del software bastiona la plataforma en la que lo instala." },
+      { "id": "B", "texto": "Desarrollo. Un desarrollador puede alterar de forma intencionada o no el software bajo desarrollo." },
+      { "id": "C", "texto": "Operación. Cualquier software que se ejecuta en una plataforma conectada a la red tiene sus vulnerabilidades expuestas durante su funcionamiento." },
+      { "id": "D", "texto": "Mantenimiento o sostenimiento. No publicación de parches de las vulnerabilidades detectadas o incluso introducción de código malicioso en versiones actualizadas." }
+    ],
+    "correcta": "A",
+    "justificacion": "En la fase de distribución e instalación el riesgo aparece cuando no se protege el software frente a manipulaciones y cuando el instalador no bastiona la plataforma; bastionar correctamente la plataforma es una medida de protección, no una situación de ataque.",
+    "porqueNo": "En desarrollo, operación y mantenimiento sí se describen situaciones reales que pueden facilitar ataques: modificaciones maliciosas o erróneas, exposición en producción y mala gestión de parches."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P03",
+    "pregunta": "Señala la respuesta incorrecta. Las fuentes de las vulnerabilidades se deben a:",
+    "opciones": [
+      { "id": "A", "texto": "Fallos provenientes de la codificación de los diseños del software realizados." },
+      { "id": "B", "texto": "Fallos provenientes de la cadena de distribución del software." },
+      { "id": "C", "texto": "Los sistemas hardware o software contienen frecuentemente fallos de diseño que pueden ser utilizados para realizar un ataque." },
+      { "id": "D", "texto": "La instalación de software por defecto implica, por lo general, la instalación de servicios que no se usan, pero que pueden presentar debilidades que comprometan la máquina." }
+    ],
+    "correcta": "B",
+    "justificacion": "La explicación asociada a la pregunta indica que la opción que falta en la lista es “fallos de configuración”, por lo que la formulación dada para la cadena de distribución no es correcta en este contexto y se considera la opción incorrecta.",
+    "porqueNo": "Errores en la codificación, fallos de diseño en hardware o software e instalaciones por defecto con servicios innecesarios son fuentes claras y bien conocidas de vulnerabilidades."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P04",
+    "pregunta": "Señala la respuesta incorrecta. Entre las técnicas y mecanismos para salvaguardar la integridad tenemos, por ejemplo:",
+    "opciones": [
+      { "id": "A", "texto": "Identificación del modo de transmisión y procesado de los datos por la aplicación." },
+      { "id": "B", "texto": "Uso de arquitecturas de alta disponibilidad, con diferentes tipos de redundancias." },
+      { "id": "C", "texto": "Uso de firma digital." },
+      { "id": "D", "texto": "Estricta gestión de sesiones." }
+    ],
+    "correcta": "B",
+    "justificacion": "Las arquitecturas de alta disponibilidad y redundancia se orientan principalmente a garantizar la disponibilidad del servicio, no directamente la integridad de los datos o del software.",
+    "porqueNo": "Identificar cómo se transmiten y procesan los datos, usar firmas digitales y gestionar estrictamente las sesiones son técnicas relacionadas con asegurar que los datos no se alteren de forma no autorizada."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P05",
+    "pregunta": "Señala la respuesta incorrecta. Algunas de las opciones específicas de diseño del software que lo simplifican son:",
+    "opciones": [
+      { "id": "A", "texto": "Favorecer procesos deterministas sobre los no deterministas." },
+      { "id": "B", "texto": "Limitar el número de estados posibles en el software." },
+      { "id": "C", "texto": "El uso de técnicas de interrupciones en lugar de sondeo." },
+      { "id": "D", "texto": "Desacoplar los componentes y procesos para minimizar las interdependencias entre ellos." }
+    ],
+    "correcta": "C",
+    "justificacion": "Según la corrección incluida en el PDF, usar interrupciones en lugar de sondeo no simplifica el diseño en este contexto; se considera justo lo contrario a la recomendación pretendida.",
+    "porqueNo": "Favorecer procesos deterministas, limitar estados y desacoplar componentes reducen la complejidad y facilitan el análisis y la seguridad del software."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P06",
+    "pregunta": "Para conseguir que el desarrollo de una aplicación posea las propiedades y principios de diseño del software seguro, se necesita que el personal de diseño y desarrollo lleve a cabo:",
+    "opciones": [
+      { "id": "A", "texto": "Perspectiva administrador." },
+      { "id": "B", "texto": "Perspectiva defensor." },
+      { "id": "C", "texto": "Perspectiva usuario." },
+      { "id": "D", "texto": "Perspectiva del atacante." }
+    ],
+    "correcta": "D",
+    "justificacion": "El material explica que el equipo debe adoptar la perspectiva del atacante para comprender la naturaleza exacta de las amenazas y concentrar los esfuerzos defensivos en las áreas de mayor riesgo.",
+    "porqueNo": "Perspectivas de administrador, defensor o usuario pueden aportar contexto, pero no fuerzan a pensar como el atacante ni a identificar cómo se explotarían las debilidades."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P07",
+    "pregunta": "¿Cómo se define la resiliencia?",
+    "opciones": [
+      { "id": "A", "texto": "Capacidad de resistencia y tolerancia a los ataques realizados por los agentes maliciosos (malware, hackers, etc.)." },
+      { "id": "B", "texto": "Capacidad que garantiza la posibilidad de imputar las acciones relacionadas en un software a la persona, entidad o proceso que la ha originado." },
+      { "id": "C", "texto": "Capacidad del software para aislar, contener y limitar los daños ocasionados por fallos causados por ataques de vulnerabilidades explotables del mismo, recuperarse lo más rápido posible de ellos y reanudar su operación en o por encima de cierto nivel mínimo predefinido de servicio aceptable en un tiempo oportuno." },
+      { "id": "D", "texto": "Capacidad del software para tolerar los errores y fallos que resultan de ataques con éxito y seguir funcionando como si los ataques no se hubieran producido." }
+    ],
+    "correcta": "C",
+    "justificacion": "El propio enunciado incluye la definición: resiliencia es la capacidad de aislar, contener y limitar daños, recuperarse rápidamente y volver a un nivel mínimo aceptable de servicio en un tiempo oportuno.",
+    "porqueNo": "La opción A habla solo de resistencia, B describe atribuibilidad (no repudio) y D se centra en tolerancia a fallos sin recoger de forma completa los aspectos de contención, recuperación y continuidad de servicio."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P08",
+    "pregunta": "¿A qué principio de diseño le corresponde la afirmación: «Estrategia de protección consistente en introducir múltiples capas de seguridad, que permitan reducir la probabilidad de compromiso en caso de que una de las capas falle y, en el peor de los casos, minimizar el impacto»?",
+    "opciones": [
+      { "id": "A", "texto": "Seguridad por defecto." },
+      { "id": "B", "texto": "Separación de privilegios." },
+      { "id": "C", "texto": "Separación de dominios." },
+      { "id": "D", "texto": "Defensa en profundidad." }
+    ],
+    "correcta": "D",
+    "justificacion": "El PDF indica explícitamente que se trata de la definición de defensa en profundidad: varias capas de seguridad independientes para reducir la probabilidad de compromiso y minimizar el impacto.",
+    "porqueNo": "Seguridad por defecto se refiere a configuraciones seguras de inicio; separación de privilegios y separación de dominios tratan de segmentar permisos y ámbitos, pero no describen la estrategia de múltiples capas superpuestas."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P09",
+    "pregunta": "Señalar la respuesta incorrecta. Los elementos clave de un proceso de S-SDLC son:",
+    "opciones": [
+      { "id": "A", "texto": "Gestión de configuración versiones." },
+      { "id": "B", "texto": "Pruebas de seguridad." },
+      { "id": "C", "texto": "Hitos de control en las fases de SDLC." },
+      { "id": "D", "texto": "Despliegue y distribución." }
+    ],
+    "correcta": "D",
+    "justificacion": "El texto aclara que gestión de configuración de versiones, pruebas de seguridad e hitos de control en las fases del SDLC son elementos clave de un S-SDLC; despliegue y distribución no se considera uno de esos elementos esenciales.",
+    "porqueNo": "Configuración de versiones, pruebas de seguridad y puntos de control en el ciclo de vida son prácticas centrales en procesos de desarrollo seguro, por lo que A, B y C son correctas."
+  },
+  {
+    "examen": "Test-01",
+    "id": "T1-P10",
+    "pregunta": "Señala la respuesta incorrecta. El cálculo de código CVSS se realiza en base a tres tipos de métricas ambientales:",
+    "opciones": [
+      { "id": "A", "texto": "Métricas estadísticas." },
+      { "id": "B", "texto": "Métricas base." },
+      { "id": "C", "texto": "Métricas temporales." },
+      { "id": "D", "texto": "Métricas ambientales." }
+    ],
+    "correcta": "A",
+    "justificacion": "El propio comentario del test indica que el cálculo CVSS se realiza con métricas base, temporales y ambientales; no se utilizan métricas estadísticas como categoría oficial.",
+    "porqueNo": "Las métricas base, temporales y ambientales forman las tres familias de métricas definidas por CVSS; por tanto, B, C y D son correctas y la única opción incorrecta es hablar de métricas estadísticas."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P01",
+    "pregunta": "Señala la respuesta correcta. ¿Qué incluye la seguridad del software?",
+    "opciones": [
+      { "id": "A", "texto": "Patrones de codificación." },
+      { "id": "B", "texto": "Principios de diseño seguro." },
+      { "id": "C", "texto": "Casos de uso." },
+      { "id": "D", "texto": "Buenas prácticas de codificación." }
+    ],
+    "correcta": "B",
+    "justificacion": "El propio test define la seguridad del software como el conjunto de principios de diseño y buenas prácticas a implantar en el SDLC para detectar, prevenir y corregir defectos de seguridad, lo que coincide con los principios de diseño seguro.",
+    "porqueNo": "Los patrones de codificación y buenas prácticas de codificación son elementos importantes pero no abarcan todo el concepto; los casos de uso son una técnica de análisis de requisitos, no la definición de seguridad del software."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P02",
+    "pregunta": "Señala la respuesta correcta. Los patrones de ataque en la fase de diseño y arquitectura:",
+    "opciones": [
+      { "id": "A", "texto": "Ayudan a definir el comportamiento del sistema para prevenir o reaccionar ante otros ataques." },
+      { "id": "B", "texto": "Específicas debilidades no aprovechadas por los ataques, orientando qué técnicas o prácticas de seguridad de desarrollo evitan estas deficiencias." },
+      { "id": "C", "texto": "Proporcionan el contexto de las amenazas al que el software se va a enfrentar." },
+      { "id": "D", "texto": "Proporcionan ejemplos de ataques que no aprovechan las vulnerabilidades de la arquitectura elegida." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario del test indica que los patrones de ataque proporcionan el contexto de las amenazas a las que el software se enfrentará, permitiendo diseñar arquitecturas seguras.",
+    "porqueNo": "La opción A habla del comportamiento del sistema, que se vincula más a patrones de defensa; B describe más bien patrones de seguridad o buenas prácticas; D se centra en ataques que no aprovechan vulnerabilidades, lo que no refleja el objetivo de los patrones de ataque."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P03",
+    "pregunta": "Señala la respuesta correcta. Respecto a los casos de uso de seguridad:",
+    "opciones": [
+      { "id": "A", "texto": "Analizan y especifican los requisitos de seguridad funcionales." },
+      { "id": "B", "texto": "Analizan y especifican las amenazas a la seguridad." },
+      { "id": "C", "texto": "Análisis de vulnerabilidades de activos y amenazas." },
+      { "id": "D", "texto": "Análisis forense de las actividades maliciosas." }
+    ],
+    "correcta": "A",
+    "justificacion": "El PDF indica explícitamente que los casos de uso de seguridad analizan y especifican los requisitos de seguridad funcionales.",
+    "porqueNo": "Las amenazas, el análisis de vulnerabilidades y el análisis forense se tratan con técnicas diferentes (modelado de amenazas, análisis de riesgo, forense digital), no con casos de uso de seguridad que se centran en requisitos funcionales de protección."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P04",
+    "pregunta": "Respecto a la ingeniería de requisitos de seguridad, esta NO incluye:",
+    "opciones": [
+      { "id": "A", "texto": "Requisitos de software seguro. Requisitos que afectan directamente a la probabilidad de que el software sea seguro." },
+      { "id": "B", "texto": "Requisitos servicios de seguridad." },
+      { "id": "C", "texto": "Los requerimientos no funcionales de seguridad deben especificar: restricciones que el software implementará para poder evitar ataques." },
+      { "id": "D", "texto": "Los requerimientos no funcionales de seguridad deben especificar: los controles y normas que rigen los procesos de desarrollo, implementación y operación del software." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario señala que todo lo relativo a especificación de requisitos de seguridad por normativa se enmarca dentro de los requisitos operacionales, no dentro de la ingeniería de requisitos de seguridad como tal.",
+    "porqueNo": "Los requisitos de software seguro, los servicios de seguridad y las restricciones no funcionales que el software debe implementar son parte directa de la ingeniería de requisitos de seguridad."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P05",
+    "pregunta": "¿Cuál de estas opciones NO forma parte de los tres pasos básicos del análisis de riesgo arquitectónico?",
+    "opciones": [
+      { "id": "A", "texto": "Análisis de ambigüedad." },
+      { "id": "B", "texto": "Análisis de resistencia al ataque." },
+      { "id": "C", "texto": "Análisis de robustez." },
+      { "id": "D", "texto": "Análisis de debilidad." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test indica que el análisis de riesgo arquitectónico se basa en tres pasos: análisis de ambigüedad, análisis de resistencia al ataque y análisis de debilidad; la robustez no aparece entre ellos.",
+    "porqueNo": "Análisis de ambigüedad, de resistencia al ataque y de debilidad se citan explícitamente como los tres pasos básicos; por tanto A, B y D son correctas y la única que sobra es el análisis de robustez."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P06",
+    "pregunta": "¿Cuál de las siguientes respuestas es una de las perspectivas que el equipo de desarrollo tiene que adoptar a la hora de diseñar unas pruebas de seguridad basadas en el riesgo?",
+    "opciones": [
+      { "id": "A", "texto": "Perspectiva gerencia." },
+      { "id": "B", "texto": "Perspectiva atacante." },
+      { "id": "C", "texto": "Perspectiva usuario." },
+      { "id": "D", "texto": "Perspectiva del analista." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario aclara que se deben adoptar las perspectivas de atacante y defensor; en las opciones solo aparece explícitamente la perspectiva atacante, que por tanto es la respuesta válida.",
+    "porqueNo": "La perspectiva de gerencia, usuario o analista aporta contexto organizativo o funcional, pero no se centra en cómo se explotan las vulnerabilidades ni en cómo diseñar pruebas de seguridad basadas en el riesgo como sí lo hace la perspectiva atacante."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P07",
+    "pregunta": "¿Cuál de estas opciones NO es una razón principal para añadir prácticas de seguridad en el SDLC?",
+    "opciones": [
+      { "id": "A", "texto": "Mayor probabilidad de capturar adecuadamente los requisitos." },
+      { "id": "B", "texto": "Mayor probabilidad de tomar decisiones de diseño correctas y no cometer errores involuntarios de codificación." },
+      { "id": "C", "texto": "Dificultad de los agentes maliciosos para explotar vulnerabilidades y debilidades del software." },
+      { "id": "D", "texto": "Mayor probabilidad de que el software funcione correctamente." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario resalta como razones principales capturar bien los requisitos, tomar buenas decisiones de diseño y dificultar la explotación de vulnerabilidades; que el software funcione correctamente es un objetivo general del desarrollo, no una razón específica para añadir prácticas de seguridad.",
+    "porqueNo": "Añadir prácticas de seguridad al SDLC mejora la captura de requisitos, las decisiones de diseño y la robustez frente a ataques, por lo que A, B y C sí son motivaciones directas."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P08",
+    "pregunta": "Señala la respuesta correcta. Un método sistemático para caracterizar la seguridad de un sistema, basado en la combinación y dependencias de las vulnerabilidades de este, que un atacante puede aprovechar para comprometerlo.",
+    "opciones": [
+      { "id": "A", "texto": "Método de ataque." },
+      { "id": "B", "texto": "Patrones de ataque." },
+      { "id": "C", "texto": "Árboles de ataque." },
+      { "id": "D", "texto": "Modelo de ataque." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test indica que es la definición de árbol de ataque: una representación estructurada que combina vulnerabilidades y dependencias que un atacante puede explotar.",
+    "porqueNo": "Método, patrones o modelo de ataque son conceptos relacionados pero no corresponden a la definición dada, que enfatiza estructura y combinación de vulnerabilidades, propio de los árboles de ataque."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P09",
+    "pregunta": "Señalar la respuesta incorrecta sobre los casos de abuso.",
+    "opciones": [
+      { "id": "A", "texto": "Los casos de abuso constituyen unas buenas prácticas para la obtención de los requisitos funcionales de una aplicación, referidos a actividades que debería realizar el sistema." },
+      { "id": "B", "texto": "Un caso de abuso es la inversa de un caso de uso, es decir, una función que el sistema no debe permitir o una secuencia completa de acciones que resulta en una pérdida para la organización." },
+      { "id": "C", "texto": "Los casos de abuso, o casos de mal uso, son un instrumento que puede ayudar a pensar de la misma forma que lo hacen los atacantes." },
+      { "id": "D", "texto": "Establecen la base para otros casos de uso de seguridad que proporcionan los medios para contrarrestar o mitigar las amenazas capturadas en los mismos y una manera altamente reutilizable de organizar, analizar y especificar los requisitos de seguridad." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario aclara que son los diagramas de casos de uso, y no los de abuso, los que se usan como buenas prácticas para obtener requisitos funcionales de lo que el sistema debe hacer.",
+    "porqueNo": "B describe correctamente un caso de abuso como inversa de un caso de uso; C refleja su utilidad para pensar como un atacante; D muestra cómo los casos de abuso sirven de base para casos de uso de seguridad, por lo que son afirmaciones correctas."
+  },
+  {
+    "examen": "Test-02",
+    "id": "T2-P10",
+    "pregunta": "Indica en qué fase del ciclo de vida de desarrollo del software NO es aplicable el análisis de riesgo arquitectónico.",
+    "opciones": [
+      { "id": "A", "texto": "Especificación de requisitos." },
+      { "id": "B", "texto": "Diseño del sistema." },
+      { "id": "C", "texto": "Codificación." },
+      { "id": "D", "texto": "Operación." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test indica que la única fase del SDLC donde no se aplica el análisis de riesgo arquitectónico es la de codificación; este análisis se realiza sobre requisitos y diseño, e influye en cómo se desplegará y operará el sistema.",
+    "porqueNo": "Durante la especificación de requisitos y el diseño se identifican y evalúan riesgos arquitectónicos, y en operación se comprueba que las decisiones arquitectónicas siguen siendo adecuadas frente al riesgo; por eso A, B y D sí son fases en las que aplica el análisis."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P01",
+    "pregunta": "Señala la respuesta correcta. Las perspectivas de las pruebas de seguridad basadas en el riesgo son las siguientes:",
+    "opciones": [
+      { "id": "A", "texto": "Perspectiva gerencia." },
+      { "id": "B", "texto": "Perspectiva atacante." },
+      { "id": "C", "texto": "Perspectiva usuario." },
+      { "id": "D", "texto": "Perspectiva del analista." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario del test indica que las perspectivas clave son atacante y defensor; entre las opciones solo aparece explícitamente la perspectiva atacante, por lo que es la respuesta correcta.",
+    "porqueNo": "Las perspectivas de gerencia, usuario y analista aportan otros puntos de vista, pero no son las que se destacan como base para diseñar pruebas de seguridad basadas en el riesgo en el material del tema."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P02",
+    "pregunta": "Señala la respuesta correcta. El principal problema de las herramientas de análisis estático es:",
+    "opciones": [
+      { "id": "A", "texto": "Falsos negativos que produce." },
+      { "id": "B", "texto": "Gran cantidad de defectos que encuentra." },
+      { "id": "C", "texto": "Reglas de la herramienta." },
+      { "id": "D", "texto": "Falsos positivos que produce." }
+    ],
+    "correcta": "A",
+    "justificacion": "El PDF indica expresamente que el principal problema son los falsos negativos, porque dan una falsa sensación de seguridad al no detectar vulnerabilidades que realmente existen.",
+    "porqueNo": "Que encuentre muchos defectos o tenga ciertas reglas no es un problema principal, y los falsos positivos son molestos pero no tan peligrosos como no detectar vulnerabilidades reales."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P03",
+    "pregunta": "Señala la respuesta incorrecta. Las herramientas de análisis estático realizan varios tipos de análisis:",
+    "opciones": [
+      { "id": "A", "texto": "Taint Propagation." },
+      { "id": "B", "texto": "Análisis puntual." },
+      { "id": "C", "texto": "Model checking." },
+      { "id": "D", "texto": "Análisis de flujo de datos." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario del test lista entre los análisis típicos: análisis estructural, flujo de control, flujo de datos, taint propagation, aliasing de punteros, análisis local/global, interpretación abstracta, transformadores de predicados, model checking y SAT solvers; “análisis puntual” no aparece en esa lista.",
+    "porqueNo": "Taint propagation, model checking y análisis de flujo de datos sí se mencionan explícitamente como tipos de análisis que pueden realizar las herramientas de análisis estático."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P04",
+    "pregunta": "Señala la respuesta correcta. Los tests de penetración:",
+    "opciones": [
+      { "id": "A", "texto": "Demuestran que ningún defecto existe." },
+      { "id": "B", "texto": "Revisan el código." },
+      { "id": "C", "texto": "El entendimiento del ambiente de ejecución y de los problemas de configuración es el mejor resultado de cualquier prueba de penetración." },
+      { "id": "D", "texto": "Las conclusiones de seguridad son repetibles a través de equipos diferentes y varían extensamente dependiendo de la habilidad y la experiencia de los probadores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test remarca que el mejor resultado de cualquier prueba de penetración es comprender el entorno de ejecución y los problemas de configuración detectados.",
+    "porqueNo": "Las pruebas de penetración no pueden demostrar la ausencia total de defectos ni se centran en revisar código fuente; además, sus resultados no son perfectamente repetibles entre equipos porque dependen de la habilidad del probador."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P05",
+    "pregunta": "Señalar la respuesta correcta. A la hora de realizar la distribución y despliegue del software desarrollado es recomendable realizar las siguientes buenas prácticas:",
+    "opciones": [
+      { "id": "A", "texto": "Distribuir el software con una configuración por defecto segura y lo más restrictiva posible." },
+      { "id": "B", "texto": "Proporcionar una herramienta de instalación automática." },
+      { "id": "C", "texto": "Cambiar los valores de configuración predeterminados durante el desarrollo." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario del test añade varias buenas prácticas adicionales, dando a entender que las tres opciones listadas (configuración segura, herramienta de instalación y cambio de valores por defecto inseguros) forman parte del conjunto recomendado.",
+    "porqueNo": "Cada una de las opciones A, B y C por separado solo cubre una parte de las buenas prácticas; la intención de la pregunta es agruparlas, por lo que ninguna de ellas individualmente es tan completa como la opción “Todas las anteriores”."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P06",
+    "pregunta": "Señala la respuesta incorrecta. Los objetivos de las pruebas de seguridad basadas en el riesgo son:",
+    "opciones": [
+      { "id": "A", "texto": "Verificar la operación del software bajo su entorno de producción." },
+      { "id": "B", "texto": "Verificar la capacidad de supervivencia del software ante la aparición de anomalías, errores y su manejo de estas mediante excepciones que minimicen el alcance e impacto de los daños que puedan resultar de los ataques." },
+      { "id": "C", "texto": "Verificar la falta de defectos y debilidades explotables." },
+      { "id": "D", "texto": "Verificar la fiabilidad del software, en términos de comportamiento seguro y cambios de estado confiables." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario enumera como objetivos verificar operación confiable bajo condiciones hostiles, fiabilidad, ausencia de defectos explotables y capacidad de supervivencia; la formulación de la opción A se queda corta porque no hace referencia a condiciones hostiles ni a aspectos de seguridad específicos.",
+    "porqueNo": "Las opciones B, C y D recogen literalmente objetivos mencionados: supervivencia ante anomalías, ausencia de debilidades explotables y fiabilidad en términos de comportamiento seguro y cambios de estado confiables."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P07",
+    "pregunta": "Señalar la respuesta incorrecta. El análisis estático de código fuente es adecuado para identificar problemas de seguridad por ciertas razones:",
+    "opciones": [
+      { "id": "A", "texto": "Las herramientas de análisis estático comprueban el código a fondo y coherentemente, sin ninguna tendencia que a veces los programadores podrían tener sobre algunas partes del código." },
+      { "id": "B", "texto": "Examinando el código en sí mismo, las herramientas de análisis estático a menudo pueden indicar la causa de origen de un problema de seguridad, no solamente uno de sus síntomas." },
+      { "id": "C", "texto": "Cuando un investigador de seguridad descubre una nueva variedad de ataque, las herramientas de análisis estático no ayudan a comprobar de nuevo una gran cantidad de código para ver dónde el nuevo ataque podría tener éxito." },
+      { "id": "D", "texto": "El análisis estático puede encontrar errores tempranamente en el desarrollo, aún antes de que el programa sea ejecutado por primera vez." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario corrige explícitamente la frase y señala que las herramientas de análisis estático sí ayudan a revisar grandes bases de código cuando aparece una nueva clase de ataque, por lo que la afirmación original es incorrecta.",
+    "porqueNo": "Las opciones A, B y D describen ventajas reales del análisis estático: revisión sistemática del código, identificación de causas de origen y detección temprana de errores antes de la ejecución."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P08",
+    "pregunta": "Señalar la respuesta correcta. La principal misión de los tests de penetración es:",
+    "opciones": [
+      { "id": "A", "texto": "Revisar estáticamente el código del sistema." },
+      { "id": "B", "texto": "Comprobar las vulnerabilidades del software." },
+      { "id": "C", "texto": "Verificar cómo el software se comporta y resiste ante diferentes tipos de ataque." },
+      { "id": "D", "texto": "Probar la seguridad de la arquitectura del software." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que la principal misión de las pruebas de penetración es verificar cómo el software se comporta y resiste frente a diferentes tipos de ataque, comprobando la eficacia de las salvaguardas implementadas.",
+    "porqueNo": "Revisar código estático pertenece al análisis estático; comprobar vulnerabilidades o la arquitectura forma parte de la preparación y análisis, pero la misión central del test de penetración es observar el comportamiento ante ataques reales o simulados."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P09",
+    "pregunta": "Indicar la respuesta incorrecta. Los factores principales prácticos que determinan la utilidad de una herramienta de análisis estático son:",
+    "opciones": [
+      { "id": "A", "texto": "El equilibrio que la herramienta hace entre la precisión, la profundidad y la escalabilidad." },
+      { "id": "B", "texto": "Porcentaje de falsos positivos de la herramienta." },
+      { "id": "C", "texto": "Las características de la herramienta para hacerla fácil de usar." },
+      { "id": "D", "texto": "La capacidad de la herramienta para comprender el programa que se analiza." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario aclara que lo relevante es el porcentaje de falsos positivos y falsos negativos; limitarse solo a falsos positivos deja fuera un aspecto crítico de utilidad, por lo que la afirmación tal como está redactada es incorrecta.",
+    "porqueNo": "El equilibrio entre precisión, profundidad y escalabilidad, la facilidad de uso y la capacidad de comprender el programa son factores aceptados para evaluar la utilidad práctica de una herramienta de análisis estático."
+  },
+  {
+    "examen": "Test-03",
+    "id": "T3-P10",
+    "pregunta": "Señalar la respuesta correcta. Una herramienta de análisis de código reporta que existe una vulnerabilidad de inyección SQL. Sin embargo, después de la correspondiente verificación, se comprueba que en realidad no existe tal vulnerabilidad. ¿Qué tipo de limitación de las herramientas de análisis de código se ha expuesto?",
+    "opciones": [
+      { "id": "A", "texto": "Un falso positivo." },
+      { "id": "B", "texto": "Un falso negativo." },
+      { "id": "C", "texto": "Una vulnerabilidad específica de un lenguaje de programación." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "El propio test indica que se trata de un falso positivo, ya que la herramienta informa de una vulnerabilidad que, tras la revisión manual, se demuestra que no existe.",
+    "porqueNo": "Un falso negativo sería el caso contrario (no informar de una vulnerabilidad real); las opciones C y D no describen un tipo de limitación estándar de las herramientas de análisis de código en este contexto."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P01",
+    "pregunta": "Señala la respuesta correcta. En los apuntes de la asignatura se presentan una serie de recomendaciones de buenas prácticas:",
+    "opciones": [
+      { "id": "A", "texto": "Manejo de los datos con precaución." },
+      { "id": "B", "texto": "Confiar en software de terceros en operaciones críticas." },
+      { "id": "C", "texto": "Usar listas de errores." },
+      { "id": "D", "texto": "Usar en el código nombres relativos de ficheros." }
+    ],
+    "correcta": "A",
+    "justificacion": "El test lista como buenas prácticas, entre otras, la formación, la revisión de código y el manejo de los datos con precaución, por lo que esta opción recoge una de esas recomendaciones explícitas.",
+    "porqueNo": "Confiar en software de terceros en operaciones críticas, usar listas de errores como referencia principal y emplear nombres relativos de ficheros se mencionan como prácticas de riesgo, no como recomendaciones de seguridad."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P02",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en este código Java relacionado con user_state y la sesión?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Uso de datos invalidados." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que el problema es el uso de datos sin validar; sin límites de confianza claros, se terminan usando datos en la aplicación que no han pasado validación.",
+    "porqueNo": "No hay operaciones aritméticas que sugieran desbordamiento de enteros, no se manejan buffers de memoria de bajo nivel ni se usa memoria liberada, por lo que A, B y D no describen el fallo real."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P03",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en este código C que copia argv[1] en un buffer de 16 bytes?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Format string." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "B",
+    "justificacion": "El PDF lo identifica como un desbordamiento de buffer usando una versión de strcpy: se copia una cadena de longitud arbitraria en un buffer de tamaño fijo sin comprobar el límite.",
+    "porqueNo": "No hay operaciones numéricas que se desborden ni llamadas de formato como printf con formato controlado por el usuario, y el código no usa memoria liberada, por lo que A, C y D no encajan."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P04",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en el código C que confía en un nombre de host obtenido vía DNS para marcar un host como de confianza?",
+    "opciones": [
+      { "id": "A", "texto": "Buffer overflow." },
+      { "id": "B", "texto": "Validación límites de confianza." },
+      { "id": "C", "texto": "Validación de entrada DNS." },
+      { "id": "D", "texto": "Memory leaks." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario explica que se usa una búsqueda DNS para determinar si una petición procede de un host de confianza y que, si se envenena la caché DNS, un atacante puede obtener ese estatus, por lo que se trata de un problema de validación de entrada basada en DNS.",
+    "porqueNo": "No se muestra un desbordamiento de buffer ni una fuga de memoria; el problema sí está relacionado con la confianza en datos de DNS, más concreto que una referencia genérica a “límites de confianza”, por eso C es más precisa que B."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P05",
+    "pregunta": "Señala la respuesta correcta. ¿Es el siguiente código correcto (validación de longitud de una ruta antes de llamar a fileOperation)?",
+    "opciones": [
+      { "id": "A", "texto": "Es correcto." },
+      { "id": "B", "texto": "Es incorrecto." },
+      { "id": "C", "texto": "No se puede determinar." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "Aunque el comentario textual dice que el código es correcto, la opción marcada como correcta en el intento es “Es incorrecto”, lo que refleja que en el material se considera que la validación mostrada no es suficiente o contiene un error (por ejemplo en los límites).",
+    "porqueNo": "Marcarlo como correcto (A) contradeciría la corrección del test; “no se puede determinar” o “ninguna de las anteriores” no encajan porque sí se toma una posición explícita sobre la corrección del código en el intento."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P06",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en el código C que multiplica nresp por sizeof(char*) y pasa el resultado a xmalloc?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Format string." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario lo identifica como un caso clásico de integer overflow: si nresp es muy grande, la multiplicación nresp * sizeof(char*) se desborda y provoca una asignación de buffer insuficiente que luego se desbordará.",
+    "porqueNo": "Aunque el resultado provoca un desbordamiento de memoria, la raíz del problema es el cálculo entero que se desborda; no hay cadenas de formato ni uso de memoria liberada, por lo que B, C y D no describen la vulnerabilidad principal."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P07",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en el código C que pasa directamente una cadena leída de la red como formato a vsnprintf?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Format string." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que es un código vulnerable de format string: la cadena de la red se pasa sin validar como string de formato a vsnprintf, permitiendo a un atacante inyectar especificadores de formato maliciosos.",
+    "porqueNo": "No hay operaciones numéricas peligrosas ni uso de memoria liberada; el posible desbordamiento proviene del abuso del formato, por lo que se clasifica como vulnerabilidad de cadenas de formato, no simplemente como buffer overflow."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P08",
+    "pregunta": "Señala la respuesta correcta. Al realizar una buena validación de entrada por defecto, una mejora con API de seguridad aumenta la capacidad de hacer lo siguiente:",
+    "opciones": [
+      { "id": "A", "texto": "Entender y mantener la lógica de validación de entrada." },
+      { "id": "B", "texto": "Actualizar y modificar el intento de introducir la validación coherentemente." },
+      { "id": "C", "texto": "Aplicar una validación de entrada sensible a contexto coherentemente a toda la entrada." },
+      { "id": "D", "texto": "Descentralizar la lógica de validación." }
+    ],
+    "correcta": "D",
+    "justificacion": "El texto del test indica que una API de seguridad mejora la capacidad de aplicar validaciones coherentes, entender y mantener la lógica y actualizarla; como esas capacidades ya las aporta la API centralizada, la opción que resalta es la de poder descentralizar la lógica de validación en los puntos de uso sin perder coherencia.",
+    "porqueNo": "Las opciones A, B y C describen beneficios que la propia API central proporciona de forma directa; la pregunta pide “una mejora” que la API añade respecto a la validación por defecto, que se enfatiza en D."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P09",
+    "pregunta": "Señalar la respuesta incorrecta. En el desarrollo de aplicaciones seguras y confiables se requiere el seguimiento de unas buenas prácticas:",
+    "opciones": [
+      { "id": "A", "texto": "Insistir en el proceso de revisión de código." },
+      { "id": "B", "texto": "Formación continua." },
+      { "id": "C", "texto": "Invocar programas en los que no se confía desde otros en los que se confía." },
+      { "id": "D", "texto": "Manejo de los datos con precaución." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario clasifica explícitamente “invocar programas en los que no se confía desde otros en los que se confía” como mala práctica, por lo que es la opción incorrecta dentro de una lista de buenas prácticas.",
+    "porqueNo": "Insistir en la revisión de código, mantener formación continua y manejar los datos con precaución son buenas prácticas destacadas en el material, por lo que A, B y D son correctas."
+  },
+  {
+    "examen": "Test-04",
+    "id": "T4-P10",
+    "pregunta": "Señala la respuesta correcta. ¿Cuál es la mejor forma de prevenir ataques de desbordamiento de buffer?",
+    "opciones": [
+      { "id": "A", "texto": "Tener precauciones al realizar conversiones de tipo." },
+      { "id": "B", "texto": "Utilizar un lenguaje de programación que fuerce la comprobación de tipos y de memoria." },
+      { "id": "C", "texto": "Comprobar los límites de memoria." },
+      { "id": "D", "texto": "Comprobar las longitudes del buffer." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario señala que la mejor forma de prevenir desbordamientos de buffer es usar lenguajes que fuerzan la comprobación de tipos y de memoria, de modo que la gestión de memoria sea segura (por ejemplo C#, Java, Python, etc.).",
+    "porqueNo": "Comprobar límites de memoria, longitudes de buffers o tener cuidado en conversiones de tipo son buenas prácticas, pero dependen de la disciplina del programador y pueden fallar; cambiar a un lenguaje con gestión segura de memoria elimina de raíz muchas clases de desbordamientos."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P01",
+    "pregunta": "Señala la respuesta incorrecta. Con respecto a los errores y excepciones:",
+    "opciones": [
+      { "id": "A", "texto": "Si un método declara que lanza una excepción checked, todos los objetos que lo utilizan deben manejar la excepción o declarar que lo lanzan también." },
+      { "id": "B", "texto": "Los compiladores de Java no hacen cumplir las reglas en cuanto a excepciones checked." },
+      { "id": "C", "texto": "Todas las excepciones en C++ son checked." },
+      { "id": "D", "texto": "Las excepciones unchecked no tienen que ser declaradas o manejadas." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario aclara que en C++ todas las excepciones son unchecked, es decir, el compilador no obliga a declararlas ni manejarlas, por lo que afirmar que todas son checked es incorrecto.",
+    "porqueNo": "En Java los compiladores sí hacen cumplir las reglas sobre excepciones checked y las unchecked no necesitan ser declaradas o manejadas, y si un método declara una excepción checked quienes lo llaman deben manejarla o declararla, por lo que A, B y D son correctas."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P02",
+    "pregunta": "Señala la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en este código Java que registra la consulta SQL cuando falla la ejecución?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Format string." },
+      { "id": "D", "texto": "Manipulación de información privada." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que, si la consulta contiene datos privados y se registra completa en el log al fallar, se está exponiendo información sensible, lo que constituye una manipulación indebida de información privada.",
+    "porqueNo": "No hay operaciones numéricas que sugieran overflow, ni manejo de buffers de bajo nivel, ni abuso de cadenas de formato; el problema es la exposición de datos en logs, no un fallo de memoria o de formato."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P03",
+    "pregunta": "Señala la respuesta correcta. Se tienen dos opciones para crear archivos temporales de forma segura:",
+    "opciones": [
+      { "id": "A", "texto": "Generar los nombres de archivo temporales que sean difíciles de adivinar, usando un generador de números pseudo-aleatorios (PRNG) criptográficamente seguros para crear un elemento aleatorio en cada nombre del archivo temporal." },
+      { "id": "B", "texto": "Almacenar los archivos temporales bajo un directorio que no es públicamente accesible, eliminando así toda la discusión con respecto a ataques." },
+      { "id": "C", "texto": "Almacenar los archivos temporales bajo un directorio que es públicamente accesible, eliminando así toda la discusión con respecto a ataques." },
+      { "id": "D", "texto": "Generar los nombres de archivo temporales que sean difíciles de adivinar usando un generador de números pseudo-aleatorios (PRNG) estadístico para crear un elemento en cada nombre del archivo temporal." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario señala explícitamente dos opciones seguras: almacenar los temporales en un directorio no accesible públicamente y generar nombres difíciles de adivinar con un PRNG criptográficamente seguro; la opción A recoge esta segunda medida tal y como se describe.",
+    "porqueNo": "La opción B también es una buena práctica pero la pregunta apunta a qué incluye la descripción textual; C es peligrosa al usar un directorio público y D habla de un PRNG estadístico genérico que no garantiza propiedades criptográficas."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P04",
+    "pregunta": "Señala la respuesta incorrecta. Métodos para detectar y prevenir integers overflows:",
+    "opciones": [
+      { "id": "A", "texto": "Usar tipos sin signo." },
+      { "id": "B", "texto": "Verificar el tipo de los buffers." },
+      { "id": "C", "texto": "Restringir la entrada numérica de usuario." },
+      { "id": "D", "texto": "Entender las reglas de conversión entre enteros." }
+    ],
+    "correcta": "B",
+    "justificacion": "El material lista entre los métodos: usar tipos sin signo, restringir la entrada numérica, comprobar valores usados para memoria, respetar warnings del compilador y entender las reglas de conversión; “verificar el tipo de los buffers” no forma parte de esas técnicas específicas contra overflows de enteros.",
+    "porqueNo": "Usar tipos sin signo, limitar valores de entrada y entender bien las conversiones entre enteros ayudan directamente a prevenir y detectar overflows, por lo que A, C y D son correctas."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P05",
+    "pregunta": "Señala la respuesta incorrecta. Los ataques de escalada de privilegios pueden tener como objetivo cualquier variedad de vulnerabilidades de software, que son principalmente un riesgo en programas privilegiados:",
+    "opciones": [
+      { "id": "A", "texto": "Archivos de sistema." },
+      { "id": "B", "texto": "Condiciones de carrera de acceso a archivos." },
+      { "id": "C", "texto": "Inyección de comandos." },
+      { "id": "D", "texto": "Mal uso de descriptores de archivo estándar." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario enumera como clases específicas de vulnerabilidades en programas privilegiados: condiciones de carrera, permisos débiles, archivos temporales inseguros, inyección de comandos y mal uso de descriptores; “archivos de sistema” es demasiado genérico y no aparece como categoría concreta.",
+    "porqueNo": "Condiciones de carrera, inyección de comandos y mal uso de descriptores de archivo estándar sí se mencionan explícitamente como vulnerabilidades relevantes en escenarios de escalada de privilegios."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P06",
+    "pregunta": "Señala la respuesta incorrecta. Consideraciones sobre potenciales vulnerabilidades de Java:",
+    "opciones": [
+      { "id": "A", "texto": "Seguridad de tipos. Los campos que son declarados privados o protegidos, o que tienen protección por defecto, deberían ser públicamente accesibles." },
+      { "id": "B", "texto": "Campos públicos. Un campo que es declarado público directamente puede ser no ser accedido por cualquier parte de un programa Java y puede ser modificado por las mismas (a no ser que el campo sea declarado como final)." },
+      { "id": "C", "texto": "Serialización. Esta facilidad posibilita que el estado del programa sea capturado y convertido en un byte stream que puede ser restaurado por la operación inversa, que es la deserialización." },
+      { "id": "D", "texto": "JVM. La JVM, en sí misma, a menudo está escrita en C para una plataforma dada. Esto quiere decir que, sin la atención cuidadosa a detalles de puesta en práctica, la JVM en sí misma no es susceptible a problemas de desbordamiento." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que la única respuesta incorrecta es la B, porque en realidad un campo público sí puede ser accedido y modificado desde cualquier parte del programa (salvo que sea final); el texto de la opción invierte esa idea.",
+    "porqueNo": "Las demás afirmaciones describen aspectos relevantes: problemas si la seguridad de tipos se relaja, riesgos de serialización y que la JVM escrita en C puede ser vulnerable a desbordamientos si no se implementa con cuidado, por lo que A, C y D se usan como advertencias válidas."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P07",
+    "pregunta": "Señala la respuesta correcta. Revisando el programa ¿cuál de las siguientes respuestas describe mejor lo que está haciendo la función con BANNED_CHARACTERS?",
+    "opciones": [
+      { "id": "A", "texto": "Asegurar la no violabilidad espacial de la memoria." },
+      { "id": "B", "texto": "Validar la entrada mediante lista blanca." },
+      { "id": "C", "texto": "Asegurar la no violabilidad temporal de la memoria." },
+      { "id": "D", "texto": "Validar la entrada mediante lista negra." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario explica que si un carácter de entrada está en la lista de BANNED_CHARACTERS se elimina o sustituye, lo que corresponde a una validación mediante lista negra (denylist).",
+    "porqueNo": "No se define un conjunto de caracteres permitidos (lista blanca), y aunque el código debería respetar la integridad de memoria, lo que hace específicamente es filtrar caracteres no deseados, no asegurar propiedades espaciales o temporales de la memoria."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P08",
+    "pregunta": "Señala la incorrecta. Las funciones de strings limitadas son más seguras que las funciones ilimitadas, pero hay todavía mucho margen para el error. Los fallos de programación más comunes que se pueden cometer con las funciones de string limitadas:",
+    "opciones": [
+      { "id": "A", "texto": "El buffer de destino se desborda porque el límite depende del tamaño de los datos de la fuente, más bien que del tamaño del buffer de destino." },
+      { "id": "B", "texto": "El buffer de destino se desborda porque su límite se especifica como el tamaño total del buffer, más bien que como el espacio restante." },
+      { "id": "C", "texto": "El buffer de destino se deja sin un terminador nulo." },
+      { "id": "D", "texto": "El programa escribe a una posición arbitraria en la memoria porque el buffer de destino se termina con el carácter nulo." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario aclara que el problema real es cuando el buffer de destino no se termina con el carácter nulo, lo que puede llevar a escribir en posiciones arbitrarias; la opción D, tal como está redactada, invierte la condición y por eso es incorrecta.",
+    "porqueNo": "Las opciones A, B y C describen errores típicos al usar funciones de cadena limitadas: calcular mal el límite en función de la fuente, usar el tamaño total en lugar del espacio restante y olvidar el terminador nulo."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P09",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué tipo de vulnerabilidad se comete en este código C que comprueba con laccess si existe /tmp/file.tmp y luego lo abre con fopen?",
+    "opciones": [
+      { "id": "A", "texto": "Integer overflows." },
+      { "id": "B", "texto": "Desbordamiento de buffer." },
+      { "id": "C", "texto": "Condiciones de carrera." },
+      { "id": "D", "texto": "Use after free." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario explica que entre la comprobación de existencia y la apertura del archivo un atacante puede crear el archivo o un enlace simbólico, lo que constituye una condición de carrera de acceso a archivos.",
+    "porqueNo": "No hay cálculos de enteros ni manejo de buffers que sugieran overflow, y no se reutiliza memoria liberada; el problema es el intervalo de tiempo entre comprobación y uso, típico de race conditions."
+  },
+  {
+    "examen": "Test-05",
+    "id": "T5-P10",
+    "pregunta": "Señala la respuesta correcta. ¿Cuándo ocurre un ataque de integer overflow?",
+    "opciones": [
+      { "id": "A", "texto": "Al realizar una operación de una resta." },
+      { "id": "B", "texto": "Un entero es usado como si fuera un puntero." },
+      { "id": "C", "texto": "Un entero es usado para acceder a un buffer fuera de sus límites." },
+      { "id": "D", "texto": "No hay más espacio en el programa para almacenar un entero." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica literalmente que un ataque de integer overflow ocurre cuando un entero es usado para acceder a un buffer fuera de sus límites, provocando accesos de memoria fuera de rango.",
+    "porqueNo": "Una resta por sí sola no define un overflow, usar un entero como puntero describe otro tipo de bug, y quedarse sin espacio para almacenar enteros no es el modelo de fallo que se pretende; la clave es el acceso fuera de límites basado en un entero desbordado."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P01",
+    "pregunta": "¿Cuál es uno de los pilares fundamentales de la definición de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Proceso objetivo." },
+      { "id": "B", "texto": "Proceso subjetivo." },
+      { "id": "C", "texto": "Cálculo del riesgo tecnológico." },
+      { "id": "D", "texto": "Cálculo del riesgo operacional." }
+    ],
+    "correcta": "A",
+    "justificacion": "La definición citada en el test describe la auditoría como un proceso sistemático de obtención y evaluación objetiva de evidencias; la objetividad es un requisito fundamental.",
+    "porqueNo": "Calificarla como proceso subjetivo contradice la definición; el cálculo de riesgos tecnológicos u operacionales son actividades relacionadas pero no pilares definitorios de la auditoría como tal."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P02",
+    "pregunta": "El objetivo final de la auditoría es:",
+    "opciones": [
+      { "id": "A", "texto": "Generar un proceso subjetivo." },
+      { "id": "B", "texto": "Dar recomendaciones a la alta dirección." },
+      { "id": "C", "texto": "Entregar un informe." },
+      { "id": "D", "texto": "Comunicar los resultados de manera correcta." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que la finalidad última es trasladar recomendaciones a la alta dirección para mejorar la calidad y efectividad de las iniciativas y controles de gobierno de TI implantados.",
+    "porqueNo": "Elaborar un informe y comunicar resultados correctamente son medios necesarios, pero no el objetivo final; hablar de proceso subjetivo se opone al principio de objetividad de la auditoría."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P03",
+    "pregunta": "Cualquier sistema informático utilizado por las compañías debe:",
+    "opciones": [
+      { "id": "A", "texto": "Salvaguardar la propiedad de la información." },
+      { "id": "B", "texto": "Mantener la integridad de los datos." },
+      { "id": "C", "texto": "Asegurar la confidencialidad de la información." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test señala que cualquier sistema debe, como mínimo, salvaguardar la propiedad, integridad y confidencialidad de la información, por lo que se requieren simultáneamente esos atributos.",
+    "porqueNo": "Tomar solo uno de los atributos A, B o C dejaría fuera los otros dos, cuando el objetivo es que el sistema cumpla con todos ellos de forma conjunta."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P04",
+    "pregunta": "¿Cuál de las siguientes afirmaciones es cierta?",
+    "opciones": [
+      { "id": "A", "texto": "No hace falta un alineamiento entre el plan estratégico y el plan de las TIC al tratarse de taxonomías de planes totalmente diferentes." },
+      { "id": "B", "texto": "Las organizaciones con consideración a las TI tienen mayor retorno de inversión a medio y largo plazo que aquellas que no lo consideran ante los mismos objetivos estratégicos, de tal forma que con la madurez tecnológica se llegue a un estado de mayor retorno." },
+      { "id": "C", "texto": "El plan informático de TI se tiene que corresponder con el plan estratégico de la empresa." },
+      { "id": "D", "texto": "Ninguna afirmación es cierta." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario explica que el plan estratégico es el punto fundamental y cualquier otro elemento, incluido el plan informático, debe ayudar a cumplirlo, por lo que el plan de TI debe corresponderse con el plan estratégico.",
+    "porqueNo": "Negar la necesidad de alineamiento (A) contradice la idea de gobierno de TI; B describe una consecuencia razonable pero la respuesta marcada en el test como cierta es C; D es falsa porque sí hay al menos una afirmación correcta."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P05",
+    "pregunta": "La auditoría del CPD, ¿corresponde con una auditoría de sistemas o de seguridad física?",
+    "opciones": [
+      { "id": "A", "texto": "Al estar los sistemas dentro del CPD, se corresponde en exclusiva con una auditoría de sistemas." },
+      { "id": "B", "texto": "Al ser una ubicación física, estas auditorías están centradas en las auditorías de seguridad física." },
+      { "id": "C", "texto": "Es una auditoría de sistemas porque no existen las auditorías de seguridad física." },
+      { "id": "D", "texto": "Pueden ser las dos, dependiendo de los objetivos de la auditoría." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que una auditoría de CPD puede tener tanto vertiente física (infraestructura) como de sistemas de información, según los objetivos definidos.",
+    "porqueNo": "Limitarla solo a sistemas o solo a seguridad física ignora uno de los dos ámbitos; afirmar que no existen auditorías de seguridad física es incorrecto, por lo que A, B y C no son válidas."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P06",
+    "pregunta": "¿Cuáles son las diferencias más relevantes entre auditoría y control internos?",
+    "opciones": [
+      { "id": "A", "texto": "Realizan la misma función, por lo que la diferencia simplemente es la nomenclatura que se le dé en cada empresa." },
+      { "id": "B", "texto": "El control interno tiene mucho más peso que la auditoría interna." },
+      { "id": "C", "texto": "La auditoría interna tiene mucho más peso que control interno." },
+      { "id": "D", "texto": "La periodicidad y frecuencia de sus actuaciones." }
+    ],
+    "correcta": "D",
+    "justificacion": "El texto aclara que el control interno verifica en el día a día la eficacia de los controles, mientras que la auditoría realiza análisis puntuales con un propósito concreto; la diferencia clave está en la periodicidad y frecuencia.",
+    "porqueNo": "Decir que son lo mismo cambia solo el nombre (A) es falso; afirmar que uno tiene “mucho más peso” que el otro (B o C) no refleja la diferencia funcional real descrita en el material."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P07",
+    "pregunta": "Las auditorías de seguridad solo engloban:",
+    "opciones": [
+      { "id": "A", "texto": "Los temas tecnológicos." },
+      { "id": "B", "texto": "Los temas físicos." },
+      { "id": "C", "texto": "Los temas operacionales." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario señala que las auditorías de seguridad pueden abarcar ámbitos lógicos/tecnológicos, físicos u operacionales, de forma separada o integrada, por lo que no se limitan a uno solo.",
+    "porqueNo": "Restringirlas únicamente a temas tecnológicos, físicos u operacionales dejaría fuera los otros enfoques que también forman parte del alcance posible de una auditoría de seguridad."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P08",
+    "pregunta": "Cuál es uno de los objetivos principales del auditor:",
+    "opciones": [
+      { "id": "A", "texto": "Elaborar un informe de situación y entregarlo." },
+      { "id": "B", "texto": "Evaluar y comprobar, en determinados momentos, los controles y procedimientos informáticos." },
+      { "id": "C", "texto": "Pedir evidencias y analizarlas." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "Según el comentario, la actividad principal del auditor es evaluar y comprobar controles y procedimientos en momentos determinados; las demás actividades son medios o tareas de apoyo.",
+    "porqueNo": "Elaborar informes y solicitar evidencias forman parte del trabajo, pero no se consideran el objetivo principal; afirmar que ninguna es correcta contradice la explicación del propio test."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P09",
+    "pregunta": "Se denomina auditoría informática porque:",
+    "opciones": [
+      { "id": "A", "texto": "Se utilizan muchos sistemas informáticos para encontrar los resultados." },
+      { "id": "B", "texto": "Solo pueden realizarse por personas con unos estudios relacionados con la Informática." },
+      { "id": "C", "texto": "El objeto auditado son los sistemas de información." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que el objetivo principal de una auditoría informática son los sistemas de información, independientemente de la tecnología usada o del perfil académico de los auditores.",
+    "porqueNo": "Que se usen sistemas informáticos como herramienta de trabajo no define el tipo de auditoría; tampoco lo limita la formación de los auditores, por lo que A y B no son criterios definitorios y D es falsa."
+  },
+  {
+    "examen": "Test-06",
+    "id": "T6-P10",
+    "pregunta": "Cuando se encuentran hallazgos en la auditoría:",
+    "opciones": [
+      { "id": "A", "texto": "Se notifica de manera inmediata cualquier hallazgo a la Alta Dirección." },
+      { "id": "B", "texto": "Se notifica de manera inmediata cualquier hallazgo a nuestro interlocutor." },
+      { "id": "C", "texto": "Se documentan formalmente y ya se notificarán." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test indica que, como norma general, los hallazgos se documentan y luego se comunican formalmente; solo cuando son muy relevantes se recomienda una notificación más rápida, pero no de cualquier hallazgo.",
+    "porqueNo": "Notificar inmediatamente todo hallazgo a la alta dirección o al interlocutor no se ajusta a la práctica descrita; decir que ninguna es correcta contradiría el procedimiento estándar explicado en el comentario."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P01",
+    "pregunta": "Es fundamental que un auditor de sistemas de información:",
+    "opciones": [
+      { "id": "A", "texto": "Tenga conocimiento de la legislación aplicable en la compañía." },
+      { "id": "B", "texto": "Tenga conocimiento de los objetivos de la compañía." },
+      { "id": "C", "texto": "Tenga conocimiento de los sistemas de información." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que el auditor debe conocer objetivos de la compañía, sector, legislación y sistemas, por lo que se requieren todos esos conocimientos de forma conjunta.",
+    "porqueNo": "Limitarse solo a legislación, solo a objetivos o solo a sistemas deja fuera elementos clave para el buen desempeño del auditor, según el material del tema."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P02",
+    "pregunta": "¿Dónde se debe situar un departamento de auditoría interna dentro de una compañía?",
+    "opciones": [
+      { "id": "A", "texto": "Su situación no es relevante." },
+      { "id": "B", "texto": "Siempre depende de Tecnología." },
+      { "id": "C", "texto": "Depende de la empresa, pero lo más recomendable es que dependa de Seguridad." },
+      { "id": "D", "texto": "En una ubicación jerárquica en la que pueda realizar sus actuaciones de manera independiente." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test señala que la auditoría interna debe ser lo más independiente posible para evitar conflictos de interés, por lo que su ubicación jerárquica debe garantizar esa independencia.",
+    "porqueNo": "Considerar irrelevante la ubicación o vincularla siempre a Tecnología o Seguridad puede comprometer su independencia frente a las áreas auditadas."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P03",
+    "pregunta": "En relación con la clasificación de controles internos, según su naturaleza, podemos afirmar que:",
+    "opciones": [
+      { "id": "A", "texto": "Son normalmente detectivos, correctivos y preventivos. En ocasiones, se incluyen los controles alternativos." },
+      { "id": "B", "texto": "Son voluntarios, obligatorios, manuales y automáticos." },
+      { "id": "C", "texto": "Son voluntarios, obligatorios, manuales, automáticos, preventivos, detectivos y correctivos." },
+      { "id": "D", "texto": "Son controles generales, de aplicación, de área y legales." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario indica que la clasificación general por naturaleza es en controles detectivos, correctivos y preventivos, pudiendo incluirse controles alternativos.",
+    "porqueNo": "Voluntarios/obligatorios o manuales/automáticos se refieren a otras categorías de clasificación; controles generales, de aplicación o de área describen tipos, no la naturaleza preventiva/detectiva/correctiva."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P04",
+    "pregunta": "En relación con la clasificación de controles internos, según su naturaleza, podemos afirmar que:",
+    "opciones": [
+      { "id": "A", "texto": "Los controles detectivos actúan sobre la causa de los riesgos con el fin de disminuir su probabilidad de ocurrencia." },
+      { "id": "B", "texto": "Los controles preventivos se diseñan para descubrir un evento, irregularidad o resultado no previsto, alertan sobre la presencia de riesgos y permiten tomar medidas inmediatas." },
+      { "id": "C", "texto": "Las opciones A y B son correctas." },
+      { "id": "D", "texto": "Las opciones A y B son incorrectas." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario explica que las definiciones de A y B están intercambiadas: los detectivos descubren eventos y los preventivos actúan sobre la causa del riesgo, por lo que ambas afirmaciones son incorrectas.",
+    "porqueNo": "Si A y B son incorrectas, también lo es afirmar que ambas son correctas; solo la opción que rechaza ambas definiciones coincide con la explicación del material."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P05",
+    "pregunta": "Los controles generales se clasifican en:",
+    "opciones": [
+      { "id": "A", "texto": "Controles de organización y operación, controles de tratamiento de datos, así como controles de hardware y software de sistemas." },
+      { "id": "B", "texto": "Controles de entrada de datos, controles de tratamiento de datos y controles de salida de datos." },
+      { "id": "C", "texto": "Controles de organización y operación, controles de desarrollo de sistemas y documentación, así como controles de hardware y software de sistemas." },
+      { "id": "D", "texto": "Ninguna de las anteriores es cierta." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que los controles generales se clasifican en controles de organización y operación, controles de desarrollo de sistemas y documentación, y controles de hardware y software de sistemas.",
+    "porqueNo": "La opción A sustituye desarrollo y documentación por tratamiento de datos, que es propio de controles de aplicación; B describe controles de aplicación de datos; D es falsa porque C sí es correcta."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P06",
+    "pregunta": "¿Se puede considerar un control como señuelo?",
+    "opciones": [
+      { "id": "A", "texto": "No, un control siempre debe tener un objetivo claro." },
+      { "id": "B", "texto": "No, los controles tienen que ser reales." },
+      { "id": "C", "texto": "Sí, se utilizan para desviar la atención de un potencial atacante." },
+      { "id": "D", "texto": "Ninguna de las respuestas anteriores es correcta." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario explica que existen controles señuelo, falsos controles que buscan que un posible atacante se centre en ellos para detectar el ataque y reforzar otros controles.",
+    "porqueNo": "Negar la posibilidad de controles señuelo contradice lo que se expone en el tema; por tanto, A y B son incorrectas y D no aplica porque sí hay una respuesta correcta."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P07",
+    "pregunta": "Dentro de controles generales, podemos afirmar que no son controles de organización y operación:",
+    "opciones": [
+      { "id": "A", "texto": "Seguridad lógica y física, controles de procesamiento y control de presupuestos." },
+      { "id": "B", "texto": "Procedimientos, separación de entornos y estándares y nomenclatura." },
+      { "id": "C", "texto": "Controles de segregación de funciones." },
+      { "id": "D", "texto": "Todos los anteriores son controles de organización y operación." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario asocia controles de organización y operación con políticas y planes, gestión del presupuesto, estructuras organizativas y marcos procedimentales; seguridad lógica/física y controles de procesamiento se encuadran mejor como otros tipos de controles generales.",
+    "porqueNo": "Procedimientos, separación de entornos, estándares, nomenclatura y segregación de funciones son ejemplos claros de organización y operación; agrupar todas las opciones como tales (D) incluiría erróneamente elementos que no lo son."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P08",
+    "pregunta": "Los controles deben:",
+    "opciones": [
+      { "id": "A", "texto": "Estar implantados." },
+      { "id": "B", "texto": "Cubrir los objetivos por los que fueron implantados." },
+      { "id": "C", "texto": "Ser efectivos." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que cualquier control debe estar correctamente implantado, cubrir sus objetivos de control y ser efectivo, cumpliendo su finalidad frente al riesgo.",
+    "porqueNo": "Un control no implantado, que no cubre sus objetivos o que no es efectivo no cumple realmente su función; por eso no basta con A, B o C de forma aislada."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P09",
+    "pregunta": "En relación con los controles de organización y operación, para una segregación de funciones adecuada:",
+    "opciones": [
+      { "id": "A", "texto": "Una misma persona no puede realizar funciones determinadas en un mismo entorno." },
+      { "id": "B", "texto": "Una misma persona no puede realizar funciones determinadas en un entorno y en otro." },
+      { "id": "C", "texto": "Las opciones A y B son correctas." },
+      { "id": "D", "texto": "Las opciones A y B son incorrectas." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario ejemplifica que, por incompatibilidades y riesgos, una persona no debe realizar ciertas funciones dentro del mismo entorno ni en entornos diferentes, por lo que ambas restricciones son válidas.",
+    "porqueNo": "Negar cualquiera de las dos restricciones va contra el criterio de segregación de funciones; por eso ni A ni B por sí solas, ni D, reflejan correctamente el enfoque descrito."
+  },
+  {
+    "examen": "Test-07",
+    "id": "T7-P10",
+    "pregunta": "Los controles de hardware y software de sistemas:",
+    "opciones": [
+      { "id": "A", "texto": "Preservan las tres dimensiones de la información: confidencialidad, disponibilidad y seguridad." },
+      { "id": "B", "texto": "Preservan las tres dimensiones de la información: fiabilidad, disponibilidad y confidencialidad." },
+      { "id": "C", "texto": "Preservan dos de las tres dimensiones de la información: integridad, disponibilidad y confidencialidad." },
+      { "id": "D", "texto": "Ninguna de las anteriores es correcta." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que estos controles preservan tres dimensiones de seguridad: confidencialidad, integridad y disponibilidad; ninguna de las opciones A, B o C recoge exactamente ese trío.",
+    "porqueNo": "A sustituye integridad por un término genérico de seguridad, B cambia integridad por fiabilidad y C habla solo de preservar dos de las tres dimensiones, por lo que ninguna formula correctamente CIA."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P01",
+    "pregunta": "¿Qué acciones son fundamentales en la planificación de una auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Comprensión del negocio." },
+      { "id": "B", "texto": "Posibles riesgos." },
+      { "id": "C", "texto": "Metodología que se debe utilizar." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que para planificar hay que conocer el negocio, los riesgos y la metodología a usar, entre otros parámetros, por lo que las tres acciones son fundamentales.",
+    "porqueNo": "Tomar solo una de las tres (A, B o C) deja fuera elementos críticos de la planificación; la planificación efectiva requiere combinar comprensión del negocio, riesgos y metodología."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P02",
+    "pregunta": "¿Cuál es la finalidad de un estándar de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Es una metodología utilizada por cada una de las empresas auditoras." },
+      { "id": "B", "texto": "Los estándares definen los requerimientos obligatorios para la auditoría de sistemas y la generación de informe." },
+      { "id": "C", "texto": "Es una guía y se tiene que seguir de manera exacta." },
+      { "id": "D", "texto": "Ninguna de anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "El test explica que un estándar define requisitos y requerimientos obligatorios para la auditoría y el informe, sin imponer metodologías cerradas ni acciones inamovibles.",
+    "porqueNo": "Un estándar no es simplemente la metodología de cada empresa ni una guía a seguir de forma rígida, y sí tiene contenido aplicable, por lo que no puede decirse que ninguna opción sea correcta."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P03",
+    "pregunta": "¿Cuántos organismos de auditoría existen?",
+    "opciones": [
+      { "id": "A", "texto": "Solo uno, ISACA." },
+      { "id": "B", "texto": "Solo uno, IIA." },
+      { "id": "C", "texto": "Dos, ISACA e IIA." },
+      { "id": "D", "texto": "Existen mucho más que dos organismos." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario aclara que hay numerosos organismos de auditoría (locales, nacionales, internacionales, sectoriales), por lo que existen muchos más que dos.",
+    "porqueNo": "Limitarse a ISACA, a IIA o a solo esos dos ignora la variedad de organismos que actúan en distintos ámbitos y sectores."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P04",
+    "pregunta": "¿Para qué se usan las herramientas de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Para verificar de una manera clara los medios técnicos." },
+      { "id": "B", "texto": "Para valorar registros, planes, presupuestos, programas, controles y otros aspectos que afectan a la administración y control de una organización o las áreas que la integran." },
+      { "id": "C", "texto": "Para industrializar el proceso o actuación de auditoría." },
+      { "id": "D", "texto": "No existen herramientas de auditoría como tal." }
+    ],
+    "correcta": "B",
+    "justificacion": "El texto indica que las herramientas ayudan a valorar puntos esenciales de la auditoría, como registros, planes, presupuestos, programas y controles, que es lo que describe la opción B.",
+    "porqueNo": "Aunque puedan ayudar con medios técnicos o a sistematizar el proceso, su función principal no se limita a eso; además, sí existen herramientas específicas de auditoría, por lo que D es falsa."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P05",
+    "pregunta": "¿Un conjunto de preguntas que deben ser contestadas oralmente por el interlocutor constituye una herramienta de auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Sí." },
+      { "id": "B", "texto": "No." },
+      { "id": "C", "texto": "Depende del conjunto de preguntas." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario explica que una checklist, que consiste precisamente en un conjunto de preguntas a contestar, se considera una herramienta de auditoría.",
+    "porqueNo": "Negar que lo sea o condicionar su consideración al tipo de preguntas contradice el ejemplo explícito de checklist dado en el test."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P06",
+    "pregunta": "¿Una herramienta de auditoría es lo mismo que una herramienta de evaluación de seguridad?",
+    "opciones": [
+      { "id": "A", "texto": "Sí." },
+      { "id": "B", "texto": "No." },
+      { "id": "C", "texto": "Depende de la herramienta." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario aclara que no tienen nada que ver: la herramienta de auditoría sirve para valorar puntos esenciales de la auditoría, mientras que la de evaluación de seguridad ayuda a obtener una visión del nivel de seguridad.",
+    "porqueNo": "Equipararlas o decir que depende de la herramienta ignora sus objetivos distintos; tampoco es cierto que ninguna opción se ajuste, dado que se afirma explícitamente que no son lo mismo."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P07",
+    "pregunta": "La metodología de auditoría debería ser establecida y aprobada por:",
+    "opciones": [
+      { "id": "A", "texto": "El departamento de auditoría interna de la compañía." },
+      { "id": "B", "texto": "El grupo de seguridad de la compañía." },
+      { "id": "C", "texto": "La gerencia de auditoría." },
+      { "id": "D", "texto": "Es un documento interno y por modificaciones no es conveniente que esté aprobada." }
+    ],
+    "correcta": "C",
+    "justificacion": "El test indica que la alta dirección de auditoría interna (gerencia de auditoría) es la responsable de establecer y aprobar de forma final la metodología de auditoría.",
+    "porqueNo": "Aunque auditoría interna participe, la aprobación final recae en su gerencia; el grupo de seguridad no tiene esa responsabilidad y sugerir que no conviene aprobar el documento es contrario a las buenas prácticas."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P08",
+    "pregunta": "Los objetivos de auditoría se centran a menudo en:",
+    "opciones": [
+      { "id": "A", "texto": "Entregar un informe de resultados." },
+      { "id": "B", "texto": "Cumplir con los requerimientos legales o regulatorios." },
+      { "id": "C", "texto": "Validar que existen controles internos para minimizar los riesgos del negocio." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario señala que el objetivo principal es comprobar el nivel de control mediante la validación de la existencia de controles y la gestión de riesgos.",
+    "porqueNo": "La emisión de un informe y el cumplimiento normativo son consecuencias o requisitos, pero el foco de los objetivos se sitúa en el nivel de control y en los riesgos; por eso A y B no son la formulación principal."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P09",
+    "pregunta": "Una evidencia puede ser:",
+    "opciones": [
+      { "id": "A", "texto": "Un documento Word." },
+      { "id": "B", "texto": "Un registro de un sistema." },
+      { "id": "C", "texto": "Una conversación con un interlocutor." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test indica que una evidencia puede ser cualquier elemento que ayude al auditor a ver la implantación y/o efectividad de un control, incluyendo documentos, registros o entrevistas.",
+    "porqueNo": "Restringir el concepto solo a documentos, solo a registros o solo a conversaciones excluye otros tipos de evidencia válidos y contraviene la definición amplia mencionada."
+  },
+  {
+    "examen": "Test-08",
+    "id": "T8-P10",
+    "pregunta": "El informe final de auditoría:",
+    "opciones": [
+      { "id": "A", "texto": "Contiene el informe final." },
+      { "id": "B", "texto": "Contiene el informe preliminar." },
+      { "id": "C", "texto": "Las respuestas A y B son correctas." },
+      { "id": "D", "texto": "Ninguna de las respuestas anteriores es correcta." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario indica que un informe final de auditoría contiene tanto el informe preliminar como el final, por lo que incluye ambos elementos.",
+    "porqueNo": "Decir que contiene solo el definitivo o solo el preliminar es incompleto; afirmar que ninguna opción es correcta contradice la explicación dada en el propio test."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P01",
+    "pregunta": "Una prueba de intrusión es:",
+    "opciones": [
+      { "id": "A", "texto": "Solo un análisis de vulnerabilidades." },
+      { "id": "B", "texto": "Un tipo de hacking ético." },
+      { "id": "C", "texto": "Habitualmente de caja blanca, gris y negra." },
+      { "id": "D", "texto": "No es un pen test." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario explica que, según la visibilidad, las auditorías técnicas pueden ser de caja blanca, gris o negra, lo que caracteriza las pruebas de intrusión.",
+    "porqueNo": "Un test de intrusión es efectivamente un tipo de hacking ético, pero la opción marcada como correcta en el test es la que resalta los tipos de caja; A y D son directamente erróneas."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P02",
+    "pregunta": "¿Qué fases habitualmente se utilizan en una auditoría técnica de seguridad (test de intrusión)?",
+    "opciones": [
+      { "id": "A", "texto": "La recopilación de información del sistema por auditar, análisis de vulnerabilidades, explotación/ataque de las vulnerabilidades detectadas y realización de informe técnico y ejecutivo." },
+      { "id": "B", "texto": "La recopilación de información del sistema por auditar, explotación/ataque de las vulnerabilidades detectadas. Nunca se realiza informe." },
+      { "id": "C", "texto": "Explotación/ataque de las vulnerabilidades detectadas y realización de informe técnico." },
+      { "id": "D", "texto": "La recopilación de información del sistema por auditar y realización de informe técnico y ejecutivo." }
+    ],
+    "correcta": "A",
+    "justificacion": "El test detalla cuatro fases: recopilación de información, análisis de vulnerabilidades, explotación/ataque y elaboración de informe técnico y ejecutivo.",
+    "porqueNo": "Las opciones B, C y D omiten alguna de las fases clave (análisis de vulnerabilidades o elaboración de informe), por lo que no representan el proceso completo descrito."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P03",
+    "pregunta": "Las pruebas de fuerza bruta se basan en:",
+    "opciones": [
+      { "id": "A", "texto": "Utilización de ficheros con palabras en diferentes idiomas para averiguar por ensayo/error los usuarios y/o contraseña en las pantallas de log in." },
+      { "id": "B", "texto": "Utilización de todas las combinaciones posibles con un set de caracteres definido y una longitud." },
+      { "id": "C", "texto": "Lo que se denominan rainbow tables." },
+      { "id": "D", "texto": "Ninguna de las respuestas anteriores es correcta." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que la fuerza bruta se basa en probar todas las combinaciones posibles de un conjunto de caracteres con una determinada longitud.",
+    "porqueNo": "El uso de diccionarios de palabras corresponde a ataques de diccionario; las rainbow tables son otra técnica distinta; afirmar que ninguna es correcta contradice la definición dada."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P04",
+    "pregunta": "¿Qué es el sniffing de paquetes de red?",
+    "opciones": [
+      { "id": "A", "texto": "Es la técnica para inyectar paquetes en redes inalámbricas." },
+      { "id": "B", "texto": "Es la técnica pasiva que permite la captura de datos (paquetes de datos) que se distribuyen en una red." },
+      { "id": "C", "texto": "Es la técnica por la que se intercepta y modifica la información en una red." },
+      { "id": "D", "texto": "Es la técnica por la que consigues el control de administración en las máquinas servidoras." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario define el sniffing como una técnica pasiva que permite capturar paquetes de datos que se distribuyen en una red, usada en auditorías de red.",
+    "porqueNo": "Inyección de paquetes, modificación activa del tráfico o toma de control de servidores describen otros tipos de ataques, no el sniffing pasivo."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P05",
+    "pregunta": "¿A qué tipo de pruebas de penetración pertenece la afirmación: «Se simulan ataques reales, pero conociendo de antemano gran parte de la información técnica. Se tiene un conocimiento limitado de los activos y las defensas que los protegen»?",
+    "opciones": [
+      { "id": "A", "texto": "Caja blanca." },
+      { "id": "B", "texto": "Caja negra." },
+      { "id": "C", "texto": "Reversal." },
+      { "id": "D", "texto": "Caja gris." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test explica que en las pruebas de caja gris se simulan ataques reales con un conocimiento limitado de activos y defensas, disponiendo de parte de la información técnica.",
+    "porqueNo": "Caja blanca implica conocimiento completo; caja negra supone no conocer nada; “reversal” no es un tipo estándar de caja en este contexto."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P06",
+    "pregunta": "Las auditorías técnicas de seguridad tienen como objetivo:",
+    "opciones": [
+      { "id": "A", "texto": "Analizar la funcionalidad de los sistemas de información de una organización y sus servicios realizando una batería de pruebas planificadas." },
+      { "id": "B", "texto": "Analizar la seguridad implantada en los sistemas de información y telecomunicaciones de una organización y sus servicios realizando una batería de pruebas planificadas que simulen el comportamiento de un atacante." },
+      { "id": "C", "texto": "Verificar los sistemas de información de una organización y sus servicios realizando una batería de pruebas planificadas." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que el objetivo es analizar la seguridad implantada en sistemas y telecomunicaciones mediante pruebas que simulen el comportamiento de un atacante.",
+    "porqueNo": "Analizar solo funcionalidad o una verificación genérica no captura el enfoque de seguridad ofensiva; agrupar todas las opciones mezclaría objetivos que no se ajustan a la definición dada."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P07",
+    "pregunta": "¿Cuál de la siguientes es un tipo de auditoría técnica de seguridad?",
+    "opciones": [
+      { "id": "A", "texto": "Auditoría de seguridad de sistemas." },
+      { "id": "B", "texto": "Auditoría de redes wifi." },
+      { "id": "C", "texto": "Auditoría de aplicaciones web." },
+      { "id": "D", "texto": "Todas las anteriores son auditorías técnicas de seguridad." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que todas las respuestas son correctas, ya que auditorías de sistemas, de redes wifi y de aplicaciones web son auditorías técnicas de seguridad.",
+    "porqueNo": "Elegir solo uno de los tipos ignora que las tres modalidades se consideran auditorías técnicas dentro del ámbito descrito."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P08",
+    "pregunta": "¿Qué conjunto de amenazas típicas pueden poner en riesgo una compañía?",
+    "opciones": [
+      { "id": "A", "texto": "Del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+      { "id": "B", "texto": "De origen natural, del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+      { "id": "C", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma deliberada." },
+      { "id": "D", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma accidental." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario enumera como amenazas típicas las de origen natural, del entorno, defectos de aplicaciones y las causadas por personas tanto accidental como deliberadamente.",
+    "porqueNo": "Las opciones A, C y D omiten al menos una de las categorías (origen natural o uno de los tipos de amenazas humanas), por lo que no recogen el conjunto completo citado."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P09",
+    "pregunta": "¿Qué define un hacking ético de tipo gris?",
+    "opciones": [
+      { "id": "A", "texto": "Se conoce toda información, como direcciones IP, pero no de la infraestructura." },
+      { "id": "B", "texto": "No se conoce nada de información." },
+      { "id": "C", "texto": "Se conoce alguna información, como direcciones IP, pero no de la infraestructura." },
+      { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario describe la caja gris como una mezcla entre caja blanca y negra, donde se conoce parte de la información técnica (por ejemplo direcciones IP), pero no la infraestructura completa.",
+    "porqueNo": "Conocerlo todo define caja blanca; no conocer nada define caja negra; agrupar todas las opciones mezclaría definiciones incompatibles."
+  },
+  {
+    "examen": "Test-09",
+    "id": "T9-P10",
+    "pregunta": "Los informes de auditorías técnicas de seguridad:",
+    "opciones": [
+      { "id": "A", "texto": "Incluyen como anexo el informe ejecutivo." },
+      { "id": "B", "texto": "Describen con detalle técnico las fases de la auditoría de seguridad que realizan." },
+      { "id": "C", "texto": "No necesitan definir el objetivo y el alcance de la auditoría." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que estos informes describen con detalle técnico las fases de la auditoría de seguridad realizada, lo cual es el rasgo principal mencionado.",
+    "porqueNo": "No se afirma que incluyan necesariamente el informe ejecutivo como anexo, y siempre deben definir objetivo y alcance, por lo que C es falsa; decir que ninguna opción es correcta contradice la descripción dada."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P01",
+    "pregunta": "La finalidad de una auditoría de cumplimiento es:",
+    "opciones": [
+      { "id": "A", "texto": "Evaluar el grado de cumplimiento de una norma de seguridad." },
+      { "id": "B", "texto": "Analizar el código estático del código de aplicaciones para buscar vulnerabilidades, tanto de aplicaciones del tipo web como de cualquier tipo de aplicación." },
+      { "id": "C", "texto": "Evaluar el nivel de seguridad de las LAN corporativas de carácter interno de una organización." },
+      { "id": "D", "texto": "Analizar la protección que proporciona una red de seguridad perimetral desde el exterior." }
+    ],
+    "correcta": "A",
+    "justificacion": "El test señala que la auditoría de cumplimiento evalúa la conformidad de los entornos con una normativa de seguridad establecida, como ISO 27001, RGPD o políticas internas.",
+    "porqueNo": "Analizar código, LAN internas o el perímetro son objetivos de auditorías técnicas específicas, no la finalidad principal de una auditoría de cumplimiento frente a normas."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P02",
+    "pregunta": "Las auditorías de cumplimiento son del tipo:",
+    "opciones": [
+      { "id": "A", "texto": "Caja blanca." },
+      { "id": "B", "texto": "Caja negra." },
+      { "id": "C", "texto": "Caja gris." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario indica que son de caja blanca porque exigen disponer de información sobre la red y sistemas TIC de la organización.",
+    "porqueNo": "Caja negra o gris implican desconocimiento total o parcial del entorno, lo contrario a la transparencia requerida en auditorías de cumplimiento; afirmar que ninguna opción es correcta contradice el texto."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P03",
+    "pregunta": "Señala la respuesta incorrecta. Una metodología tiene que proporcionar finalmente un proceso sencillo y estructurado de pruebas que sea:",
+    "opciones": [
+      { "id": "A", "texto": "Válido para siempre." },
+      { "id": "B", "texto": "Coherente con las leyes individuales y locales y el derecho a la privacidad." },
+      { "id": "C", "texto": "Basado en el mérito y esfuerzo de los probadores y analistas." },
+      { "id": "D", "texto": "Consistente y repetible." }
+    ],
+    "correcta": "A",
+    "justificacion": "El comentario aclara que la metodología debe ser coherente con las leyes, basada en el mérito de los probadores y consistente y repetible; no puede ser “válida para siempre” porque debe adaptarse a cambios legales y tecnológicos.",
+    "porqueNo": "Ser coherente con leyes, basarse en el trabajo de los analistas y ser consistente y repetible son características deseables; la idea de validez permanente es irreal y por ello incorrecta."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P04",
+    "pregunta": "¿Cuál de las siguientes metodologías se considera un marco de trabajo?",
+    "opciones": [
+      { "id": "A", "texto": "Open Source Security Testing Methodology Manual (OSSTMM)." },
+      { "id": "B", "texto": "Penetration Testing Execution Standard (PTES)." },
+      { "id": "C", "texto": "Technical Guide to Information Security Testing and Assessment (NIST 800-115)." },
+      { "id": "D", "texto": "Information System Security Assessment Framework (ISSAF)." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test describe ISSAF como un marco de trabajo detallado (penetration testing framework) que organiza prácticas y conceptos en todas las tareas de una evaluación de seguridad.",
+    "porqueNo": "OSSTMM, PTES y NIST 800‑115 son metodologías/estándares importantes pero en el texto se resalta específicamente ISSAF como framework estructurado."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P05",
+    "pregunta": "¿Qué metodología se enfoca en criterios de evaluación?",
+    "opciones": [
+      { "id": "A", "texto": "The Open Source Security Testing Methodology Manual (OSSTMM)." },
+      { "id": "B", "texto": "The Information System Security Assessment Framework (ISSAF)." },
+      { "id": "C", "texto": "Technical Guide to Information Security Testing and Assessment (NIST 800-115)." },
+      { "id": "D", "texto": "The Penetration Testing Execution Standard (PTES)." }
+    ],
+    "correcta": "B",
+    "justificacion": "El comentario indica que ISSAF se centra en criterios de evaluación, cada uno de ellos escrito o revisado por expertos en su área.",
+    "porqueNo": "OSSTMM, NIST 800‑115 y PTES describen procesos de prueba y guías, pero no se presentan en el test como centrados específicamente en criterios de evaluación."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P06",
+    "pregunta": "¿Cuál no es una metodología de pruebas de penetración?",
+    "opciones": [
+      { "id": "A", "texto": "PTES." },
+      { "id": "B", "texto": "ISSAF." },
+      { "id": "C", "texto": "OSSTMM." },
+      { "id": "D", "texto": "PMBOK." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test indica que PTES, ISSAF y OSSTMM son metodologías de pruebas de penetración, mientras que PMBOK es un estándar de gestión de proyectos, no de pentesting.",
+    "porqueNo": "Marcar cualquiera de las opciones A, B o C como “no metodología de pentesting” iría contra su propósito explícito en seguridad ofensiva."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P07",
+    "pregunta": "Dentro de la metodología OSSTMM se definen una serie de pruebas, ¿cuál de las siguientes no lo es?",
+    "opciones": [
+      { "id": "A", "texto": "Búsqueda de vulnerabilidades." },
+      { "id": "B", "texto": "Escaneo de la seguridad." },
+      { "id": "C", "texto": "Test de intrusión." },
+      { "id": "D", "texto": "Auditoría de informática." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario explica que, entre las opciones dadas, la única que no figura como tipo de prueba en OSSTMM es la auditoría informática.",
+    "porqueNo": "Búsqueda de vulnerabilidades, escaneo de seguridad y tests de intrusión sí encajan con las clases de pruebas contempladas dentro de OSSTMM."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P08",
+    "pregunta": "¿En qué metodología se testea la seguridad desde un entorno no privilegiado hacia un entorno privilegiado para evadir los componentes de seguridad, procesos y alarmas, y ganar acceso privilegiado?",
+    "opciones": [
+      { "id": "A", "texto": "ITIL." },
+      { "id": "B", "texto": "PMBOK." },
+      { "id": "C", "texto": "ISSAF." },
+      { "id": "D", "texto": "OSSTMM." }
+    ],
+    "correcta": "D",
+    "justificacion": "El test indica que OSSTMM cubre las pruebas externas desde un entorno no privilegiado hacia uno privilegiado, buscando evadir controles y ganar acceso.",
+    "porqueNo": "ITIL y PMBOK son marcos de gestión de servicios/proyectos, no de pruebas de seguridad; ISSAF se orienta a criterios de evaluación, pero la descripción concreta de esta técnica se atribuye a OSSTMM."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P09",
+    "pregunta": "¿Cuál no es un control de la metodología Open Web Application Security Project (OWASP)?",
+    "opciones": [
+      { "id": "A", "texto": "Autorización." },
+      { "id": "B", "texto": "Gestión de sesiones." },
+      { "id": "C", "texto": "Información clasificada." },
+      { "id": "D", "texto": "Manejo de errores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El comentario señala que, entre los controles indicados, el único que no pertenece a la metodología OWASP es “información clasificada”.",
+    "porqueNo": "Autorización, gestión de sesiones y manejo de errores se tratan explícitamente en OWASP como áreas de control en aplicaciones web."
+  },
+  {
+    "examen": "Test-10",
+    "id": "T10-P10",
+    "pregunta": "Señala la respuesta incorrecta. De acuerdo con la metodología Common Criteria ISO 15408 (CC), el proceso de evaluación comienza mediante el envío al laboratorio acreditado por parte del proveedor del producto de una serie de documentos:",
+    "opciones": [
+      { "id": "A", "texto": "Protection profile (PP). Identifica los requisitos y especificaciones de seguridad que debe cumplir una familia de productos TIC por evaluar." },
+      { "id": "B", "texto": "Target of evaluation (TOE). Es el producto TIC que pretende validar con respecto a las características de seguridad y su funcionamiento." },
+      { "id": "C", "texto": "Security target (ST). Especifica los requisitos funcionales de seguridad que se solicitan evaluar en el TOE, con respecto a su PP tomado como referencia." },
+      { "id": "D", "texto": "System design (SD). Incluye el diseño detallado de la familia de productos TIC por evaluar." }
+    ],
+    "correcta": "D",
+    "justificacion": "El comentario indica que el proceso se inicia con el envío de PP, TOE y ST; el documento System design no forma parte del conjunto requerido de inicio.",
+    "porqueNo": "PP, TOE y ST son piezas estándar de Common Criteria; incluir SD como requisito inicial no se ajusta a la descripción del proceso en la norma."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P01",
+    "pregunta": "Indicar la respuesta incorrecta. Normalmente se suele asignar un usuario general con conjunto de privilegios que le permitirá realizar todas las tareas, incluidas las no necesarias. Ejemplos de errores comunes son:",
+    "opciones": [
+      { "id": "A", "texto": "Instalación de aplicaciones y servicios con el usuario de administrador." },
+      { "id": "B", "texto": "Aplicación de derechos normales." },
+      { "id": "C", "texto": "Usuarios con derechos normales." },
+      { "id": "D", "texto": "Servicios y procesos con privilegios por tiempo definido." }
+    ],
+    "correcta": "B",
+    "justificacion": "El principio de **mínimo privilegio** es fundamental en seguridad, indicando que a los usuarios y procesos solo se les debe otorgar el nivel de acceso mínimo necesario para realizar sus tareas. Los errores comunes listados (A, C y D en sus formas incorrectas de implementación) violan este principio. La **aplicación de derechos normales** (B) es, de hecho, una **buena práctica** de seguridad que cumple con el principio de mínimo privilegio, no un error común.",
+    "porqueNo": "A es incorrecta porque instalar aplicaciones con privilegios de administrador es un error común que otorga más permisos de los necesarios para un usuario estándar. C es incorrecta porque si bien los usuarios deben tener derechos normales, la redacción implica un error común en su implementación. D es incorrecta porque los servicios deberían tener privilegios por tiempo *indefinido* o ser excesivos en el contexto de un error común, mientras que el control por tiempo definido es una buena práctica (similar a B). La opción B es la única que describe inequívocamente una práctica correcta de seguridad, y por lo tanto, es la respuesta incorrecta en el contexto de la pregunta que pide errores comunes."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P02",
+    "pregunta": "Señalar la respuesta correcta. Según el comportamiento de los controles, los podemos clasificar en:",
+    "opciones": [
+      { "id": "A", "texto": "Voluntarios" },
+      { "id": "B", "texto": "Manuales" },
+      { "id": "C", "texto": "Generales" },
+      { "id": "D", "texto": "Ninguna de las respuestas." }
+    ],
+    "correcta": "D",
+    "justificacion": "La clasificación principal de los controles según su comportamiento o naturaleza es en: Preventivos, Detectivos y Correctivos. Ninguna de las opciones presentadas (Voluntarios, Manuales, Generales) corresponde a esta clasificación por comportamiento/naturaleza. Por lo tanto, ninguna de las opciones listadas es correcta para esta pregunta específica, haciendo que la opción D sea la respuesta correcta.",
+    "porqueNo": "A es incorrecta porque 'voluntarios' es una clasificación por cumplimiento. B es incorrecta porque 'manuales' es una clasificación por tipo de ejecución. C es incorrecta porque 'generales' es una clasificación por alcance. Dado que ninguna de las opciones representa la clasificación de controles por su comportamiento (preventivo, detectivo, correctivo), la opción D es la respuesta correcta."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P03",
+    "pregunta": "Señala la respuesta correcta. Margarita es parte del rol de \"autora\" así como está incluida en el rol de \"aprobador\", permitiéndole aprobar sus propios artículos antes de que sea publicado en el blog de la compañía. Esto viola el principio de:",
+    "opciones": [
+      { "id": "A", "texto": "Mínimo privilegio." },
+      { "id": "B", "texto": "Seguridad por oscuridad." },
+      { "id": "C", "texto": "Economía de mecanismos." },
+      { "id": "D", "texto": "Separación de privilegios." }
+    ],
+    "correcta": "D",
+    "justificacion": "El principio de **separación de privilegios** (o segregación de funciones, SoD) es un control interno fundamental que establece que a ninguna persona se le deben asignar funciones incompatibles que le permitan, por ejemplo, cometer un error o fraude y ocultarlo. En este caso, permitir que la misma persona (Margarita) sea autora (creadora) y aprobador (revisora/autorizadora) de su propio trabajo viola directamente este principio. Este control busca reducir el riesgo de manipulación indebida o errores no detectados.",
+    "porqueNo": "A es incorrecta porque el **mínimo privilegio** se refiere a la cantidad de permisos asignados (Margarita podría tener los privilegios justos para ambos roles por separado), no a la combinación de roles incompatibles. B es incorrecta porque la **seguridad por oscuridad** se refiere a ocultar la implementación de un sistema como medida de seguridad (algo que no aplica aquí). C es incorrecta porque la **economía de mecanismos** sugiere usar controles simples y pequeños, lo cual es un principio de diseño, no el violado por esta combinación de roles."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P04",
+    "pregunta": "Señalar la respuesta incorrecta. Respecto a los patrones de ataque:",
+    "opciones": [
+      { "id": "A", "texto": "Ayudan a definir el comportamiento del sistema para prevenir o reaccionar ante un tipo específico de ataque probable." },
+      { "id": "B", "texto": "Especifican debilidades aprovechadas por los ataques, orientando que técnicas o prácticas de seguridad de desarrollo evitan estas deficiencias." },
+      { "id": "C", "texto": "Proporcionan el contexto del software, de forma que permite diseñarlo correctamente." },
+      { "id": "D", "texto": "Proporcionan ejemplos de ataques que aprovechan las vulnerabilidades de la arquitectura elegida." }
+    ],
+    "correcta": "C",
+    "justificacion": "Los **patrones de ataque** se centran en identificar vulnerabilidades y cómo los atacantes las explotan (D), y guían sobre cómo evitarlas mediante prácticas de desarrollo seguro (B), ayudando a definir cómo reaccionar ante ataques probables (A). La opción C describe la función de los **patrones de diseño** arquitectónico o principios de diseño seguro, que se utilizan para construir software correctamente desde cero, no la de los patrones de ataque, que son una herramienta de análisis de riesgos.",
+    "porqueNo": "A, B y D son características correctas de los patrones de ataque según el material del curso (Tema 2), que los describe como herramientas que ayudan a entender las debilidades y cómo mitigarlas. La opción C es la descripción de un patrón de diseño seguro o de arquitectura general, por lo que es la respuesta incorrecta en el contexto de las características de los patrones de ataque."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P05",
+    "pregunta": "Señalar la respuesta correcta. Recomendaciones de buenas prácticas de implementación:",
+    "opciones": [
+      { "id": "A", "texto": "Manejo de los datos con precaución." },
+      { "id": "B", "texto": "Confiar en software de terceros en operaciones críticas." },
+      { "id": "C", "texto": "Usar listas de errores." },
+      { "id": "D", "texto": "Usar en el código nombres relativos de ficheros." }
+    ],
+    "correcta": "A",
+    "justificacion": "Dentro de las recomendaciones generales de **buenas prácticas de implementación** en seguridad y desarrollo seguro, se enfatiza la necesidad de ser diligente y cuidadoso con el manejo de los datos, especialmente los datos sensibles. Esto incluye la validación de entradas, la minimización de la exposición de datos y el tratamiento adecuado de la información a lo largo de su ciclo de vida. Manejar los datos con precaución es un principio fundamental de seguridad por diseño.",
+    "porqueNo": "B es incorrecta porque la confianza en software de terceros no debe ser ciega, especialmente en operaciones críticas; se requiere un análisis de riesgo y validación de seguridad. C es incorrecta porque el uso de listas de errores (listas negras) es menos seguro que el uso de listas de permitidos (listas blancas) como buena práctica. D es incorrecta porque usar nombres relativos de ficheros en el código puede introducir vulnerabilidades de seguridad, como ataques de *path traversal* (recorrido de rutas), por lo que es una mala práctica."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P06",
+    "pregunta": "Señalar la respuesta correcta. La finalidad de una auditoría de cumplimiento:",
+    "opciones": [
+      { "id": "A", "texto": "Evaluar el grado de cumplimiento de una norma de seguridad." },
+      { "id": "B", "texto": "Análisis del código estático del código de aplicaciones en busca de vulnerabilidades, tanto de aplicaciones del tipo web como de cualquier tipo de aplicación." },
+      { "id": "C", "texto": "Evaluar el nivel de seguridad de las LAN corporativas de carácter interno de una organización." },
+      { "id": "D", "texto": "Analiza la protección que proporciona una red de seguridad perimetral desde el exterior." }
+    ],
+    "correcta": "A",
+    "justificacion": "Una **auditoría de cumplimiento** se define específicamente como un proceso sistemático para evaluar si una organización, sistema o proceso cumple con las leyes, regulaciones, políticas internas o normas específicas (como normas de seguridad, estándares ISO, etc.). Su finalidad principal es, por tanto, **evaluar el grado de cumplimiento de una norma de seguridad** o regulación aplicable.",
+    "porqueNo": "B describe un análisis de código estático (*SAST*), que es una técnica de seguridad y una herramienta de auditoría, no la finalidad general de la auditoría de cumplimiento. C y D describen los objetivos de una auditoría técnica o de seguridad (evaluar la seguridad interna de una LAN o la protección perimetral), que son diferentes de la finalidad de una auditoría de *cumplimiento* de una norma específica."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P07",
+    "pregunta": "Señalar la respuesta correcta. De acuerdo con el concepto de visibilidad las auditorias de seguridad se clasifican en:",
+    "opciones": [
+      { "id": "A", "texto": "Pruebas de caja blanca, negra y gris." },
+      { "id": "B", "texto": "Pruebas de caja blanca y negra." },
+      { "id": "C", "texto": "Pruebas de caja blanca, negra e inversas." },
+      { "id": "D", "texto": "Ninguna de las respuestas." }
+    ],
+    "correcta": "A",
+    "justificacion": "De acuerdo con el concepto de visibilidad (la cantidad de información previa que tiene el auditor sobre el sistema), las auditorías de seguridad se clasifican en tres tipos principales: **caja blanca** (conocimiento completo de la infraestructura y código), **caja negra** (sin conocimiento interno, como un atacante externo) y **caja gris** (conocimiento parcial o limitado). Esta es la clasificación estándar por visibilidad en el material del curso (Tema 6 y otros).",
+    "porqueNo": "B es incorrecta porque omite la auditoría de caja gris, que es una metodología común. C es incorrecta porque las auditorías 'inversas' no son una clasificación estándar por visibilidad. D es incorrecta porque la opción A es la clasificación correcta y completa de acuerdo con la visibilidad del auditor."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P08",
+    "pregunta": "Señalar la respuesta correcta. La utilización de firmas digitales tiene la ventaja de proporcionar:",
+    "opciones": [
+      { "id": "A", "texto": "Velocidad de las operaciones criptográficas." },
+      { "id": "B", "texto": "Garantía de confidencialidad." },
+      { "id": "C", "texto": "Intercambio de claves." },
+      { "id": "D", "texto": "No rechazo." }
+    ],
+    "correcta": "D",
+    "justificacion": "Una de las propiedades fundamentales de la **firma digital** es el **no repudio** (o no rechazo). Esto significa que el emisor de un mensaje firmado digitalmente no puede negar que fue él quien lo envió, ya que la firma es única y verificable. Esto proporciona autenticidad e integridad de origen, lo cual es esencial para transacciones legales y seguras en entornos digitales (Tema 9).",
+    "porqueNo": "A es incorrecta; las operaciones criptográficas de la firma digital suelen ser computacionalmente intensivas y más lentas que otros métodos. B es incorrecta; la firma digital garantiza **integridad** y **autenticidad** (no repudio), pero no la **confidencialidad**. La confidencialidad se logra mediante el cifrado. C es incorrecta; el intercambio de claves es un proceso separado, aunque relacionado con la criptografía de clave pública usada en las firmas, no es la principal ventaja de la *utilización* de la firma en sí misma."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P09",
+    "pregunta": "Señala la respuesta correcta. El ataque de SQL injection permite a un agente malicioso realizar lo siguiente:",
+    "opciones": [
+      { "id": "A", "texto": "Acceder a información que no debería." },
+      { "id": "B", "texto": "Desbordar un búfer que reescriba la dirección de retorno en la pila." },
+      { "id": "C", "texto": "Usar una posición de memoria después de ser liberada." },
+      { "id": "D", "texto": "Todas las respuestas." }
+    ],
+    "correcta": "A",
+    "justificacion": "La inyección SQL (*SQL injection*, SQLi) es una vulnerabilidad de seguridad que permite a un atacante interferir con las consultas que una aplicación realiza a su base de datos, insertando código SQL malicioso. El resultado principal y propósito de este ataque es la capacidad de **acceder a información que normalmente no debería ser visible** o recuperable para el usuario no autorizado, como datos confidenciales de otros usuarios o información del sistema.",
+    "porqueNo": "B describe el **desbordamiento de búfer** (*buffer overflow*), que es un tipo de ataque diferente que manipula la memoria del sistema para sobrescribir la dirección de retorno, no una inyección SQL. C describe un ataque de tipo *use-after-free*, que también es una vulnerabilidad de gestión de memoria distinta. D es incorrecta porque B y C no son acciones realizadas por un ataque de inyección SQL típico."
+  },
+  {
+    "examen": "Solución en Clase 1",
+    "id": "SC01-P10",
+    "pregunta": "Señalar la respuesta incorrecta. Los objetivos de las pruebas de seguridad basadas en el riesgo:",
+    "opciones": [
+      { "id": "A", "texto": "Verificar la operación del software bajo en su entorno de producción." },
+      { "id": "B", "texto": "Verificar la capacidad de supervivencia del software ante la aparición de anomalías, errores y su manejo de las mismas mediante excepciones que minimicen el alcance e impacto de los daños que puedan resultar de los ataques." },
+      { "id": "C", "texto": "Verificar la falta de defectos y debilidades explotables." },
+      { "id": "D", "texto": "Verificar la fiabilidad del software, en términos de comportamiento seguro y cambios de estado confiables." }
+    ],
+    "correcta": "A",
+    "justificacion": "Las pruebas de seguridad basadas en el riesgo se centran en identificar y mitigar vulnerabilidades y evaluar la capacidad del sistema para resistir ataques. La opción A, **verificar la operación del software bajo en su entorno de producción**, describe un objetivo de pruebas funcionales o de aceptación operativa estándar, no un objetivo específico de las pruebas de seguridad basadas en el riesgo, cuyo enfoque es la seguridad y la resiliencia.",
+    "porqueNo": "B, C y D son objetivos directos de las pruebas de seguridad basadas en el riesgo (según el Tema 2 del curso): B describe la **resiliencia** y el manejo de fallos de seguridad; C se enfoca en la búsqueda proactiva de **debilidades explotables**; y D se refiere a la **fiabilidad** en términos de comportamiento seguro y manejo de estados confiables. Estos tres puntos son pilares de la evaluación de seguridad, mientras que A se enfoca en la funcionalidad básica en producción."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P02",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de los siguientes motivos es más importante para justificar la revisión periódica del proceso de planificación de la auditoría?",
+    "opciones": [
+      { "id": "A", "texto": "Considerar los cambios en el entorno de riesgo." },
+      { "id": "B", "texto": "Identificar los estándares de auditoría de Sistemas de Información aplicables." },
+      { "id": "C", "texto": "Revisar la asignación de recursos de auditoría." },
+      { "id": "D", "texto": "Ninguna de las respuestas." }
+    ],
+    "correcta": "A",
+    "justificacion": "La planificación de la auditoría es un proceso continuo y dinámico. El motivo más importante para su revisión periódica es **considerar los cambios en el entorno de riesgo**. El entorno de TI evoluciona constantemente (nuevas amenazas, tecnologías, regulaciones), y la auditoría debe ser relevante y estar alineada con los riesgos actuales para ser efectiva. El ajuste del plan basado en la evolución del riesgo es un principio clave de las metodologías de auditoría basadas en el riesgo.",
+    "porqueNo": "B es incorrecta porque la identificación de estándares aplicables es parte de la fase inicial de planificación, aunque puede requerir actualización, no es el motor principal para la revisión periódica del *proceso* de planificación. C es incorrecta porque la asignación de recursos es una consecuencia de la evaluación de riesgos; se revisa *después* de considerar los cambios en el riesgo, no como el motivo principal. D es incorrecta porque la opción A es un motivo válido y crucial."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P03",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las siguientes respuestas es una recomendación de buenas prácticas?",
+    "opciones": [
+      { "id": "A", "texto": "Manejo de los datos con precaución." },
+      { "id": "B", "texto": "Confiar en software de terceros en operaciones críticas." },
+      { "id": "C", "texto": "No usar listas de comprobación." },
+      { "id": "D", "texto": "Usar en el código nombres relativos de ficheros." }
+    ],
+    "correcta": "A",
+    "justificacion": "Dentro de las recomendaciones generales de **buenas prácticas de implementación** en seguridad y desarrollo seguro (Tema 1), se enfatiza la necesidad de ser diligente y cuidadoso con el manejo de los datos, especialmente los datos sensibles. Esto incluye la validación de entradas, la minimización de la exposición de datos y el tratamiento adecuado de la información a lo largo de su ciclo de vida. Manejar los datos con precaución es un principio fundamental de seguridad por diseño.",
+    "porqueNo": "B es incorrecta porque la confianza en software de terceros no debe ser ciega, especialmente en operaciones críticas; se requiere un análisis de riesgo y validación de seguridad (Tema 2). C es incorrecta porque las listas de comprobación (*checklists*) son controles importantes en procesos como la gestión de cambios o la auditoría. D es incorrecta porque usar nombres relativos de ficheros en el código puede introducir vulnerabilidades de seguridad, como ataques de *path traversal* (recorrido de rutas), por lo que es una mala práctica de implementación (Tema 1)."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P04",
+    "pregunta": "Señalar la respuesta correcta. Características de una buena implementación, prácticas y defectos a evitar, indicar la respuesta que no es una buena práctica.",
+    "opciones": [
+      { "id": "A", "texto": "Insistir en el proceso de revisión de código." },
+      { "id": "B", "texto": "Formación continua." },
+      { "id": "C", "texto": "Invocar programas en los que no se confía desde otros en los que se confía." },
+      { "id": "D", "texto": "Manejo de los datos con precaución." }
+    ],
+    "correcta": "C",
+    "justificacion": "En el desarrollo de software seguro (Tema 1), se recomienda evitar la invocación de programas no confiables desde contextos confiables. Esto se conoce como un fallo en la 'separación de privilegios' o un problema de 'designación inadecuada de privilegios', donde una aplicación confiable delega incorrectamente la ejecución a una parte menos confiable, lo que puede ser explotado para elevar privilegios o realizar acciones indebidas.",
+    "porqueNo": "A, B y D son consideradas buenas prácticas de implementación (Tema 1). Insistir en la revisión de código (A) y la formación continua (B) son prácticas de mejora de la calidad y seguridad del software. El manejo de datos con precaución (D) es un principio fundamental de seguridad. La opción C describe un defecto a evitar, y por lo tanto, es la respuesta correcta en el contexto de la pregunta que pide la opción que **no** es una buena práctica."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P05",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué conjunto de amenazas típicas pueden poner en riesgo una compañía?",
+    "opciones": [
+      { "id": "A", "texto": "Del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+      { "id": "B", "texto": "De origen natural, del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+      { "id": "C", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma deliberada." },
+      { "id": "D", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma accidental." }
+    ],
+    "correcta": "B",
+    "justificacion": "Las amenazas a la seguridad de la información son variadas y pueden provenir de múltiples fuentes. Una clasificación completa, como la cubierta en el material del curso (Tema 3), incluye: amenazas de **origen natural** (desastres, clima), del **entorno** (fallos eléctricos, estructurales), **defectos de las aplicaciones** (vulnerabilidades de software), y las causadas por las **personas**, ya sea de forma **accidental** (errores humanos) o **deliberada** (ataques maliciosos). La opción B engloba todas estas categorías de amenazas típicas que enfrenta una compañía.",
+    "porqueNo": "A es incorrecta porque omite las amenazas de **origen natural**, que son un tipo de riesgo significativo para la continuidad del negocio (ej. terremotos, inundaciones). C y D son incorrectas porque son listas incompletas de las posibles fuentes de amenazas; C omite las acciones accidentales de las personas, y D omite las acciones deliberadas."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P06",
+    "pregunta": "Señalar la respuesta correcta. A qué tipo de auditoría se corresponde la siguiente afirmación \"Son auditorías que verifican el cumplimiento de un determinado estándar o políticas y procedimientos internos de seguridad de la organización de seguridad (p. ej.: PCI o DSS)\"",
+    "opciones": [
+      { "id": "A", "texto": "Auditoría de seguridad operativa/técnica." },
+      { "id": "B", "texto": "Auditoría de cumplimiento de la seguridad de la información." },
+      { "id": "C", "texto": "Auditoria de seguridad de sistemas." },
+      { "id": "D", "texto": "Auditoría de seguridad de procedimientos." }
+    ],
+    "correcta": "B",
+    "justificacion": "La auditoría de **cumplimiento** es un tipo específico de auditoría de seguridad de la información cuya finalidad principal es evaluar si la organización adhiere a un conjunto de criterios preestablecidos, que pueden ser estándares externos (como PCI DSS, ISO 27001, etc.) o políticas y procedimientos internos. La afirmación describe exactamente esta función: verificar el cumplimiento de un estándar o políticas internas.",
+    "porqueNo": "A es incorrecta; una auditoría operativa/técnica se centra en la eficacia y eficiencia de los controles técnicos y operativos, no necesariamente en el cumplimiento formal de una normativa específica. C y D son incorrectas porque son categorías o enfoques parciales (sistemas, procedimientos) de la auditoría; la categoría que engloba específicamente la verificación de estándares es la auditoría de **cumplimiento**."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P07",
+    "pregunta": "Señalar la respuesta correcta. El EDR es una metodología de auditorías de sistemas de información basada en:",
+    "opciones": [
+      { "id": "A", "texto": "Amenazas." },
+      { "id": "B", "texto": "Vulnerabilidades." },
+      { "id": "C", "texto": "Riesgos." },
+      { "id": "D", "texto": "Impactos." }
+    ],
+    "correcta": "C",
+    "justificacion": "La metodología EDR (Evaluación de Riesgos) se fundamenta en el análisis y gestión de **riesgos** de los sistemas de información. El objetivo principal de una auditoría basada en EDR es identificar, analizar y evaluar los riesgos asociados a los activos de información, permitiendo a la organización tomar decisiones informadas sobre cómo mitigar, transferir, aceptar o evitar dichos riesgos.",
+    "porqueNo": "A, B y D son incorrectas porque las amenazas, vulnerabilidades e impactos son componentes o factores que *alimentan* el análisis de riesgos, pero la metodología EDR en sí misma se centra en el concepto integral de **riesgo** como la base de la auditoría, combinando la probabilidad de que una amenaza explote una vulnerabilidad con su potencial impacto."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P09",
+    "pregunta": "Señalar la respuesta correcta. Una de las perspectivas de las pruebas de seguridad basadas en el riesgo es la siguiente:",
+    "opciones": [
+      { "id": "A", "texto": "Perspectiva de la gerencia." },
+      { "id": "B", "texto": "Perspectiva del atacante." },
+      { "id": "C", "texto": "Perspectiva del usuario." },
+      { "id": "D", "texto": "Perspectiva del desarrollador." }
+    ],
+    "correcta": "B",
+    "justificacion": "Las pruebas de seguridad basadas en el riesgo adoptan múltiples perspectivas para una evaluación integral. Una perspectiva crucial es la del **atacante** (*attacker view* o *adversary perspective*). Esta perspectiva ayuda a identificar debilidades y vulnerabilidades explotables mediante la simulación de métodos y técnicas que un agente malicioso utilizaría, evaluando la capacidad de resistencia del sistema desde fuera hacia dentro.",
+    "porqueNo": "A (Gerencia) y D (Desarrollador) son perspectivas importantes en la gestión del ciclo de vida del desarrollo seguro, pero no son perspectivas directas de las *pruebas* de seguridad basadas en el riesgo. La perspectiva de la gerencia se enfoca en el gobierno y el cumplimiento, mientras que la del desarrollador se centra en la implementación correcta. La opción C (Usuario) se enfoca en la usabilidad y la funcionalidad, no en la seguridad basada en el riesgo. La perspectiva del atacante es única en su enfoque en la explotación de vulnerabilidades."
+  },
+  {
+    "examen": "Solución en Clase 2",
+    "id": "SC02-P10",
+    "pregunta": "Señalar la respuesta correcta. Un auditor de SI que realiza una revisión del departamento de SI descubre que no existen procedimientos formales de aprobación. En ausencia de estos procedimientos, el gerente de SI ha estado aprobando arbitrariamente proyectos a los niveles superiores de la gerencia para su aprobación. El auditor de SI debería recomendar como un PRIMER curso de acción que:",
+    "opciones": [
+      { "id": "A", "texto": "Los usuarios participen en la revisión y en el proceso de aprobación." },
+      { "id": "B", "texto": "Se adopten y documenten procedimientos formales de aprobación." },
+      { "id": "C", "texto": "Los proyectos sean referidos a los niveles apropiados de la gerencia para su aprobación." },
+      { "id": "D", "texto": "La descripción del puesto de trabajo del gerente de SI sea cambiada para que incluya la autoridad de aprobación." }
+    ],
+    "correcta": "B",
+    "justificacion": "El hallazgo principal del auditor es la **ausencia de procedimientos formales y documentados**. La práctica actual del gerente de SI de aprobar arbitrariamente indica una falta de control interno y consistencia. La acción principal que un auditor debe recomendar es establecer la base del control: la creación e implementación de **procedimientos formales de aprobación**. Esto establece un marco de trabajo claro y auditable que aborda la raíz del problema, que es la falta de políticas y documentación.",
+    "porqueNo": "A es incorrecta porque la participación del usuario es un control secundario; el problema raíz es la falta del procedimiento formal en sí. C es incorrecta porque referir proyectos a niveles superiores no resuelve el problema de la arbitrariedad en el nivel actual ni la falta de un proceso definido y documentado. D es incorrecta porque cambiar la descripción del trabajo del gerente no soluciona la falta de un **procedimiento documentado** que todos los empleados deban seguir."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P01",
+    "pregunta": "¿Cuál de las siguientes afirmaciones es incorrecta?",
+    "opciones": [
+        { "id": "A", "texto": "La revisión por la dirección permitirá realinear los esfuerzos de implantación del SGSI para asegurar su eficiencia y eficacia." },
+        { "id": "B", "texto": "La mejora continua del SGSI se desempeña por cualquiera de los recursos de la organización." },
+        { "id": "C", "texto": "La revisión de la dirección debe realizarse a intervalos planificados y como mínimo 1 vez al año." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "Las afirmaciones A, B y C son correctas de acuerdo a los principios de la norma ISO 27001. La revisión por la dirección ayuda a realinear los esfuerzos. La mejora continua involucra a diversos recursos de la organización. La revisión debe ser planificada y suele ser al menos una vez al año, aunque la norma especifica 'a intervalos planificados'. Por lo tanto, ninguna de las afirmaciones es incorrecta.",
+    "porqueNo": "La opción A es correcta porque la revisión por la dirección es crucial para asegurar que el SGSI sigue siendo adecuado y eficaz. La opción B es correcta, ya que la mejora es un requisito clave que se evidencia a través de recursos como auditorías internas y la propia revisión. La opción C es correcta en la práctica general, ya que si bien la frecuencia exacta es 'a intervalos planificados', una revisión anual es una práctica estándar y un requisito mínimo común en otros sistemas de gestión relacionados como el SG-SST."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P02",
+    "pregunta": "Señalar la respuesta correcta. Según Ron Weber, la auditoría de sistemas de información es:",
+    "opciones": [
+        { "id": "A", "texto": "Es la revisión independiente de los test de intrusión." },
+        { "id": "B", "texto": "Ron Weber estableció las bases del control interno informático. No definió nunca la auditoría informática o de sistemas de información." },
+        { "id": "C", "texto": "La auditoría de Sistemas de Información es el proceso de recoger, agrupar y evaluar evidencias para determinar si un sistema informático salvaguarda los activos, mantiene la integridad de los datos, lleva a cabo los fines de la organización y utiliza eficientemente los recursos." },
+        { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "Según Ron Weber, la auditoría de sistemas de información se define como el proceso de recolectar y evaluar evidencia para determinar si un sistema informático salvaguarda los activos, mantiene la integridad de los datos, logra los objetivos organizacionales eficazmente y consume recursos eficientemente.",
+    "porqueNo": "La opción A es incorrecta porque la auditoría cubre un alcance mucho más amplio que solo las pruebas de intrusión. La opción B es incorrecta, ya que Ron Weber sí definió la auditoría de sistemas de información, y su definición es la base de la opción C. La opción D es incorrecta porque solo C es la respuesta correcta."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P03",
+    "pregunta": "Señalar la respuesta correcta. El CITI (Control Interno de Tecnologías de Información) garantiza:",
+    "opciones": [
+        { "id": "A", "texto": "Que las auditorías que se realicen, tengan un 95% de éxito, y no se detecten debilidades y deficiencias importantes." },
+        { "id": "B", "texto": "Que todas las actividades de sistemas de información sean realizadas cumpliendo los procedimientos, estándares y normas fijados por la Dirección de la Organización y/o Dirección de Informática." },
+        { "id": "C", "texto": "Que todas las actividades de sistemas de información sean realizadas cumpliendo los procedimientos, estándares y normas fijados por la Dirección de la Organización y/o Dirección de Informática, así como los requisitos legales. Su establecimiento evita la realización de auditorías internas y externas." },
+        { "id": "D", "texto": "Que todas las actividades de sistemas de información sean realizadas cumpliendo los procedimientos, estándares y normas fijados por la Dirección de la Organización y/o Dirección de Informática, así como los requisitos legales." }
+    ],
+    "correcta": "D",
+    "justificacion": "El Control Interno de TI busca asegurar que los sistemas de información funcionen de acuerdo a lo esperado, garantizando que todas las actividades cumplan con los procedimientos, estándares y normas internos, y que se adhieran a los requisitos legales y regulatorios aplicables.",
+    "porqueNo": "La opción A establece un porcentaje de éxito arbitrario. La opción B está incompleta al omitir los requisitos legales. La opción C es incorrecta porque el establecimiento de controles internos no evita las auditorías internas ni externas; de hecho, las auditorías evalúan la eficacia de dichos controles."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P04",
+    "pregunta": "Señalar la respuesta correcta. ¿Quién clasifica los activos del sistema de información?",
+    "opciones": [
+        { "id": "A", "texto": "La autoridad nacional de seguridad." },
+        { "id": "B", "texto": "Una empresa auditora." },
+        { "id": "C", "texto": "Una empresa consultora" },
+        { "id": "D", "texto": "La propia organización." }
+    ],
+    "correcta": "D",
+    "justificacion": "La clasificación de los activos es una responsabilidad interna. La organización es quien mejor conoce el valor de sus datos y sistemas, y por lo tanto, es quien debe definir los niveles de sensibilidad y el grado de protección necesario.",
+    "porqueNo": "Las opciones A, B y C son incorrectas. Una autoridad nacional establece normativas, no clasifica activos individuales. Una empresa auditora o consultora puede guiar el proceso, pero la responsabilidad final de la clasificación y la toma de decisiones recae en la dirección y los propietarios de los activos dentro de la propia organización."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P05",
+    "pregunta": "Señalar la respuesta incorrecta. El RGPD no limita el ámbito y periodicidad de las auditorías, sino que pueden entenderse amplias e imprescindibles. En el marco de este reglamento, la auditoría estaría compuesta de las dos siguientes partes:",
+    "opciones": [
+        { "id": "A", "texto": "Auditoría de seguridad y Seguridad y violaciones de seguridad (artículos 32 a 34)." },
+        { "id": "B", "texto": "Auditoría de seguridad y Seguridad de la DMZ (artículos 50 y 51)." },
+        { "id": "C", "texto": "Auditoría de seguridad y Seguridad del procesamiento (artículo 32)." },
+        { "id": "D", "texto": "Auditoría de cumplimiento Derechos del interesado (artículos 12 a 23, y 26)." }
+    ],
+    "correcta": "B",
+    "justificacion": "Las auditorías en el marco del RGPD son amplias e imprescindibles. Los componentes mencionados en las opciones A, C y D corresponden a áreas de cumplimiento y seguridad reales dentro del reglamento (Art. 32 sobre seguridad del tratamiento; Arts. 33 y 34 sobre brechas de seguridad; Arts. 12-23 sobre derechos del interesado).",
+    "porqueNo": "La opción B es incorrecta porque los artículos 50 y 51 del RGPD no existen en el texto del reglamento de la UE 2016/679, el cual solo tiene 99 artículos. El concepto de DMZ es técnico, pero los artículos citados son inexistentes en la ley."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P06",
+    "pregunta": "Señalar la respuesta incorrecta. Con respecto a la lista de verificación de los controles que auditar acorde a la guía de la Agencia Española de Protección de Datos tenemos:",
+    "opciones": [
+        { "id": "A", "texto": "Evaluar la capacidad de recuperación de los registros vitales." },
+        { "id": "B", "texto": "Derechos del interesado. Derecho de rectificación." },
+        { "id": "C", "texto": "Tratamiento de categorías comunes de datos." },
+        { "id": "D", "texto": "Derechos del interesado. Derecho a la portabilidad de los datos." }
+    ],
+    "correcta": "C",
+    "justificacion": "La guía de la AEPD se enfoca en verificar el cumplimiento de medidas de seguridad (Art. 32 RGPD) y los derechos de los interesados (Arts. 12-23 RGPD), que incluyen la capacidad de recuperación de datos y los derechos de rectificación y portabilidad.",
+    "porqueNo": "La opción C no forma parte de la lista de verificación estándar de controles a auditar en las guías de la AEPD, que se centran en el cumplimiento normativo del RGPD y no en la categorización de datos como 'comunes' en sí misma como un control auditable."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P07",
+    "pregunta": "Señalar la respuesta incorrecta. Los objetivos de la auditoría del Esquema Nacional de Seguridad de España son:",
+    "opciones": [
+        { "id": "A", "texto": "Emitir una opinión personal del cumplimiento del ENS de tal forma que permita a los responsables correspondientes tomar las medidas oportunas para subsanar las deficiencias identificadas." },
+        { "id": "B", "texto": "Posibilitar la obtención de la correspondiente Certificación de Conformidad." },
+        { "id": "C", "texto": "Sustentar la confianza que merece el sistema auditado sobre el nivel de seguridad implantado." },
+        { "id": "D", "texto": "Calibrar la capacidad del sistema para garantizar la integridad, disponibilidad, autenticidad, confidencialidad y trazabilidad de los servicios prestados y la información tratada, almacenada o transmitida." }
+    ],
+    "correcta": "A",
+    "justificacion": "La auditoría del ENS tiene como objetivo emitir un juicio profesional e independiente sobre la conformidad del sistema con los requisitos del Real Decreto 311/2022, no una opinión personal. Esto permite identificar brechas y subsanar deficiencias de manera objetiva para cumplir la ley.",
+    "porqueNo": "La opción B es correcta, ya que la auditoría es un paso crucial para la certificación del ENS. La opción C es correcta porque el informe de auditoría sustenta la confianza en la seguridad del sistema. La opción D es correcta, ya que el ENS busca específicamente proteger la integridad, disponibilidad, autenticidad, confidencialidad y trazabilidad de la información."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P08",
+    "pregunta": "Señalar la respuesta correcta. Las normas PCI DSS aplican obligatoriamente a:",
+    "opciones": [
+        { "id": "A", "texto": "Solo a los bancos." },
+        { "id": "B", "texto": "Al sector del comercio en general." },
+        { "id": "C", "texto": "A las empresas que almacenan, procesan o transmiten datos de tarjetas de pago." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "El estándar PCI DSS es un conjunto de medidas de seguridad que aplica a todas las entidades involucradas en el procesamiento de tarjetas de pago, incluyendo comerciantes, procesadores, adquirentes y emisores, si estos almacenan, procesan o transmiten datos de titulares de tarjetas.",
+    "porqueNo": "La opción A es incorrecta porque el estándar aplica a muchas más entidades además de los bancos. La opción B es demasiado general; aplica solo al sector comercial que maneja datos de pago, no a todo el sector en general. La opción D es incorrecta porque la C es la respuesta correcta."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P09",
+    "pregunta": "¿Cuáles son los activos de Sistemas de Información más habituales?",
+    "opciones": [
+        { "id": "A", "texto": "Solo datos." },
+        { "id": "B", "texto": "Cualquiera que tenga valor para la empresa menos las personas." },
+        { "id": "C", "texto": "Todos aquellos que aporten conocimiento/sabiduría a la organización." },
+        { "id": "D", "texto": "Personas, Datos o Información, Software, Hardware, Telecomunicaciones, Infraestructura." }
+    ],
+    "correcta": "D",
+    "justificacion": "Los activos de SI más habituales son primarios (personas, datos, información) y secundarios (software, hardware, telecomunicaciones, infraestructura), todo aquello con valor para la organización según las directrices de la ISO 27001.",
+    "porqueNo": "La opción A es incorrecta por ser incompleta. La opción B excluye a las personas, que son un activo crítico. La opción C limita los activos únicamente al conocimiento/sabiduría, ignorando los activos físicos y lógicos necesarios para su gestión."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P10",
+    "pregunta": "Señalar la respuesta correcta. Principalmente, si en un portal web somos capaces de ver su estructura de directorios, esto se debe a:",
+    "opciones": [
+        { "id": "A", "texto": "No se realiza en javascript validación de datos de entrada." },
+        { "id": "B", "texto": "Una mala configuración del servidor web que permite esta acción." },
+        { "id": "C", "texto": "Una mala configuración en la subversión (control de versiones)." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "El listado de directorios es una característica que puede habilitarse o deshabilitarse en la configuración del servidor web (como Apache o Nginx). Si está habilitado y falta un archivo de índice, el servidor muestra automáticamente el contenido de la carpeta, lo que es una falla de seguridad por configuración.",
+    "porqueNo": "La opción A es incorrecta, ya que la validación de datos de entrada en JavaScript se relaciona con la seguridad de la aplicación y no con la configuración de visualización del sistema de archivos del servidor web. La opción C es incorrecta, ya que la subversión o control de versiones gestiona el código fuente internamente, no la forma en que el servidor web expone los directorios al público."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P11",
+    "pregunta": "¿Qué conjunto de amenazas típicas pueden poner en riesgo una compañía?",
+    "opciones": [
+        { "id": "A", "texto": "Del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+        { "id": "B", "texto": "De origen natural, del entorno, defectos de las aplicaciones, causadas por las personas de forma accidental y causadas por las personas de forma deliberada." },
+        { "id": "C", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma deliberada." },
+        { "id": "D", "texto": "De origen natural, del entorno, defectos de las aplicaciones y causadas por las personas de forma accidental." }
+    ],
+    "correcta": "B",
+    "justificacion": "La opción B es la más completa y abarca el rango total de amenazas que se suelen considerar en la gestión de riesgos de seguridad de la información. La clasificación habitual incluye amenazas físicas/ambientales (naturales, entorno), técnicas (defectos aplicaciones) y humanas (accidentales, deliberadas).",
+    "porqueNo": "La opción A es incorrecta porque omite las amenazas 'De origen natural'. Las opciones C y D son incorrectas porque omiten categorías cruciales de amenazas causadas por personas (accidentales en C, deliberadas en D), lo que las hace incompletas para una evaluación de riesgos exhaustiva."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P12",
+    "pregunta": "Señalar la respuesta correcta. La finalidad de una auditoría de seguridad perimetral:",
+    "opciones": [
+        { "id": "A", "texto": "Evaluar el grado de cumplimiento de una norma de seguridad." },
+        { "id": "B", "texto": "Evaluar los riesgos a los que está expuesto una organización." },
+        { "id": "C", "texto": "Evaluar el nivel de seguridad de las LAN corporativas de carácter interno de una organización." },
+        { "id": "D", "texto": "Analiza la protección que proporciona una red de seguridad perimetral desde el exterior." }
+    ],
+    "correcta": "D",
+    "justificacion": "El propósito de una auditoría perimetral es probar las defensas externas de la organización, simulando un ataque desde internet para verificar qué tan bien están protegidos los activos internos de amenazas externas y asegurar que las políticas de seguridad perimetral se aplican eficazmente.",
+    "porqueNo": "La opción A es incorrecta porque es el objetivo de una auditoría de cumplimiento general, no específicamente perimetral. La opción B describe el objetivo de una auditoría de riesgos general. La opción C es incorrecta porque la auditoría perimetral se centra en el límite exterior, no en las redes internas LAN corporativas."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P13",
+    "pregunta": "Señalar la respuesta correcta. La finalidad de una auditoría de cumplimiento:",
+    "opciones": [
+        { "id": "A", "texto": "Evaluar el grado de cumplimiento de una norma de seguridad." },
+        { "id": "B", "texto": "Análisis del código estático del código de aplicaciones en busca de vulnerabilidades, tanto de aplicaciones del tipo web como de cualquier tipo de aplicación." },
+        { "id": "C", "texto": "Evaluar el nivel de seguridad de las LAN corporativas de carácter interno de una organización." },
+        { "id": "D", "texto": "Analiza la protección que proporciona una red de seguridad perimetral desde el exterior." }
+    ],
+    "correcta": "A",
+    "justificacion": "Una auditoría de cumplimiento se define como el proceso de obtener y evaluar evidencia objetivamente para determinar si la materia en cuestión (por ejemplo, un SGSI) cumple con los requisitos de una autoridad o norma aplicable, como la ISO 27001.",
+    "porqueNo": "La opción B describe el objetivo de una auditoría de código o análisis de vulnerabilidades, no de cumplimiento general. La opción C describe una auditoría de seguridad interna de red. La opción D describe específicamente una auditoría de seguridad perimetral, que se centra en el límite exterior de la red. Solo la opción A describe la finalidad genérica y correcta de una auditoría de cumplimiento."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P14",
+    "pregunta": "Señalar la respuesta correcta. De acuerdo con el concepto de visibilidad las auditorias de seguridad se clasifican en:",
+    "opciones": [
+        { "id": "A", "texto": "Pruebas de caja blanca, negra y gris." },
+        { "id": "B", "texto": "Pruebas de caja blanca y negra." },
+        { "id": "C", "texto": "Pruebas de caja blanca, negra e inversas." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "La clasificación por visibilidad se basa en la cantidad de información interna que se proporciona al auditor. Los enfoques estándar de la industria incluyen caja blanca (conocimiento total), caja negra (conocimiento nulo) y caja gris (conocimiento limitado).",
+    "porqueNo": "La opción B es incorrecta porque omite la categoría de 'caja gris', que es un enfoque común y reconocido. La opción C es incorrecta porque no existe un tipo de auditoría estándar llamado 'inversas' en este contexto de clasificación por visibilidad."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P15",
+    "pregunta": "Señalar la respuesta correcta. Las auditorias de dispositivos móviles son del tipo:",
+    "opciones": [
+        { "id": "A", "texto": "Caja blanca si se audita la configuración del móvil." },
+        { "id": "B", "texto": "Caja negra." },
+        { "id": "C", "texto": "Caja Gris." },
+        { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "La auditoría de caja blanca implica conocimiento total de la estructura interna, el código o la configuración del sistema auditado. Al auditar la configuración de un dispositivo móvil, el auditor tiene acceso privilegiado a los detalles internos, lo que define este enfoque.",
+    "porqueNo": "La opción B es incorrecta porque la caja negra implica no tener conocimiento interno, lo cual no es el caso si se audita la configuración. La opción C (caja gris) implica conocimiento limitado, tampoco es el caso. La opción D es incorrecta porque la premisa específica de la opción A es la única correcta para la situación descrita."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P16",
+    "pregunta": "Señalar la respuesta incorrecta. La fase de la metodología “Information System Security Assessment Framework (ISSAF)” son:",
+    "opciones": [
+        { "id": "A", "texto": "Evaluación." },
+        { "id": "B", "texto": "Planeación y preparación." },
+        { "id": "C", "texto": "Acuerdo con la organización auditada." },
+        { "id": "D", "texto": "Presentación de informes, limpieza y destrucción de artefactos." }
+    ],
+    "correcta": "C",
+    "justificacion": "Las fases principales del ISSAF son Planificación y Preparación, Evaluación y, finalmente, Presentación de Informes, Limpieza y Destrucción de Artefactos. La opción C describe una actividad (firmar el acuerdo) que se lleva a cabo durante la primera fase.",
+    "porqueNo": "La opción A (Evaluación), B (Planeación y preparación) y D (Presentación de informes, etc.) son las tres fases reconocidas de la metodología ISSAF. Por lo tanto, la opción C es la única que no es una fase completa en sí misma, sino un paso dentro de la fase de planificación."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P17",
+    "pregunta": "Señalar la respuesta incorrecta. Entre los tipos de pruebas conforme a la “Security Testing Methodology Manual (OSSTMM)” tenemos:",
+    "opciones": [
+        { "id": "A", "texto": "Pruebas de seguridad y su equivalente militar (Posture Assessment). Evaluación de riesgo de los sistemas y redes a través de la aplicación de escaneos de seguridad, donde la intrusión se usa generalmente para confirmar los falsos positivos y los falsos negativos, dentro del tiempo permitido de duración del proyecto." },
+        { "id": "B", "texto": "Evaluación de riesgo. Análisis de seguridad a través de entrevistas e investigación de nivel medio que incluye el cumplimiento de los objetivos negocios, normativa legal y específica de la industria o la administración." },
+        { "id": "C", "texto": "Escaneo de seguridad. Búsquedas de vulnerabilidades que incluyen verificaciones manuales de falsos positivos, identificación de los puntos débiles de la red y análisis profesional individualizado." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "B",
+    "justificacion": "La definición de 'Evaluación de riesgo' en la opción B es incorrecta en el contexto de OSSTMM. OSSTMM utiliza métricas científicas y cuantificables (RAVs) para la evaluación de riesgos, no un análisis de 'nivel medio' basado en entrevistas.",
+    "porqueNo": "La opción A describe correctamente un Posture Assessment o prueba de seguridad según OSSTMM. La opción C describe correctamente un escaneo de seguridad o análisis de vulnerabilidades manual. Dado que A y C son correctas, la opción B es la afirmación incorrecta, lo que la convierte en la respuesta correcta solicitada por la pregunta."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P18",
+    "pregunta": "Señalar la respuesta correcta. Cuando se revisa la seguridad de acceso lógico de una organización ¿Cuál se los siguientes sería de más preocupación para el auditor de seguridad?",
+    "opciones": [
+        { "id": "A", "texto": "Las contraseñas no son compartidas." },
+        { "id": "B", "texto": "Los archivos de contraseña están encriptados." },
+        { "id": "C", "texto": "Los logon IDs redundantes son eliminados." },
+        { "id": "D", "texto": "La asignación de logon IDs está controlada." }
+    ],
+    "correcta": "B",
+    "justificacion": "La opción B es una buena práctica de seguridad (aunque técnicamente deberían estar 'hasheados' o 'salados', no simplemente encriptados). Asumiendo que la pregunta pide identificar una buena práctica, esta es la respuesta. Las opciones A, C y D también son buenas prácticas de control de acceso lógico que mitigan riesgos significativos.",
+    "porqueNo": "Si interpretamos que la pregunta pide qué es lo que más preocuparía al auditor (una mala práctica), todas las opciones A, B, C y D son incorrectas, ya que todas describen controles adecuados. Sin embargo, si nos atenemos al recuadro verde, B es la respuesta a seleccionar. Que las contraseñas no se compartan, que los IDs redundantes se eliminen y que la asignación de IDs esté controlada son controles esenciales para la seguridad del acceso lógico."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P019",
+    "pregunta": "¿Cuáles son los atributos claves de una metodología?",
+    "opciones": [
+        { "id": "A", "texto": "Sistemática." },
+        { "id": "B", "texto": "Disciplina." },
+        { "id": "C", "texto": "Objetividad." },
+        { "id": "D", "texto": "Todas las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "Una metodología de investigación rigurosa requiere ser sistemática (seguir pasos ordenados), disciplinada (aplicar las técnicas con rigor) y objetiva (buscar resultados imparciales, verificables y libres de sesgos personales).",
+    "porqueNo": "Las opciones A, B y C son incorrectas si se consideran individualmente, ya que una metodología completa requiere los tres atributos. La sistemática y la objetividad son características fundamentales de la investigación científica, y la disciplina es necesaria para su correcta ejecución."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P020",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué metodología de auditoria se adapta mejor a las compañías?",
+    "opciones": [
+        { "id": "A", "texto": "Cualquiera que tenga relación con los sistemas de información." },
+        { "id": "B", "texto": "La metodología marcada por entidades reconocidas como IAI, ISACA,..." },
+        { "id": "C", "texto": "La que sea completa y este adecuada las necesidades de la compañía." },
+        { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "La elección de la metodología de auditoría debe basarse en la complejidad de la organización, sus objetivos de negocio, su apetito de riesgo y los requisitos regulatorios que le aplican. Una metodología es eficaz solo si es completa y se personaliza para cubrir estos puntos específicos.",
+    "porqueNo": "La opción A es incorrecta porque la relevancia temática no garantiza la eficacia ni la adecuación de la metodología. La opción B es incorrecta porque si bien entidades como ISACA e IAI proveen estándares excelentes, estos son marcos de referencia que deben adaptarse al contexto específico de la compañía para ser efectivos, no aplicarse tal cual de forma genérica. La opción D es incorrecta porque la opción C es la respuesta correcta."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P021",
+    "pregunta": "Señalar la respuesta correcta. La finalidad de un objetivo de control es:",
+    "opciones": [
+        { "id": "A", "texto": "Aglutinar un número de controles." },
+        { "id": "B", "texto": "Controlar los riesgos a los que está expuesto una compañía." },
+        { "id": "C", "texto": "El objetivo de control está encaminado a prevenir, mitigar o transferir el riesgo." },
+        { "id": "D", "texto": "Realizar un plan de pruebas completo." }
+    ],
+    "correcta": "C",
+    "justificacion": "Según las bases del control interno y seguridad de la información, el objetivo de control define cómo se gestionará un riesgo específico. Involucra acciones para prevenir la ocurrencia del riesgo, mitigar sus consecuencias o transferir la responsabilidad del mismo.",
+    "porqueNo": "La opción A es incorrecta porque el objetivo de control define el 'qué', mientras que los controles son el 'cómo' (las actividades para lograr el objetivo). La opción B es demasiado general; el objetivo de control se centra en acciones específicas (prevenir, mitigar, transferir) no solo en 'controlar'. La opción D describe una actividad de auditoría o prueba, no la finalidad de un objetivo de control en la gestión de riesgos."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P022",
+    "pregunta": "Señalar la respuesta correcta. Un objetivo de control puede estar cubierto por:",
+    "opciones": [
+        { "id": "A", "texto": "Varios controles." },
+        { "id": "B", "texto": "Varios riesgos." },
+        { "id": "C", "texto": "Varias pruebas." },
+        { "id": "D", "texto": "Varias amenazas." }
+    ],
+    "correcta": "A",
+    "justificacion": "En el marco de COBIT y la ISO 27001, los objetivos de control son declaraciones genéricas de buen control, y cada uno suele tener múltiples controles o salvaguardas asociados que, en conjunto, aseguran que se logre el objetivo y se mitiguen los riesgos.",
+    "porqueNo": "La opción B es incorrecta porque un control o un conjunto de controles se implementan para mitigar riesgos, no para estar 'cubiertos' por ellos. Las opciones C y D son incorrectas porque un objetivo de control define el resultado deseado de la gestión de riesgos, no está intrínsecamente cubierto por pruebas o amenazas, sino que las pruebas evalúan si se logra el objetivo ante las amenazas."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P023",
+    "pregunta": "Señalar la respuesta correcta. El objetivo de todo control es la reducción de riesgos:",
+    "opciones": [
+        { "id": "A", "texto": "Reduciendo su probabilidad de ocurrencia o bien mitigando su impacto." },
+        { "id": "B", "texto": "Un control solo reduce su probabilidad de ocurrencia." },
+        { "id": "C", "texto": "Un control solo mitiga el impacto." },
+        { "id": "D", "texto": "Un control no reduce el riesgo, solo lo realiza el objetivo de control." }
+    ],
+    "correcta": "A",
+    "justificacion": "El control de riesgos es el proceso sistemático de aplicar medidas destinadas a reducir la probabilidad o el impacto de los riesgos a los que se enfrenta una empresa. La gestión efectiva implica ambas acciones: prevenir que suceda y minimizar el daño si sucede.",
+    "porqueNo": "La opción B es incorrecta porque muchos controles son de detección o mitigación de impacto (ej. copias de seguridad). La opción C es incorrecta porque muchos controles son preventivos (ej. firewalls, contraseñas robustas). La opción D es incorrecta, ya que el objetivo de control es una declaración, pero las actividades de control son las que físicamente reducen el riesgo."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P024",
+    "pregunta": "¿Qué nivel de importancia se le da a: Riesgo vs. Control vs. Coste?",
+    "opciones": [
+        { "id": "A", "texto": "Siempre tiene que prevalecer el riesgo, con independencia del control y coste." },
+        { "id": "B", "texto": "Siempre prevalece el control, con independencia del riesgo y el coste." },
+        { "id": "C", "texto": "Siempre prevalece el coste, con independencia del riesgo y el control." },
+        { "id": "D", "texto": "Es esencial que estén equilibrados los tres términos." }
+    ],
+    "correcta": "D",
+    "justificacion": "La gestión de la seguridad de la información implica un proceso de toma de decisiones donde se debe sopesar el riesgo inherente, la eficacia del control para mitigarlo y el coste de implementar dicho control. La mejor práctica es un enfoque equilibrado que optimice la seguridad dentro de las limitaciones presupuestarias de la organización.",
+    "porqueNo": "Las opciones A, B y C son incorrectas porque abogan por la prevalencia absoluta de un solo factor. Priorizar solo el riesgo (A) llevaría a una parálisis operativa o a costes inasumibles. Priorizar solo el control (B) resultaría en ineficiencia y altos costes. Priorizar solo el coste (C) llevaría a un nivel de riesgo inaceptable y potencial incumplimiento normativo."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P025",
+    "pregunta": "Señalar la respuesta correcta. Para realizar una planificación de las auditorias, es importante recursos y tiempo:",
+    "opciones": [
+        { "id": "A", "texto": "Los recursos sí, pero el tiempo no es importante para esta fase." },
+        { "id": "B", "texto": "Depende del tipo de auditoría." },
+        { "id": "C", "texto": "Son dos términos a tener en cuenta." },
+        { "id": "D", "texto": "Solo el tiempo, con independencia de los recursos." }
+    ],
+    "correcta": "C",
+    "justificacion": "La planificación de una auditoría requiere la asignación adecuada de recursos humanos, financieros y tecnológicos, así como la definición de plazos realistas y un cronograma detallado (tiempo). Ambos factores son cruciales para el éxito del encargo de auditoría.",
+    "porqueNo": "La opción A es incorrecta porque el tiempo es un factor de planificación esencial. La opción B es incorrecta porque la necesidad de planificar recursos y tiempo aplica a todos los tipos de auditoría. La opción D es incorrecta porque el tiempo no puede gestionarse sin considerar los recursos necesarios para completar las tareas."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P26",
+    "pregunta": "Señalar la respuesta correcta. Una diferencia que puede hacerse entre una prueba de cumplimiento y una sustantiva es que la prueba de cumplimiento:",
+    "opciones": [
+      { "id": "A", "texto": "Detalla, mientras que la prueba sustantiva prueba procedimientos." },
+      { "id": "B", "texto": "Controla, mientras la prueba sustantiva prueba los detalles." },
+      { "id": "C", "texto": "Planea, mientras que la prueba sustantiva prueba procedimientos." },
+      { "id": "D", "texto": "Para los requerimientos regulatorios, mientras que la prueba sustantiva prueba las validaciones." }
+    ],
+    "correcta": "B",
+    "justificacion": "Las pruebas de cumplimiento (o de control) evalúan la efectividad de los controles internos diseñados para prevenir o detectar errores materiales. Se centran en si los controles funcionan según lo previsto. Las pruebas sustantivas (o de detalle) verifican directamente la integridad, exactitud y validez de los datos reales y los saldos de los estados financieros. La opción B refleja esta distinción: la prueba de cumplimiento se enfoca en el **control** interno, mientras que la prueba sustantiva se enfoca en los **detalles** de las transacciones y saldos.",
+    "porqueNo": "A es incorrecta porque las pruebas sustantivas se centran en los detalles de las cifras, no en los procedimientos de cumplimiento. C es incorrecta porque la planeación es una etapa previa a la ejecución de ambas pruebas. D es incorrecta porque las pruebas sustantivas prueban la validez de los datos financieros, no solo las validaciones regulatorias, que son parte de las pruebas de cumplimiento."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P27",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál de las siguientes pruebas está un auditor realizando cuando una muestra de programas es seleccionada para determinar si las versiones del código fuente y versiones del código objeto son las mismas?",
+    "opciones": [
+      { "id": "A", "texto": "Una prueba de controles de biblioteca de programas." },
+      { "id": "B", "texto": "Una prueba de cumplimiento de controles de biblioteca de programas." },
+      { "id": "C", "texto": "Una prueba de cumplimiento de los controles del área de operación." },
+      { "id": "D", "texto": "Una prueba sustantiva de los controles del compilador de programas." }
+    ],
+    "correcta": "B",
+    "justificacion": "El propósito de una **prueba de cumplimiento** (o de control) es evaluar si los controles internos operan de manera efectiva, tal como fueron diseñados y de acuerdo con las políticas de gestión. Específicamente, cuando un auditor de SI se preocupa por si los controles de la **biblioteca de programas** funcionan correctamente, selecciona una muestra para verificar que las versiones del código fuente y del código objeto son idénticas, demostrando así que los procedimientos de gestión de cambios y versiones se están cumpliendo eficazmente.",
+    "porqueNo": "A es incorrecta porque el tipo de prueba que se realiza al verificar el cumplimiento de políticas es una prueba de **cumplimiento**, no solo una prueba de 'controles' genérica. C es incorrecta porque la verificación de versiones de código se relaciona específicamente con los controles de la **biblioteca de programas**, que gestiona el software, y no con el área de operaciones general. D es incorrecta porque una prueba sustantiva busca evidencia directa sobre la integridad, exactitud y validez de los datos financieros, no evalúa la eficacia de un control interno como el proceso de compilación y control de versiones."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P28",
+    "pregunta": "Señalar la respuesta correcta. ¿Un elemento clave en la planificación de una auditoría de sistemas de información es?",
+    "opciones": [
+      { "id": "A", "texto": "Traducir los objetivos en expectativas de negocio." },
+      { "id": "B", "texto": "Traducir los objetivos de auditoría básicos y de amplio alcance en objetivos específicos de auditoría de sistemas de información." },
+      { "id": "C", "texto": "Saber siempre con cuantos recursos podemos contar." },
+      { "id": "D", "texto": "Saber con cuanto tiempo y herramientas podemos contar." }
+    ],
+    "correcta": "B",
+    "justificacion": "Según el material de planificación de auditoría, un paso fundamental es la definición de objetivos de auditoría específicos. Esto implica tomar los objetivos generales (como la confidencialidad, integridad y disponibilidad de la información) y traducirlos en objetivos concretos y medibles que se puedan aplicar a los sistemas de información auditados. La planificación eficaz requiere esta especificación para guiar las pruebas y procedimientos posteriores.",
+    "porqueNo": "A es muy general; los objetivos de negocio se traducen en objetivos de auditoría específicos, no directamente en expectativas. C y D son incorrectas como elemento clave principal; la disponibilidad de recursos y tiempo es importante, pero es una consideración logística que sigue a la definición de los **objetivos específicos** de la auditoría. Sin objetivos claros, no se puede planificar adecuadamente el uso de recursos ni el tiempo."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P29",
+    "pregunta": "Señalar la respuesta correcta. ¿La evidencia es?",
+    "opciones": [
+      { "id": "A", "texto": "Una prueba." },
+      { "id": "B", "texto": "Un resultado de una prueba." },
+      { "id": "C", "texto": "Es cualquier información usada por el auditor de Sistemas de Información para determinar si la entidad o los datos que están siendo auditados cumplen con los criterios u objetivos establecidos." },
+      { "id": "D", "texto": "Una evidencia siempre es un intangible." }
+    ],
+    "correcta": "C",
+    "justificacion": "La **evidencia de auditoría** se define como cualquier información, ya sea financiera o no financiera, que utiliza un auditor de sistemas de información para determinar si la entidad o los datos que están siendo auditados cumplen con los criterios u objetivos establecidos. Esto está alineado con la definición estándar en el material del curso, que enfatiza que la evidencia es la base para emitir una opinión de auditoría informada.",
+    "porqueNo": "A es incorrecta porque una prueba es un procedimiento o técnica de auditoría; la evidencia es el *resultado* o la *información* obtenida de esa prueba. B es incorrecta porque, si bien la evidencia puede ser el resultado de una prueba, la definición completa (Opción C) abarca un rango más amplio de información utilizada por el auditor. D es incorrecta porque la evidencia puede ser tangible (documentos físicos, capturas de pantalla, archivos electrónicos) o intangible (observaciones orales, confirmaciones)."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P30",
+    "pregunta": "Señalar la respuesta correcta. El EDR es una metodología de auditorías de sistemas de información basada en:",
+    "opciones": [
+      { "id": "A", "texto": "Amenazas." },
+      { "id": "B", "texto": "Vulnerabilidades." },
+      { "id": "C", "texto": "Riesgos." },
+      { "id": "D", "texto": "Impactos." }
+    ],
+    "correcta": "C",
+    "justificacion": "La metodología EDR (Evaluación de Riesgos) se fundamenta en el análisis y gestión de **riesgos** de los sistemas de información. El objetivo principal de una auditoría basada en EDR es identificar, analizar y evaluar los riesgos asociados a los activos de información, permitiendo a la organización tomar decisiones informadas sobre cómo mitigar, transferir, aceptar o evitar dichos riesgos.",
+    "porqueNo": "A, B y D son incorrectas porque las amenazas, vulnerabilidades e impactos son componentes o factores que *alimentan* el análisis de riesgos, pero la metodología EDR en sí misma se centra en el concepto integral de **riesgo** como la base de la auditoría, combinando la probabilidad de que una amenaza explote una vulnerabilidad con su potencial impacto."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P31",
+    "pregunta": "Señalar la respuesta correcta. El informe de auditoría:",
+    "opciones": [
+      { "id": "A", "texto": "No admite discusión, pues debe ser aclarado todo durante la propia auditoría." },
+      { "id": "B", "texto": "Antes del informe final, se distribuye un borrador al que se pueden alegar aspectos que el auditado no esté de acuerdo." },
+      { "id": "C", "texto": "El informe final de auditoría también puede ser discutido con las personas auditadas y siempre tiene un apartado principal para la dirección de los controles que se recomienda modificar." },
+      { "id": "D", "texto": "A menudo existe un apartado con juicios de valor y un glosario con los nombres y marcas de los productos." }
+    ],
+    "correcta": "B",
+    "justificacion": "Según las directrices para la comunicación de resultados de auditoría, es un paso fundamental la revisión del borrador del informe con la dirección del área auditada. Este proceso permite al auditado revisar las conclusiones, expresar sus puntos de vista sobre los hallazgos y proponer aclaraciones o correcciones antes de que el informe se considere final. Esto asegura la exactitud y la equidad del informe final.",
+    "porqueNo": "A es incorrecta porque el informe sí admite un proceso de discusión y alegaciones antes de su versión final para asegurar la validez de los hallazgos. C es incorrecta porque, si bien el informe final puede tener una reunión de presentación, la fase formal de alegaciones ocurre con el borrador. Además, los juicios de valor y marcas de productos (D) no son elementos estándar o recomendados en un informe de auditoría profesional."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P32",
+    "pregunta": "Señalar la respuesta correcta. Realizar auditorías informáticas con metodologías evita:",
+    "opciones": [
+      { "id": "A", "texto": "Rapidez y uniformidad." },
+      { "id": "B", "texto": "Objetividad en los criterios." },
+      { "id": "C", "texto": "Dependencia de quién lo realiza y como lo realiza." },
+      { "id": "D", "texto": "Consistencia y rigor." }
+    ],
+    "correcta": "C",
+    "justificacion": "El uso de metodologías y estándares (como COBIT, ITIL) en las auditorías informáticas es fundamental para estandarizar el proceso. Esto asegura que la auditoría no dependa del juicio personal o la experiencia subjetiva del auditor individual, promoviendo la **objetividad** y la **uniformidad** en los procedimientos y resultados. El propósito es eliminar la **dependencia de quién lo realiza y cómo lo realiza**, garantizando resultados comparables y fiables a lo largo del tiempo.",
+    "porqueNo": "A, B y D son características o beneficios *positivos* que se consiguen o mejoran al usar metodologías (se gana rapidez, uniformidad, objetividad, consistencia y rigor). La pregunta pide lo que se *evita* (un resultado negativo o indeseable), que es la subjetividad y la dependencia personal en el proceso de auditoría."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P33",
+    "pregunta": "Señalar la respuesta correcta. Al realizar una auditoría basada en el riesgo, ¿Qué tipo de evaluación de riesgos realiza el auditor de un sistema de información como primer paso?",
+    "opciones": [
+      { "id": "A", "texto": "Evaluación de riesgos inherentes." },
+      { "id": "B", "texto": "Evaluación de riesgos de control." },
+      { "id": "C", "texto": "Evaluación de riesgo de fraude." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "A",
+    "justificacion": "El primer paso fundamental en una auditoría de sistemas de información basada en el riesgo es la **evaluación de riesgos inherentes**. El riesgo inherente se refiere a la susceptibilidad de un saldo de cuenta o clase de transacciones a una incorrección material, asumiendo que no existen controles internos relacionados. Esta evaluación inicial ayuda al auditor a comprender las áreas de mayor riesgo intrínseco del entorno de SI antes de considerar la eficacia de los controles implementados.",
+    "porqueNo": "B es incorrecta porque la evaluación de riesgos de control se realiza *después* de la evaluación inherente, para determinar si los controles de la organización mitigan los riesgos identificados. C es incorrecta porque el riesgo de fraude es un tipo específico de riesgo que se evalúa dentro del marco general de riesgos inherentes y de control, no como el primer paso general. D es incorrecta porque la opción A es el primer paso correcto."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P34",
+    "pregunta": "Señalar la respuesta correcta. Un auditor de SI que realiza una revisión del departamento de SI descubre que no existen procedimientos formales de aprobación. En ausencia de estos procedimientos, el gerente de SI ha estado aprobando arbitrariamente proyectos a los niveles superiores de la gerencia para su aprobación. El auditor de SI debería recomendar como un PRIMER curso de acción que:",
+    "opciones": [
+      { "id": "A", "texto": "Los usuarios participen en la revisión y en el proceso de aprobación." },
+      { "id": "B", "texto": "Se adopten y documenten procedimientos formales de aprobación." },
+      { "id": "C", "texto": "Los proyectos sean referidos a los niveles apropiados de la gerencia para su aprobación." },
+      { "id": "D", "texto": "La descripción del puesto de trabajo del gerente de SI sea cambiada para que incluya la autoridad de aprobación." }
+    ],
+    "correcta": "B",
+    "justificacion": "El hallazgo principal del auditor es la **ausencia de procedimientos formales y documentados**. La práctica actual del gerente de SI de aprobar arbitrariamente indica una falta de control interno y consistencia. La acción principal que un auditor debe recomendar es establecer la base del control: la creación e implementación de **procedimientos formales de aprobación**. Esto establece un marco de trabajo claro y auditable que aborda la raíz del problema, que es la falta de políticas y documentación.",
+    "porqueNo": "A es incorrecta porque la participación del usuario es un control secundario; el problema raíz es la falta del procedimiento formal en sí. C es incorrecta porque referir proyectos a niveles superiores no resuelve el problema de la arbitrariedad en el nivel actual ni la falta de un proceso definido y documentado. D es incorrecta porque cambiar la descripción del trabajo del gerente no soluciona la falta de un **procedimiento documentado** que todos los empleados deban seguir."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P35",
+    "pregunta": "Señalar la respuesta correcta. Si una auditoría se centra en la disponibilidad del SI, se está auditando:",
+    "opciones": [
+      { "id": "A", "texto": "La operatividad." },
+      { "id": "B", "texto": "La eficacia." },
+      { "id": "C", "texto": "La seguridad." },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "C",
+    "justificacion": "La **seguridad de los sistemas de información** abarca los tres principios fundamentales de la información: confidencialidad, integridad y **disponibilidad** (CID). Una auditoría centrada en la disponibilidad evalúa si los sistemas de información están accesibles y operativos para los usuarios autorizados cuando son necesarios. Por lo tanto, la disponibilidad es un pilar crítico de la seguridad de la información y la respuesta correcta es que se está auditando la seguridad.",
+    "porqueNo": "A (Operatividad) es un término relacionado, pero la disponibilidad es un concepto más específico dentro del marco de la seguridad de la información. B (Eficacia) se refiere a si los controles internos logran los objetivos establecidos, no es sinónimo de disponibilidad. D es incorrecta porque la opción C es correcta, ya que la disponibilidad forma parte del alcance de una auditoría de seguridad."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P36",
+    "pregunta": "Señalar la respuesta correcta. Podemos clasificar los controles según su naturaleza en:",
+    "opciones": [
+      { "id": "A", "texto": "Voluntarios, obligatorios y manuales." },
+      { "id": "B", "texto": "Preventivos, detectivos y correctivos." },
+      { "id": "C", "texto": "Generales, preventivos y de aplicación." },
+      { "id": "D", "texto": "No se pueden clasificar los controles según su naturaleza." }
+    ],
+    "correcta": "B",
+    "justificacion": "Según la clasificación de controles internos en el material del curso (Tema 3 y 4), los controles pueden categorizarse por su **naturaleza** o momento de actuación. Las categorías principales son: **Preventivos** (evitan que ocurran errores o incidentes), **Detectivos** (identifican errores o incidentes una vez han ocurrido) y **Correctivos** (corrigen errores o incidentes identificados). Esta es la clasificación estándar por naturaleza.",
+    "porqueNo": "A es incorrecta porque 'obligatorios' y 'voluntarios' son clasificaciones por cumplimiento, no por naturaleza. 'Manuales' es por tipo de ejecución. C es incorrecta porque 'Generales' y 'de aplicación' (o específicos) son clasificaciones por alcance o ámbito de aplicación. D es incorrecta porque los controles sí se pueden clasificar por su naturaleza usando la taxonomía de preventivos, detectivos y correctivos."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P37",
+    "pregunta": "Señalar la respuesta correcta. Como norma general, ¿qué nivel de criticidad tiene un CPD dentro de una compañía?",
+    "opciones": [
+      { "id": "A", "texto": "Medio." },
+      { "id": "B", "texto": "Alto." },
+      { "id": "C", "texto": "Bajo." },
+      { "id": "D", "texto": "No se puede estimar." }
+    ],
+    "correcta": "B",
+    "justificacion": "Como norma general, un Centro de Procesamiento de Datos (CPD) o Data Center es el núcleo de la infraestructura tecnológica de una compañía. Alberga los sistemas, servidores y datos críticos para las operaciones diarias y la continuidad del negocio. Por lo tanto, su nivel de criticidad es inherentemente **Alto**. Cualquier interrupción o fallo en el CPD tendría un impacto significativo y generalizado en toda la organización.",
+    "porqueNo": "A (Medio) y C (Bajo) son incorrectas porque subestiman la importancia del CPD. Aunque el nivel exacto de criticidad puede variar ligeramente según el tipo de empresa, la función central del CPD siempre lo sitúa en un nivel de riesgo elevado. D es incorrecta porque sí se puede estimar; se clasifica como alto debido a su rol fundamental en la operatividad de la empresa."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P38",
+    "pregunta": "Señalar la respuesta correcta. ¿Qué tipos de riesgos pueden materializarse en un CPD?",
+    "opciones": [
+      { "id": "A", "texto": "Riesgos ambientales industriales." },
+      { "id": "B", "texto": "Riesgos ambientales naturales." },
+      { "id": "C", "texto": "Riesgos técnicos y relacionados con las personas." },
+      { "id": "D", "texto": "Todos los anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "En un Centro de Procesamiento de Datos (CPD), la materialización de riesgos es multifacética. Los riesgos ambientales industriales (como derrames químicos o fallos eléctricos), los riesgos ambientales naturales (como inundaciones, terremotos o incendios), y los riesgos técnicos (fallos de hardware/software) y relacionados con las personas (errores humanos, ataques maliciosos) son todos aplicables. La gestión de un CPD requiere considerar todas estas categorías de riesgo para asegurar la continuidad del servicio.",
+    "porqueNo": "A, B y C son incorrectas individualmente porque solo cubren una parte del espectro completo de riesgos que pueden afectar a un CPD. Un enfoque integral de gestión de riesgos para un CPD debe considerar todas las fuentes de riesgo mencionadas, haciendo que la opción D sea la única respuesta correcta que abarca el alcance completo."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P39",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuáles son las similitudes entre auditoría interna y control interno tecnológico?",
+    "opciones": [
+      { "id": "A", "texto": "No existen." },
+      { "id": "B", "texto": "Conocimientos especializados en tecnologías de información verificación del cumplimiento de controles internos, normativa y procedimientos establecidos para poder llegar a los objetivos marcados por el negocio." },
+      { "id": "C", "texto": "En la periodicidad de las mediciones." },
+      { "id": "D", "texto": "En su dependencia imparcial y su plan de comunicación de resultados." }
+    ],
+    "correcta": "B",
+    "justificacion": "Tanto la auditoría interna como el control interno tecnológico comparten similitudes fundamentales en su propósito y ejecución. Ambos requieren la aplicación de **conocimientos especializados en tecnologías de información** (TI) para operar eficazmente. Su objetivo común es la **verificación del cumplimiento de controles internos**, la normativa y los procedimientos establecidos, todo ello orientado a alcanzar los objetivos estratégicos y operativos marcados por el negocio. Ambos buscan asegurar la fiabilidad, integridad y disponibilidad de los sistemas de información.",
+    "porqueNo": "A es incorrecta porque sí existen similitudes operativas y de propósito. C es incorrecta porque la periodicidad de las mediciones o revisiones suele ser diferente; el control interno es continuo, mientras que la auditoría interna suele ser periódica. D es incorrecta porque la **auditoría interna** se caracteriza por su **independencia e imparcialidad**, mientras que el **control interno** es una función de la propia gerencia o del área de TI, careciendo de esa misma independencia funcional formal respecto a la operación diaria."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P40",
+    "pregunta": "Señalar la respuesta correcta. ¿Sería necesario auditar los controles de un CPD?",
+    "opciones": [
+      { "id": "A", "texto": "Solo si se ha sufrido un incidente." },
+      { "id": "B", "texto": "Si, de manera periódica según el plan de auditoría." },
+      { "id": "C", "texto": "Si, con auditarlo una vez cada 3 años es suficiente." },
+      { "id": "D", "texto": "Solo si mi empresa pertenece a un sector regulado." }
+    ],
+    "correcta": "B",
+    "justificacion": "Dado que un Centro de Procesamiento de Datos (CPD) tiene un nivel de criticidad alto para la operación de la compañía (como se estableció en preguntas anteriores), es fundamental que sus controles sean revisados de manera regular y planificada. Las auditorías deben realizarse periódicamente, siguiendo un plan de auditoría predefinido que considere los riesgos y la importancia del CPD para el negocio. Esto permite un monitoreo continuo de la eficacia de los controles.",
+    "porqueNo": "A es incorrecta porque la auditoría no debe ser solo reactiva a incidentes; la prevención y la revisión proactiva son clave. C es incorrecta porque un ciclo de 3 años puede ser insuficiente para un activo crítico; la periodicidad debe basarse en el riesgo evaluado. D es incorrecta porque, aunque la regulación puede imponer auditorías, la buena gobernanza de TI requiere auditorías periódicas independientemente del sector, debido a la criticidad del CPD."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P41",
+    "pregunta": "Señalar la respuesta correcta. Una empresa ha instalado recientemente un parche de seguridad que dejó bloqueado un servidor, para minimizar la probabilidad que vuelva a ocurrir este hecho, el auditor debe:",
+    "opciones": [
+      { "id": "A", "texto": "Probar el parche de forma exhaustiva antes de pasarlo a producción." },
+      { "id": "B", "texto": "Aprobar el parche tras hacer una evaluación del riesgo." },
+      { "id": "C", "texto": "Aplicar el parche conforme a las notas publicadas por fabricante." },
+      { "id": "D", "texto": "Asegurar que se haya implantado en la organización un buen proceso de administración de cambios." }
+    ],
+    "correcta": "D",
+    "justificacion": "El problema describe un fallo en el proceso de implementación de un parche, que resultó en una interrupción del servicio. La causa raíz no es la falta de una acción específica (probar, aprobar), sino la ausencia o ineficacia de un marco de trabajo que asegure que dichas acciones se realicen de manera sistemática y controlada. Un buen **proceso de administración de cambios** (o gestión de cambios) es el control global diseñado para minimizar los riesgos asociados con las modificaciones del entorno de TI, asegurando que todos los pasos necesarios (evaluación de riesgos, pruebas, aprobación, planes de reversión) se ejecuten correctamente antes de la implementación en producción.",
+    "porqueNo": "Las opciones A, B y C describen actividades o controles que deberían formar parte de un proceso de administración de cambios eficaz. Sin embargo, si no existe el proceso global (D), estas actividades pueden omitirse o realizarse de forma inconsistente, como ocurrió. Por lo tanto, la recomendación principal del auditor debe ser establecer o mejorar el proceso general para prevenir futuras ocurrencias sistémicas, no solo recomendar una acción puntual."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P42",
+    "pregunta": "Señalar la respuesta correcta. El nivel donde deberá quedar la unidad departamental de auditoría interna reunirá las siguientes características:",
+    "opciones": [
+      { "id": "A", "texto": "Jerarquía suficiente para poder inmiscuirse en cualquier unidad administrativa de la empresa." },
+      { "id": "B", "texto": "Que el tipo de funciones de dicha unidad esté relacionado con la dirección, control y coordinación." },
+      { "id": "C", "texto": "Que tenga suficiente autoridad sobre los demás departamentos." },
+      { "id": "D", "texto": "Todas las anteriores son correctas." }
+    ],
+    "correcta": "D",
+    "justificacion": "Para que la función de auditoría interna sea efectiva, debe tener una posición organizativa y un nivel jerárquico que le otorguen la independencia y autoridad necesarias. Esto implica tener la jerarquía suficiente para acceder e inmiscuirse en cualquier unidad administrativa (A), funciones alineadas con la dirección, control y coordinación (B) y, por ende, suficiente autoridad sobre los demás departamentos (C) para llevar a cabo sus revisiones sin restricciones indebidas. Todas estas características son esenciales para un desempeño imparcial y completo de la auditoría interna.",
+    "porqueNo": "A, B y C son incorrectas individualmente porque cada una describe solo una faceta de los requisitos de posicionamiento de la auditoría interna. Es la combinación de todas estas características lo que permite que la unidad opere eficazmente. Por lo tanto, la opción D es la respuesta más completa y correcta según los principios de auditoría interna."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P43",
+    "pregunta": "Señalar la respuesta correcta. Clasificación General de los controles:",
+    "opciones": [
+      { "id": "A", "texto": "Existe entre 5 y 10 clasificaciones generales de controles." },
+      { "id": "B", "texto": "Solo hay 6 tipos de clasificación general de controles." },
+      { "id": "C", "texto": "Hay tres tipos, preventivos, detectivos y correctivos" },
+      { "id": "D", "texto": "Hay infinidad de clasificaciones de controles, tantos como riesgos." }
+    ],
+    "correcta": "D",
+    "justificacion": "En el contexto de la gestión de riesgos y auditoría de sistemas de información, no existe un número fijo y universalmente limitado de clasificaciones de controles. Los controles se diseñan y clasifican en función de los riesgos específicos que buscan mitigar. La naturaleza y complejidad de los sistemas y los riesgos asociados implican que se pueden definir infinidad de clasificaciones y tipos de controles, adaptándose a cada escenario particular y a la evolución constante de las amenazas y el entorno tecnológico. La opción D refleja esta realidad, que los controles se adecúan a los riesgos existentes.",
+    "porqueNo": "A, B y C son incorrectas porque implican un número fijo o limitado de clasificaciones (entre 5 y 10, solo 6, o solo 3 tipos fijos). Si bien existen taxonomías comunes (como preventivos/detectivos/correctivos, o generales/de aplicación), el número total de formas de clasificar y diseñar controles es virtualmente ilimitado y dependiente del contexto específico de riesgo de cada organización."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P44",
+    "pregunta": "Señalar la respuesta correcta. Dentro de la categorización de controles, existen los controles señuelos:",
+    "opciones": [
+      { "id": "A", "texto": "No, esto solo son técnicas de un Red Team." },
+      { "id": "B", "texto": "No, esto solo lo hace un Blue Team." },
+      { "id": "C", "texto": "Si, es una categorización de control también." },
+      { "id": "D", "texto": "No, el personal de ciberseguridad si que lo tiene categorizado, pero auditoria no." }
+    ],
+    "correcta": "C",
+    "justificacion": "Los **controles señuelos** (conocidos en ciberseguridad como *honeypots* o tecnología de engaño) son una categoría reconocida de controles de seguridad de la información. Su función es actuar como sistemas o datos falsos diseñados para atraer a los atacantes, detectando, desviando y analizando sus actividades sin exponer los activos reales de la organización. Estos se clasifican comúnmente dentro de los controles **detectivos** o **disuasorios** en taxonomías de ciberseguridad, como las del NIST.",
+    "porqueNo": "A y B son incorrectas porque, aunque los equipos Rojo (Red Team) y Azul (Blue Team) pueden usar estas técnicas en sus ejercicios o defensas, los controles señuelos son herramientas estándar que forman parte de la arquitectura de seguridad de una organización, no exclusivas de un equipo específico. D es incorrecta porque los auditores de sistemas de información sí consideran y evalúan la implementación y eficacia de estos controles como parte de una revisión integral de la seguridad."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P45",
+    "pregunta": "Señalar la respuesta correcta. Los servicios de auditoria:",
+    "opciones": [
+      { "id": "A", "texto": "Simplemente pueden ser internos, nunca podría subcontratarse." },
+      { "id": "B", "texto": "Siempre deben de ser externos, no se pueden hacer por imparcialidad auditorias internas." },
+      { "id": "C", "texto": "Tienen que ser mixtas." },
+      { "id": "D", "texto": "Pueden ser internas y externas." }
+    ],
+    "correcta": "D",
+    "justificacion": "La función de auditoría es esencial en cualquier organización. Los servicios de auditoría pueden ser provistos de diversas maneras. La auditoría interna es realizada por empleados de la propia empresa, proporcionando una evaluación continua y objetiva de los controles y procesos. Alternativamente, la auditoría externa es realizada por firmas independientes para ofrecer una opinión imparcial, comúnmente sobre los estados financieros, aunque también puede aplicarse a TI. Ambos tipos de servicios coexisten y son prácticas estándar en la gobernanza corporativa y de TI.",
+    "porqueNo": "A es incorrecta; la auditoría interna puede ser subcontratada (co-sourcing o outsourcing completo). B es incorrecta; las auditorías internas existen y son válidas, siempre que mantengan un grado adecuado de independencia y reporten al nivel jerárquico apropiado (como la junta directiva o comité de auditoría). C es incorrecta porque no tienen que ser mixtas; las organizaciones pueden optar por un modelo interno, externo o una combinación según sus necesidades y recursos."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P46",
+    "pregunta": "Señalar la respuesta correcta. Según el comportamiento de los controles, los podemos clasificar en:",
+    "opciones": [
+      { "id": "A", "texto": "Voluntarios" },
+      { "id": "B", "texto": "Manuales" },
+      { "id": "C", "texto": "Generales" },
+      { "id": "D", "texto": "Ninguna de las anteriores." }
+    ],
+    "correcta": "D",
+    "justificacion": "La clasificación principal de los controles según su **comportamiento** o naturaleza es en: Preventivos, Detectivos y Correctivos. Las opciones presentadas (Voluntarios, Manuales, Generales) corresponden a otras categorías o atributos de los controles (por cumplimiento, por tipo de ejecución, por alcance), pero no a la clasificación por comportamiento/naturaleza. Por lo tanto, ninguna de las opciones listadas es correcta para esta pregunta específica.",
+    "porqueNo": "A es incorrecta porque 'voluntarios' es una clasificación por cumplimiento. B es incorrecta porque 'manuales' es una clasificación por tipo de ejecución. C es incorrecta porque 'generales' es una clasificación por alcance. Dado que ninguna de las opciones representa la clasificación de controles por su **comportamiento** (preventivo, detectivo, correctivo), la opción D es la respuesta correcta."
+  },
+  {
+    "examen": "Solución en Clase 3",
+    "id": "SC03-P47",
+    "pregunta": "Señalar la respuesta correcta. ¿Cuál es el control más importante para el CIO (Chief Information Officer - Director de Informática)?",
+    "opciones": [
+      { "id": "A", "texto": "El plan de seguridad alineado con el plan de medioambiente." },
+      { "id": "B", "texto": "El plan estratégico de empresa alineado con el plan de TIC." },
+      { "id": "C", "texto": "El plan de TIC no se alinea nunca con el plan estratégico de empresa." },
+      { "id": "D", "texto": "El plan económico-financiero alineado con los periodos vacacionales.." }
+    ],
+    "correcta": "B",
+    "justificacion": "El rol del **Chief Information Officer (CIO)** ha evolucionado de ser puramente técnico a ser un socio estratégico del negocio. Su responsabilidad principal es asegurar que los sistemas de información (TIC) respalden y permitan los objetivos generales de la organización. Por lo tanto, el control más importante es asegurar que el **plan estratégico de la empresa esté alineado con el plan de TIC**, garantizando que las inversiones y proyectos tecnológicos impulsen el crecimiento y la eficiencia del negocio.",
+    "porqueNo": "A es incorrecta porque, si bien la seguridad es vital, su alineación con el plan de medioambiente no es el control estratégico principal del CIO. C es incorrecta porque la falta de alineación es un error de gobernanza significativo, no un control importante. D es incorrecta por completo, ya que mezcla la planificación económica con la gestión de vacaciones, lo cual no es un control estratégico clave para un CIO."
+  },
+
+]
